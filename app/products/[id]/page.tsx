@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import ReviewScore from "@/components/reviewScore";
+import { Box, Gift, Truck } from "lucide-react";
+
+// TODO: add generateStaticParams,
+
 export default async function Page({
   params,
 }: {
@@ -24,10 +28,14 @@ export default async function Page({
     return notFound();
   }
   const showDecimals = product.price > 1000 ? 0 : 2;
+  const imageGrid = product.images.length < 2 ? 1 : 2;
+
   return (
-    <section className="px-8">
-      <div className="grid gap-4">
-        <figure className="grid grid-cols-2 gap-2 relative">
+    <section className="px-8 grid gap-4 ">
+      <div className="grid gap-8 lg:grid-cols-2">
+        {/* Images */}
+        <figure className={`grid grid-cols-${imageGrid} gap-2 relative`}>
+          {/* Display discount if over a specific value */}
           {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
             <p className="absolute md:font-medium text-sm md:text-lg bg-background top-0 mt-1 ml-1 p-1  text-destructive ">
               {`${Math.floor(product.discountPercentage)} % off`}
@@ -45,32 +53,77 @@ export default async function Page({
               className=" bg-accent"></Image>
           ))}
         </figure>
-        <div className="row-start-2 flex justify-between">
-          <div>
-            <h2 className="text-lg">{product.title}</h2>
-            <ReviewScore times={5} scoreOutOfFive={4}></ReviewScore>
-          </div>
-
-          {/* If discount is greater than MIN_DISCOUNT_TO_DISPLAY display the discounted price */}
-          {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-            <div className="flex gap-2 ">
-              <p className="line-through text-lg ">{`$${product.price.toFixed(
-                showDecimals
-              )}`}</p>
-
-              <p className="font-medium text-lg">
-                {`$${Math.round(
-                  product.price -
-                    (product.discountPercentage / 100) * product.price
-                ).toFixed(showDecimals)}`}
-              </p>
+        <section className="grid gap-8 h-min max-w-[60ch]">
+          {/* Productinfo */}
+          <div className=" flex justify-between border-b-1 pb-8">
+            <div>
+              <h2 className="text-2xl">{product.title}</h2>
+              <ReviewScore
+                nrOfReviews={product.reviews.length}
+                scoreOutOfFive={product.rating}></ReviewScore>
             </div>
-          ) : (
-            <p className="text-lg font-bold ">
-              {product.price.toFixed(showDecimals)}
+
+            {/* If discount is greater than MIN_DISCOUNT_TO_DISPLAY display the discounted price */}
+            {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
+              <div className="flex gap-2 text-2xl">
+                <p className="line-through text-2xl ">{`$${product.price.toFixed(
+                  showDecimals
+                )}`}</p>
+
+                <p className="font-medium">
+                  {`$${Math.round(
+                    product.price -
+                      (product.discountPercentage / 100) * product.price
+                  ).toFixed(showDecimals)}`}
+                </p>
+              </div>
+            ) : (
+              <p className="font-bold ">
+                {product.price.toFixed(showDecimals)}
+              </p>
+            )}
+          </div>
+          {/* Decsription */}
+          <section className="grid gap-4 border-b-1 pb-8">
+            <h3 className="font-bold font-xl">Description</h3>
+            <p>
+              {product.description} Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Labore esse quam ducimus vel facilis. Natus at
+              tempore tenetur pariatur, distinctio ab praesentium dignissimos
+              soluta optio deserunt nobis incidunt nemo atque.{" "}
             </p>
-          )}
-        </div>
+          </section>
+          {/* Buy options */}
+          <div className="border-b-1 pb-8 ">
+            <p className="py-2 text-center bg-gray-900 text-background shadow">
+              Add to cart
+            </p>
+          </div>
+          {/* General order information */}
+          <section className="grid justify-start gap-8 md:border-b-1 pb-8">
+            <div className="flex gap-10">
+              <Truck size={50} strokeWidth={1}></Truck>
+              <div>
+                <p className="font-bold">Free Shipping</p>
+                <p>On all orders over $100</p>
+              </div>
+            </div>
+            <div className="flex gap-10">
+              <Box size={50} strokeWidth={1}></Box>
+              <div>
+                <p className="font-bold">Easy Returns</p>
+                <p>Extenden through November 31</p>
+              </div>
+            </div>
+            <div className="flex gap-10">
+              <Gift size={50} strokeWidth={1}></Gift>
+              <div>
+                <p className="font-bold">Send It As A Gift</p>
+                <p>Add a free personalized note during checkout</p>
+              </div>
+            </div>
+          </section>
+        </section>
       </div>
     </section>
   );

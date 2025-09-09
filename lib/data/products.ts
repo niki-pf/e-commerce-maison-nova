@@ -7,8 +7,18 @@ export interface ProductFull {
   category: string;
   price: number;
   discountPercentage: number;
+  rating: number;
   tags: string[];
   images: string[];
+  reviews: [
+    {
+      rating: number;
+      comment: string;
+      date: Date;
+      reviewerName: string;
+      reviewerEmail: string;
+    }
+  ];
 }
 
 export async function fetchProduct(id: string) {
