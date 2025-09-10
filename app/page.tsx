@@ -11,7 +11,7 @@ export default function Home() {
         h1="Your Cozy Era"
         paragraph="Get peak comfy chic with new winter essentials"
         button="Shop now"
-        pos="midLeft"
+        pos="bottomRight"
       />
     </>
   );
