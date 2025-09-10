@@ -2,7 +2,7 @@ import { fetchProduct } from "@/lib/data/products";
 import { notFound } from "next/navigation";
 import React from "react";
 import Image from "next/image";
-import ReviewScore from "@/components/reviewScore";
+import ReviewScore from "@/components/review-score";
 import { Box, Gift, Truck } from "lucide-react";
 
 // TODO: add generateStaticParams,
