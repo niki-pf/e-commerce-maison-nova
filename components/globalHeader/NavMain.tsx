@@ -8,7 +8,7 @@ import NavItems from "./NavItems";
 const NavMain = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className="relative h-[50] md:px-8 px-4 w-screen flex justify-between items-center ">
+    <header className="relative h-[50] md:px-8 px-4 w-full flex justify-between items-center ">
       {/*** Desktop navigation ***/}
       <nav className="hidden md:flex">
         <NavItems direction="row" />

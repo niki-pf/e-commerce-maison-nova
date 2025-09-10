@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const listItemMenu = [
-  { label: "Dam", href: "/dam" },
-  { label: "Herr", href: "/herr" },
-  { label: "Om oss", href: "/om-oss" },
-  { label: "Kontakta", href: "/kontakta" },
+  { label: "Women", href: "/women" },
+  { label: "Men", href: "/men" },
+  { label: "About", href: "/about" },
+  { label: "Contact Us", href: "/contact-us" },
 ];
 
 type NavItemsProps = {
