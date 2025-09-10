@@ -1,63 +1,22 @@
-import Link from "next/link";
+import { FOOTER_TAGS, NO_GO_LINKS } from "@/lib/constants";
 import React from "react";
 
-const NO_GO_LINKS = [
-  { header: "Account", links: ["Log In", "Sign Up", "Redeem a Gift Card"] },
-  {
-    header: "Company",
-    links: [
-      "About",
-      "Enviromental Initiatives",
-      "Factories",
-      "DEI",
-      "Careers",
-      "International",
-      "Accessibility",
-    ],
-  },
-  {
-    header: "Get Help",
-    links: ["Help Center", "Return Policy", "Shipping Info", "Bulk Orders"],
-  },
-  {
-    header: "Connect",
-    links: ["Facebook", "Instagram", "Twitter", "Affiliates", "Our Stores"],
-  },
-];
-
-const FOOTER_TAGS = [
-  "Privacy Policy",
-  "Terms of Servicce",
-  "Do Not Sell or Share My Personal Information",
-  "Supply Chain Transparancy",
-  "Vendor Code Of Conduct",
-  "Site Map Pages",
-];
 export default function Footer() {
   return (
-    <footer className="grid bg-accent pt-8 pb-4 gap-4">
-      <div className="grid grid-flow-col justify-center gap-8">
-        <div className="flex gap-8 mx-auto">
-          {NO_GO_LINKS.map((link, index) => (
-            <div className="flex flex-col">
-              <p className="font-bold">{link.header}</p>
-              {link.links.map((string, index) => (
-                <p key={index}>{string}</p>
-              ))}
-            </div>
-          ))}
-        </div>
-        {
-          <Link
-            href={"/contact"}
-            className="p-4 md:block hidden h-min shadow rounded-2xl bg-accent">
-            Contact Us
-          </Link>
-        }
+    <footer className="grid bg-accent p-4 pt-8 gap-4 w-full justify-center">
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 sm:justify-around gap-8">
+        {NO_GO_LINKS.map((link, index) => (
+          <div key={index} className="flex flex-col">
+            <p className="font-bold">{link.header}</p>
+            {link.links.map((string, index) => (
+              <p key={index}>{string}</p>
+            ))}
+          </div>
+        ))}
       </div>
-      <div className="flex gap-4 justify-center">
+      <div className="grid sm:grid-flow-col gap-4">
         {FOOTER_TAGS.map((link, index) => (
-          <p>{link}</p>
+          <p key={index}>{link}</p>
         ))}
       </div>
       <p className="text-center">2025 All Rights Reserved</p>
