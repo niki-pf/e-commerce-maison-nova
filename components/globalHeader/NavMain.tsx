@@ -8,7 +8,7 @@ import NavItems from "./NavItems";
 const NavMain = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className="relative h-[50] px-8 w-screen flex justify-between items-center ">
+    <header className="relative h-[50] md:px-8 px-4 w-screen flex justify-between items-center ">
       {/*** Desktop navigation ***/}
       <nav className="hidden md:flex">
         <NavItems direction="row" />
@@ -39,7 +39,7 @@ const NavMain = () => {
         </nav>
       </div>
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <Link href="/" className="text-2xl font-bold uppercase">
+        <Link href="/" className="text-xl md:text-2xl font-bold uppercase">
           Maison Nova
         </Link>
       </div>
