@@ -1,12 +1,12 @@
-import ProductCard from "@/components/product-card";
-import { fetchProduct } from "@/lib/data/products";
+import ProductList from "@/components/product-list";
 import React from "react";
 
 export default async function ProductsPage() {
+  const testIds: number[] = Array.from({ length: 10 }, (_, index) => index + 1);
   return (
-    <div className="p-10">
+    <section className="p-10">
       ProductsPage, example productcard
-      <ProductCard id={"1"}></ProductCard>
-    </div>
+      <ProductList ></ProductList>
+    </section>
   );
 }

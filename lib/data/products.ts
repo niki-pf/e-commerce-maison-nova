@@ -19,8 +19,6 @@ export interface ProductFull {
       reviewerEmail: string;
     }
   ];
-  tags: string[];
-  images: string[];
 }
 
 export async function fetchProduct(id: string) {
@@ -34,6 +32,23 @@ export async function fetchProduct(id: string) {
 
     const data: ProductFull = await response.json();
     return data;
+  } catch (error) {
+    console.log("API network error");
+  }
+}
+
+export async function fetchAllProducts() {
+  try {
+    const response = await fetch(`https://dummyjson.com/products/`);
+
+    if (!response.ok) {
+      console.log(`There was an error fetching all products`);
+      return notFound();
+    }
+
+    const data = await response.json();
+    const products: ProductFull[] = data.products;
+    return products;
   } catch (error) {
     console.log("API network error");
   }

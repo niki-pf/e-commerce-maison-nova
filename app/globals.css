@@ -120,3 +120,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* needed to display subgrid on product cards */
+div > .productCard {
+  grid-template-rows: 1fr auto auto;
+}
