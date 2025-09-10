@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Lista med kategorier för Women och Men
-const womenCategories = [
+export const womenCategories = [
   "womens-bags",
   "womens-dresses",
   "womens-jewellery",
@@ -11,7 +11,7 @@ const womenCategories = [
   "tops",
 ];
 
-const menCategories = [
+export const menCategories = [
   "mens-shirts",
   "mens-shoes",
   "mens-watches",

@@ -53,3 +53,22 @@ export async function fetchAllProducts() {
     console.log("API network error");
   }
 }
+
+export async function fetchAllProductOfTypeCategory(category: string) {
+  try {
+    const response = await fetch(
+      `https://dummyjson.com/products/category/${category}`
+    );
+
+    if (!response.ok) {
+      console.log(`There was an error fetching all products by category`);
+      return notFound();
+    }
+
+    const data = await response.json();
+    const products: ProductFull[] = data.products;
+    return products;
+  } catch (error) {
+    console.log("API network error");
+  }
+}
