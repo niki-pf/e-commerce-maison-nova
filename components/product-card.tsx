@@ -9,7 +9,6 @@ export default async function ProductCard({ id }: { id: string }) {
   if (!product) {
     return null;
   }
-  console.log(product.images[0]);
 
   return (
     <article className="grid max-w-[500px] grid-rows-subgrid gap-4">
