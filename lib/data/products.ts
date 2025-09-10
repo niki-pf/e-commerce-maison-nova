@@ -7,7 +7,7 @@ export async function fetchProduct(id: string) {
 
     if (!response.ok) {
       console.log(`There was an error fetching a product with id: ${id}`);
-      return notFound();
+      return [];
     }
 
     const data: ProductFull = await response.json();
@@ -23,7 +23,26 @@ export async function fetchProducts() {
 
     if (!response.ok) {
       console.log(`There was an error fetching all products`);
-      return notFound();
+      return [];
+    }
+
+    const data = await response.json();
+    const products: ProductFull[] = data.products;
+    return products;
+  } catch (error) {
+    console.log("API network error");
+  }
+}
+
+export async function fetchSearchProduct(query: string) {
+  try {
+    const response = await fetch(
+      `https://dummyjson.com/products/search?q=${query}`
+    );
+
+    if (!response.ok) {
+      console.log(`There was an error searching for products`);
+      return [];
     }
 
     const data = await response.json();
@@ -42,9 +61,8 @@ export async function fetchProductOfTypeCategory(category: string) {
 
     if (!response.ok) {
       console.log(`There was an error fetching all products by category`);
-      return notFound();
+      return [] as ProductFull[];
     }
-
     const data = await response.json();
     const products: ProductFull[] = data.products;
     return products;
