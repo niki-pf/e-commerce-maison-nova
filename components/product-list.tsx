@@ -1,9 +1,9 @@
 import React from "react";
 import ProductCard from "./product-card";
-import { fetchAllProducts } from "@/lib/data/products";
+import { fetchProducts } from "@/lib/data/products";
 
 export default async function ProductList() {
-  const products = await fetchAllProducts();
+  const products = await fetchProducts();
   /* No products found */
   if (!products) {
     return null;

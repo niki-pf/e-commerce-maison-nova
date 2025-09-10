@@ -17,7 +17,7 @@ export async function fetchProduct(id: string) {
   }
 }
 
-export async function fetchAllProducts() {
+export async function fetchProducts() {
   try {
     const response = await fetch(`https://dummyjson.com/products/`);
 
@@ -34,7 +34,7 @@ export async function fetchAllProducts() {
   }
 }
 
-export async function fetchAllProductOfTypeCategory(category: string) {
+export async function fetchProductOfTypeCategory(category: string) {
   try {
     const response = await fetch(
       `https://dummyjson.com/products/category/${category}`
