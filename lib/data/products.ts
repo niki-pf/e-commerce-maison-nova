@@ -19,6 +19,8 @@ export interface ProductFull {
       reviewerEmail: string;
     }
   ];
+  tags: string[];
+  images: string[];
 }
 
 export async function fetchProduct(id: string) {
