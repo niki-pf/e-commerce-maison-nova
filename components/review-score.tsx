@@ -1,5 +1,6 @@
 import React from "react";
 import { Star } from "lucide-react";
+
 export default function ReviewScore({
   nrOfReviews,
   scoreOutOfFive,
@@ -32,3 +33,4 @@ export default function ReviewScore({
     </div>
   );
 }
+

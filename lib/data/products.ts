@@ -1,25 +1,5 @@
 import { notFound } from "next/navigation";
-
-export interface ProductFull {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  tags: string[];
-  images: string[];
-  reviews: [
-    {
-      rating: number;
-      comment: string;
-      date: Date;
-      reviewerName: string;
-      reviewerEmail: string;
-    }
-  ];
-}
+import { ProductFull } from "../interfaces";
 
 export async function fetchProduct(id: string) {
   try {
