@@ -24,10 +24,12 @@ export default async function Page({
   const product = await fetchProduct(id);
 
   if (!product) {
-    console.log("Tried fetching, no return ");
+    console.log("Tried fetching project full page, no return ");
     return notFound();
   }
+  /* Display decmials if price is under 1000 */
   const showDecimals = product.price > 1000 ? 0 : 2;
+  /* Displat the images in two columns if the product have two or more images */
   const imageGrid = product.images.length < 2 ? 1 : 2;
 
   return (
