@@ -36,7 +36,7 @@ const positionClasses: Record<PositionVariant, string> = {
 const FullPageBlock = ({
   imageSrc,
   altText,
-  h1 = "Default titel",
+  h1,
   paragraph,
   button,
   pos = "midCenter",
@@ -51,12 +51,12 @@ const FullPageBlock = ({
           fill
           priority
         />
-
+        <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative w-[70%] h-[70%] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 inset-0 flex flex-col items-center text-white text-center p-4">
           <div
             className={`absolute ${positionClasses[pos]} flex flex-col items-center gap-3`}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mac-w-[15ch] leading-none">
+            <h1 className="text-4xl md:text-6xl font-bold max-w-[15ch] leading-none">
               {h1}
             </h1>
             <p>{paragraph}</p>
