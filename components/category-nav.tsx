@@ -53,7 +53,7 @@ return (
             alt={cat.name}
             width={250}
             height={250}
-            className="object-cover rounded-lg  bg-gray-100   w-[160px] md:w-[250px] lg:w-[300px]"
+            className="object-cover rounded-lg  bg-gray-100   w-[160px] md:w-[200px] lg:w-[220px]"
           />
           <span className="mt-2 font-light capitalize text-center underline decoration-gray-400">
             {cat.name.replace("-", " ")}

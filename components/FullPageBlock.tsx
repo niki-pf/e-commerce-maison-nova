@@ -43,7 +43,7 @@ const FullPageBlock = ({
 }: FullPageBlockProps) => {
   return (
     <section>
-      <div className="relative w-full h-[50rem]">
+      <div className="relative w-full h-[calc(100vh-4rem)] ">
         <Image
           src={imageSrc}
           alt={altText}
