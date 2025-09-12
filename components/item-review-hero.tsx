@@ -22,19 +22,6 @@ export default async function ItemWithReview({ categories }) {
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 4);
 
-  //   const exampleReviews = [
-  //     "Absolutely love this product! Highly recommend.",
-  //     "Quality exceeded my expectations.",
-  //     "Looks great and feels durable.",
-  //     "I would buy this again for sure!",
-  //     "Exactly what I was looking for, very satisfied.",
-  //     "Works perfectly and arrived on time.",
-  //     "Really happy with the purchase, excellent value.",
-  //     "Simple, effective, and well-made.",
-  //     "Does exactly what it promises, no complaints.",
-  //     "A solid product, I would definitely recommend it.",
-  //   ];
-
   // Skapa slides: ett stort kort per slide
   const slides = topProducts.map((prod) => {
     // Ta den bästa reviewen från samma produkt
@@ -48,7 +35,7 @@ export default async function ItemWithReview({ categories }) {
     return (
       <article
         key={prod.id}
-        className="flex flex-col md:flex-row items-center justify-center w-3/4 mx-auto gap-50 p-6 rounded-lg mb-12 "
+        className="flex flex-col md:flex-row items-center justify-between w-3/4 mx-auto  p-6 rounded-lg mb-12 "
       >
         <section className="flex flex-col gap-4 text-center md:text-left">
           <ReviewScore scoreOutOfFive={prod.rating} nrOfReviews={prod.stock} />
