@@ -1,5 +1,7 @@
 // import Banner from "@/components/banner/Banner";
 import BannerWrapper from "@/components/banner/BannerWrapper";
+import CardCarousel from "@/components/banner/CardCarousel";
+import FavouriteCard from "@/components/banner/FavouriteCard";
 import FullPageBlock from "@/components/FullPageBlock";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -27,6 +29,50 @@ export default function Home() {
               button: "Learn More",
               pos: "positionCenter",
               height: "medium",
+            },
+          ]}
+        />
+        <CardCarousel
+          cards={[
+            {
+              imageSrc:
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              altText: "White t-shirt",
+              productName: "T-shirt regular fit",
+              productPrice: "25",
+              brandName: "HM",
+            },
+            {
+              imageSrc:
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              altText: "White t-shirt",
+              productName: "T-shirt regular fit",
+              productPrice: "25",
+              brandName: "HM",
+            },
+            {
+              imageSrc:
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              altText: "White t-shirt",
+              productName: "T-shirt regular fit",
+              productPrice: "25",
+              brandName: "HM",
+            },
+            {
+              imageSrc:
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              altText: "White t-shirt",
+              productName: "T-shirt regular fit",
+              productPrice: "25",
+              brandName: "HM",
+            },
+            {
+              imageSrc:
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              altText: "White t-shirt",
+              productName: "T-shirt regular fit",
+              productPrice: "25",
+              brandName: "HM",
             },
           ]}
         />
