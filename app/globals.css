@@ -125,3 +125,7 @@
 div > .productCard {
   grid-template-rows: 1fr auto auto;
 }
+/* needed to display subgrid on bar chart*/
+div > .barChart {
+  grid-template-columns: 8px 32px 1fr 8px;
+}

@@ -7,7 +7,6 @@ import {
   fetchSearchProduct,
 } from "@/lib/data/products";
 import { ProductFull } from "@/lib/interfaces";
-import { notFound } from "next/navigation";
 import React from "react";
 
 function validCategory(category: string) {
@@ -62,10 +61,7 @@ export default async function ProductsPage({
 
   return (
     <section className="p-10">
-      ProductsPage, example productcard
       <ProductList productList={productList}></ProductList>
-      {/*       <ProductList></ProductList>
-       */}
     </section>
   );
 }

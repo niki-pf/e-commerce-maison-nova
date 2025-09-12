@@ -32,6 +32,20 @@ export const FOOTER_TAGS = [
   "Site Map Pages",
 ];
 
+export const allCategories = [
+  "womens-bags",
+  "womens-dresses",
+  "womens-jewellery",
+  "womens-shoes",
+  "womens-watches",
+  "tops",
+  "mens-shirts",
+  "mens-shoes",
+  "mens-watches",
+  "sunglasses",
+];
+
+
 export const womenCategories = [
   "womens-bags",
   "womens-dresses",
