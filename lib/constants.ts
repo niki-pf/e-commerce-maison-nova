@@ -45,6 +45,7 @@ export const allCategories = [
   "sunglasses",
 ];
 
+
 export const womenCategories = [
   "womens-bags",
   "womens-dresses",
