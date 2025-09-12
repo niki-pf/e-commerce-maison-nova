@@ -31,7 +31,7 @@ const FavouriteCard = ({
         <p>{productName}</p>
         <p>${productPrice}</p>
       </div>
-      <p className="text-gray-600">{brandName}</p>
+      <p className="text-gray-500">{brandName}</p>
     </div>
   );
 };

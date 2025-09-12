@@ -50,9 +50,9 @@ const NavMain = () => {
         <span>
           <User size={20} />
         </span>
-        <span>
+        <button>
           <ShoppingCart size={20} />
-        </span>
+        </button>
       </div>
     </header>
   );
