@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { fetchProduct, ProductFull } from "@/lib/data/products";
+import { ProductFull } from "@/lib/interfaces";
 
 export default async function ProductCard({
   product,
@@ -43,7 +43,7 @@ export default async function ProductCard({
           ""
         )}
         <Image
-          src={product.images[0]}
+          src={product.thumbnail}
           alt={product.title}
           width={500}
           height={500}

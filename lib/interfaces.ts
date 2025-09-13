@@ -17,4 +17,5 @@ export interface ProductFull {
     }
   ];
   images: string[];
+  thumbnail: string;
 }
