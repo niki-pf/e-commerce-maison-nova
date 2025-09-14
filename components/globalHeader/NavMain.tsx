@@ -51,33 +51,9 @@ const NavMain = () => {
         <span>
           <User size={20} />
         </span>
-        <button
-          className="cursor-pointer"
-          onClick={() => setCartIsOpen((prev) => !prev)}
-        >
+        <span>
           <ShoppingCart />
-        </button>
-        {/***Cart div */}
-        {cartIsOpen && (
-          <div
-            className="fixed inset-0 bg-black/40 z-40"
-            onClick={() => setCartIsOpen(false)}
-          />
-        )}
-        <div
-          className={`fixed top-0 right-0 h-full w-[300px] p-3 bg-white shadow-md z-50 transform transition-transform duration-300 ${
-            cartIsOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="w-full flex items-center justify-end">
-            <button
-              className="cursor-pointer"
-              onClick={() => setCartIsOpen(false)}
-            >
-              <X />
-            </button>
-          </div>
-        </div>
+        </span>
       </div>
     </header>
   );
