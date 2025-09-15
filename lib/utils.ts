@@ -43,3 +43,8 @@ export function ascendingReviewRating(reviews: ProductFull["reviews"]) {
     return 0;
   });
 }
+
+export function validCategory(category: string) {
+  const validCategories = ["men", "women", "all"];
+  return validCategories.includes(category);
+}
