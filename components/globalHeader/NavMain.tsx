@@ -1,9 +1,10 @@
 "use client";
 
-import { Menu, Search, ShoppingCart, User, X } from "lucide-react";
+import { Menu, ShoppingCart, User, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import NavItems from "./NavItems";
+import GlobalSearchbar from "../global-searchbar";
 
 const NavMain = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +28,7 @@ const NavMain = () => {
       <div
         className={`fixed top-0 left-0 h-full w-[200px] bg-white shadow-md z-50 transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
+        }`}>
         <div className="flex justify-between items-center px-4 py-3 border-b">
           <button onClick={() => setIsOpen(false)}>
             <X />
@@ -45,7 +45,7 @@ const NavMain = () => {
       </div>
       <div className="flex gap-3">
         <span>
-          <Search size={20} />
+          <GlobalSearchbar></GlobalSearchbar>
         </span>
         <span>
           <User size={20} />

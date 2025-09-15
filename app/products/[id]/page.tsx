@@ -73,14 +73,14 @@ export default async function Page({
   /* Display decmials if price is under 1000 */
   const showDecimals = product.price > 1000 ? 0 : 2;
   /* Display the images in two columns if the product have two or more images */
-  const imageGrid = product.images.length < 2 ? 1 : 2;
+  const imageGrid = product.images.length < 2 ? "grid-cols-1" : "grid-cols-2";
 
   return (
     <>
       <section className="px-8 pt-16 pb-8 grid gap-4 ">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Images */}
-          <figure className={`grid grid-cols-${imageGrid} gap-2 relative`}>
+          <figure className={`grid ${imageGrid} gap-2 relative`}>
             {/* Display discount if over a specific value */}
             {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
               <p className="absolute md:font-medium text-sm md:text-lg bg-background top-0 mt-1 ml-1 p-1  text-destructive ">
