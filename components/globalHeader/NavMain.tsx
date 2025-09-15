@@ -1,9 +1,10 @@
 "use client";
 
-import { Menu, Search, ShoppingCart, User, X } from "lucide-react";
+import { Menu, ShoppingCart, User, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import NavItems from "./NavItems";
+import GlobalSearchbar from "../global-searchbar";
 
 const NavMain = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,14 +47,38 @@ const NavMain = () => {
       </div>
       <div className="flex gap-3">
         <span>
-          <Search size={20} />
+          <GlobalSearchbar></GlobalSearchbar>
         </span>
         <span>
           <User size={20} />
         </span>
-        <span>
+        <button
+          className="cursor-pointer"
+          onClick={() => setCartIsOpen((prev) => !prev)}
+        >
           <ShoppingCart />
-        </span>
+        </button>
+        {/***Cart div */}
+        {cartIsOpen && (
+          <div
+            className="fixed inset-0 bg-black/40 z-40"
+            onClick={() => setCartIsOpen(false)}
+          />
+        )}
+        <div
+          className={`fixed top-0 right-0 h-full w-[300px] p-3 bg-white shadow-md z-50 transform transition-transform duration-300 ${
+            cartIsOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="w-full flex items-center justify-end">
+            <button
+              className="cursor-pointer"
+              onClick={() => setCartIsOpen(false)}
+            >
+              <X />
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   );
