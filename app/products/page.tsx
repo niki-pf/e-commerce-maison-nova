@@ -1,9 +1,8 @@
 import { menCategories, womenCategories } from "@/components/category-nav";
 import ProductList from "@/components/product-list";
+import SortProducts from "@/components/sort-products";
 import {
-  fetchProduct,
   fetchProductOfTypeCategory,
-  fetchProducts,
   fetchSearchProduct,
 } from "@/lib/data/products";
 import { ProductFull } from "@/lib/interfaces";
@@ -19,7 +18,7 @@ export default async function ProductsPage({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { category = "", subCategory = "", query = "" } = await searchParams;
+  const { category = "", subCategory = "", query = "" , sort = "" } = await searchParams;
 
   let productList: ProductFull[] = [];
   /* TODO: make code more understandable*/
@@ -61,6 +60,7 @@ export default async function ProductsPage({
 
   return (
     <section className="p-10">
+      <SortProducts></SortProducts>
       <ProductList productList={productList}></ProductList>
     </section>
   );
