@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { ProductFull } from "@/lib/interfaces";
+import Link from "next/link";
 
 export default async function ProductCard({
   product,
@@ -14,9 +15,11 @@ export default async function ProductCard({
   }
 
   return (
-    <article className="grid max-w-[500px] productCard grid-rows-subgrid gap-4">
+    <article className="grid max-w-[500px] productCard focus:ring-2 grid-rows-subgrid gap-4">
       <div className="row-start-2 flex justify-between">
-        <h1 className="text-lg">{product.title}</h1>
+        <Link href={`/products/${product.id}`}>
+          <h1 className="text-lg">{product.title}</h1>
+        </Link>
 
         {/* If discount is greater than MIN_DISCOUNT_TO_DISPLAY display the discounted price */}
         {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
@@ -36,7 +39,7 @@ export default async function ProductCard({
 
       <figure className="grid relative">
         {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-          <p className="absolute font-medium bg-background top-0 mt-4 ml-4 p-3 text-destructive text-3xl ">
+          <p className="absolute font-medium bg-background top-0 mt-4 ml-4 p-3 text-destructive text-xl ">
             {`${Math.floor(product.discountPercentage)} % off`}
           </p>
         ) : (
