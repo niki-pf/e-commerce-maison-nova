@@ -36,11 +36,13 @@ export default async function ProductsPage({
     min = "",
     max = "",
     stars = "",
+    page = "1",
   } = await searchParams;
+  const PAGE_OFFSET = 9;
 
   let productList: ProductFull[] = [];
   /* TODO: make code more understandable*/
-  /* Search for products if no other params */
+  /* If there is a global search */
   if (query !== "" && category === "" && subcategory === "") {
     const result = await fetchSearchProduct(query);
 
@@ -110,7 +112,7 @@ export default async function ProductsPage({
     default:
       productList;
   }
-
+  /* Handles the filtering */
   if (min !== "" && !isNaN(parseInt(min))) {
     productList = productList.filter(
       (product) => product.price > parseInt(min)
@@ -126,15 +128,23 @@ export default async function ProductsPage({
       (product) => product.rating > parseInt(stars)
     );
   }
+
+  /* handles pagination */
+  const pages = Math.ceil(productList.length) / PAGE_OFFSET;
+  const pageNumber = parseInt(page);
+  const start = (pageNumber - 1) * PAGE_OFFSET;
+  const end = start + PAGE_OFFSET;
+  productList = productList.slice(start, end);
+
   return (
     <section className="p-10 flex gap-4">
-      <div className="">
+      <div>
         <FilterBy category={category}></FilterBy>
         <SortOption linkList={productsSortBy}></SortOption>
       </div>
       <div className="grid gap-2">
         <CategoryFilter category={category}></CategoryFilter>
-        <ProductList productList={productList}></ProductList>
+        <ProductList productList={productList} pages={pages}></ProductList>
       </div>
     </section>
   );
