@@ -1,5 +1,6 @@
 import { menCategories, womenCategories } from "@/components/category-nav";
 import ProductList from "@/components/product-list";
+import SortProducts from "@/components/sort-products";
 import {
   fetchProductOfTypeCategory,
   fetchSearchProduct,
@@ -13,12 +14,12 @@ export default async function ProductsPage({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { category = "", subCategory = "", query = "" } = await searchParams;
+  const { category = "", subCategory = "", query = "" , sort = "" } = await searchParams;
 
   let productList: ProductFull[] = [];
   /* TODO: make code more understandable*/
   /* Search for products if no other params */
-  if ((query !== "" && category === "" && subcategory === "", (sort = ""))) {
+  if ((query !== "" && category === "" && subcategory === "", sort === "")) {
     const result = await fetchSearchProduct(query);
 
     if (result) {
