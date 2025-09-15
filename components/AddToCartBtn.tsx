@@ -13,9 +13,8 @@ interface AddToCartBtnProps {
 }
 
 const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
+  // Create a product object for cart
   const addToCart = () => {
-    console.log("Produkten: ", product.price, product);
-
     const cartProduct = {
       title: product.title,
       price: product.price,
@@ -23,6 +22,7 @@ const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
       image: product.images[0],
     };
 
+    // Check if any products is localStorage, else create an empty array and add product top cart.
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
     cart.push(cartProduct);
     localStorage.setItem("cart", JSON.stringify(cart));
