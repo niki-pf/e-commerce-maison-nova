@@ -46,7 +46,7 @@ export default async function ProductCard({
           ""
         )}
         <Image
-          src={product.images[0]}
+          src={product.thumbnail}
           alt={product.title}
           width={500}
           height={500}
