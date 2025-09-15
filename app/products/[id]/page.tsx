@@ -13,6 +13,7 @@ import { allCategories } from "@/lib/constants";
 import ReviewList from "@/components/review-list";
 import Stars from "@/components/stars";
 import RatingBarChart from "@/components/rating-bar-chart";
+import AddToCartBtn from "@/components/AddToCartBtn";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -96,7 +97,8 @@ export default async function Page({
                 alt={`${product.title} + ${index}`}
                 width={500}
                 height={500}
-                className=" bg-accent"></Image>
+                className=" bg-accent"
+              ></Image>
             ))}
           </figure>
           <section className="grid gap-8 h-min max-w-[60ch]">
@@ -106,7 +108,8 @@ export default async function Page({
                 <h2 className="text-2xl">{product.title}</h2>
                 <ReviewScore
                   nrOfReviews={product.reviews.length}
-                  scoreOutOfFive={product.rating}></ReviewScore>
+                  scoreOutOfFive={product.rating}
+                ></ReviewScore>
               </div>
 
               {/* If discount is greater than MIN_DISCOUNT_TO_DISPLAY display the discounted price */}
@@ -141,9 +144,7 @@ export default async function Page({
             </section>
             {/* Buy options */}
             <div className="border-b-1 pb-8 ">
-              <p className="py-2 text-center bg-gray-900 text-background shadow">
-                Add to cart
-              </p>
+              <AddToCartBtn product={product} />
             </div>
             {/* General order information */}
             <section className="grid justify-start gap-8 md:border-b-1 pb-8">
@@ -182,9 +183,8 @@ export default async function Page({
             <Stars scoreOutOfFive={product.rating} starCn="size-6"></Stars>
           </div>
           <RatingBarChart
-            numbers={product.reviews.map(
-              (review) => review.rating
-            )}></RatingBarChart>
+            numbers={product.reviews.map((review) => review.rating)}
+          ></RatingBarChart>
         </div>
         <ReviewList reviews={product.reviews}></ReviewList>
       </section>
