@@ -12,7 +12,8 @@ export default function MenPage() {
         altText="Man wearing a stylish winter coat walking through a city street"
         h1="Your Cold-Weather Edge"
         paragraph="Stay warm, stay sharp with our new winter collection"
-        button="Shop now"
+        linkPrompt="Shop now"
+        link="/products?category=men&subcategory=mens-shoes"
         pos="midRight"
       />
       <CategoryNav gender="men" />;

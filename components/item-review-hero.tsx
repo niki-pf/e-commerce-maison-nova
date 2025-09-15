@@ -35,8 +35,7 @@ export default async function ItemWithReview({ categories }) {
     return (
       <article
         key={prod.id}
-        className="flex flex-col md:flex-row items-center justify-between w-3/4 mx-auto  p-6 rounded-lg mb-12 "
-      >
+        className="flex flex-col md:flex-row items-center justify-between w-3/4 mx-auto  p-6 rounded-lg mb-12 ">
         <section className="flex flex-col gap-4 text-center md:text-left">
           <ReviewScore scoreOutOfFive={prod.rating} nrOfReviews={prod.stock} />
           <p className="text-3xl text-gray-700 italic">
@@ -50,7 +49,7 @@ export default async function ItemWithReview({ categories }) {
           </p>
         </section>
         <section className="flex-shrink-0">
-          <Link href={`/product/${prod.id}`}>
+          <Link href={`/products/${prod.id}`}>
             <Image
               src={prod.images[0]}
               alt={prod.title}

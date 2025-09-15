@@ -1,31 +1,25 @@
 import { menCategories, womenCategories } from "@/components/category-nav";
 import ProductList from "@/components/product-list";
-import SortProducts from "@/components/sort-products";
 import {
   fetchProductOfTypeCategory,
   fetchSearchProduct,
 } from "@/lib/data/products";
 import { ProductFull } from "@/lib/interfaces";
+import { validCategory } from "@/lib/utils";
 import React from "react";
-
-function validCategory(category: string) {
-  const validCategories = ["men", "women"];
-  return validCategories.includes(category);
-}
 
 export default async function ProductsPage({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { category = "", subCategory = "", query = "" , sort = "" } = await searchParams;
+  const { category = "", subCategory = "", query = "" } = await searchParams;
 
   let productList: ProductFull[] = [];
   /* TODO: make code more understandable*/
   /* Search for products if no other params */
-  if (query !== "" && category === "" && subCategory === "") {
+  if ((query !== "" && category === "" && subcategory === "", (sort = ""))) {
     const result = await fetchSearchProduct(query);
-    console.log(result);
 
     if (result) {
       productList = result;
@@ -33,9 +27,9 @@ export default async function ProductsPage({
   } else {
     if (validCategory(category)) {
       const categories = category === "men" ? menCategories : womenCategories;
-      if (subCategory !== "") {
-        if (categories.includes(subCategory)) {
-          const result = await fetchProductOfTypeCategory(subCategory);
+      if (subcategory !== "") {
+        if (categories.includes(subcategory)) {
+          const result = await fetchProductOfTypeCategory(subcategory);
 
           if (result) {
             //filter by query
@@ -45,7 +39,7 @@ export default async function ProductsPage({
           }
         }
       } else {
-        /* TODO: prio on this part make needs a fetch that handles mutilple categories*/
+        /* TODO: prio on this part, needs a fetch that handles mutilple categories*/
         /* If no subcat show all product for men/women */
         const result = await Promise.all(
           categories.map(async (category) => {
@@ -60,7 +54,6 @@ export default async function ProductsPage({
 
   return (
     <section className="p-10">
-      <SortProducts></SortProducts>
       <ProductList productList={productList}></ProductList>
     </section>
   );
