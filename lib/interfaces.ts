@@ -11,10 +11,11 @@ export interface ProductFull {
     {
       rating: number;
       comment: string;
-      date: Date;
+      date: string;
       reviewerName: string;
       reviewerEmail: string;
     }
   ];
   images: string[];
+  thumbnail: string;
 }
