@@ -1,14 +1,12 @@
 import {
   fetchAllProductsOfMultipleCategories,
   fetchProduct,
-  fetchProductOfTypeCategory,
 } from "@/lib/data/products";
 import { notFound } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import ReviewScore from "@/components/review-score";
 import { Box, Gift, Truck } from "lucide-react";
-import { Metadata } from "next";
 import { allCategories } from "@/lib/constants";
 import ReviewList from "@/components/review-list";
 import Stars from "@/components/stars";

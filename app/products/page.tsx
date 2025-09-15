@@ -14,12 +14,12 @@ export default async function ProductsPage({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { category = "", subCategory = "", query = "" , sort = "" } = await searchParams;
+  const { category = "", subcategory = "", query = "" , sort = "" } = await searchParams;
 
   let productList: ProductFull[] = [];
   /* TODO: make code more understandable*/
   /* Search for products if no other params */
-  if ((query !== "" && category === "" && subcategory === "", sort === "")) {
+  if ((query !== "" && category === "" && subcategory === "")) {
     const result = await fetchSearchProduct(query);
 
     if (result) {
@@ -55,6 +55,7 @@ export default async function ProductsPage({
 
   return (
     <section className="p-10">
+      <SortProducts></SortProducts>
       <ProductList productList={productList}></ProductList>
     </section>
   );
