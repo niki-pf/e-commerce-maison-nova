@@ -1,23 +1,43 @@
 import { ProductFull } from "@/lib/interfaces";
 import React from "react";
 import Stars from "./stars";
-import { calcDaysSince, descendingReviewRating } from "@/lib/utils";
-import { Check, CheckCheckIcon, CheckCircle, CircleCheck } from "lucide-react";
-
+import {
+  ascendingReviewRating,
+  calcDaysSince,
+  descendingReviewRating,
+} from "@/lib/utils";
+import { CircleCheck } from "lucide-react";
+import SortBy from "./sort-option";
+export const reviewSortBy = [
+  { prompt: "Stars: high to low", value: "rating-desc" },
+  { prompt: "Stars: low to high", value: "rating-asc" },
+];
 export default function ReviewList({
   reviews,
+  sort,
 }: {
   reviews: ProductFull["reviews"];
+  sort?: string;
 }) {
+  let sortedReviews: ProductFull["reviews"];
+  if (sort && sort !== "default") {
+    sortedReviews =
+      sort === "rating-asc"
+        ? ascendingReviewRating(reviews)
+        : descendingReviewRating(reviews);
+  } else {
+    sortedReviews = reviews;
+  }
+
   return (
     <div className="grid gap-8">
       <div className="flex justify-between">
         <p className="border-2 px-8  py-4 text-xl w-min font-bold">Filter</p>
-        <p className="border-2 px-8  py-4 text-xl font-bold">Sort by</p>
+        <SortBy linkList={reviewSortBy}></SortBy>
       </div>
       <div className="w-full overflow-auto">
         <div className="grid gap-8">
-          {reviews.map((review, index) => (
+          {sortedReviews.map((review, index) => (
             <div key={index} className="grid grid-cols-4 border-b-1 pb-16">
               <div className="grid h-min gap-2 ">
                 <p className="font-bold">{review.reviewerName}</p>

@@ -14,6 +14,7 @@ import RatingBarChart from "@/components/rating-bar-chart";
 
 interface Props {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
 /* Generate meta data for page */
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: Props) {
     const product = await fetchProduct(id);
     if (product) {
       return {
-        title: "Maison Nova - ",
+        title: `Maison Nova - ${product.title}`,
         description: "Detailed information about a product",
       };
     }
@@ -43,33 +44,28 @@ export async function generateStaticParams() {
     return allProducts.map((product) => ({
       slug: product.id,
     }));
-  } else {
-    console.log("There was a problem with static params generation");
   }
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function Page({ params, searchParams }: Props) {
   const MIN_DISCOUNT_TO_DISPLAY = 10;
 
   const { id } = await params;
+  const { sort } = await searchParams;
 
   if (!id) {
-    console.log("There is no ID in params");
     return notFound();
   }
 
   const product = await fetchProduct(id);
 
   if (!product) {
-    console.log("Tried fetching project full page, no return ");
     return notFound();
   }
+
   /* Display decmials if price is under 1000 */
   const showDecimals = product.price > 1000 ? 0 : 2;
+
   /* Display the images in two columns if the product have two or more images */
   const imageGrid = product.images.length < 2 ? "grid-cols-1" : "grid-cols-2";
 
@@ -184,7 +180,7 @@ export default async function Page({
               (review) => review.rating
             )}></RatingBarChart>
         </div>
-        <ReviewList reviews={product.reviews}></ReviewList>
+        <ReviewList sort={sort} reviews={product.reviews}></ReviewList>
       </section>
     </>
   );
