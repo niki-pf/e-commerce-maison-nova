@@ -2,7 +2,7 @@
 import { allCategories } from "@/lib/constants";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import React from "react";
-import { menCategories, womenCategories } from "./category-nav";
+import { menCategories, womenCategories } from "../lib/constants";
 import Link from "next/link";
 
 export default function CategoryFilter({ category }: { category: string }) {

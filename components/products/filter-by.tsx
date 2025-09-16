@@ -1,9 +1,7 @@
 "use client";
-import { allCategories, menCategories, womenCategories } from "@/lib/constants";
-import { Star } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { FormEvent } from "react";
-import Stars from "./stars";
+import Stars from "../stars";
 
 export default function FilterBy({ category }: { category: string }) {
   const starRating = [1, 2, 3, 4, 5];

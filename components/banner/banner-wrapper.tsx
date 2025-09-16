@@ -1,5 +1,5 @@
 import React from "react";
-import Banner, { HeightVariant, PositionVariant } from "./Banner";
+import Banner, { HeightVariant, PositionVariant } from "./banner";
 
 interface BannerItem {
   imageSrc: string;
@@ -20,8 +20,7 @@ const BannerWrapper = ({ banners }: BannerWrapperProps) => {
     <section className="w-full">
       <div
         className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-        style={{ gridTemplateColumns: `repeat(auto-fit, minmax(300px, 1fr))` }}
-      >
+        style={{ gridTemplateColumns: `repeat(auto-fit, minmax(300px, 1fr))` }}>
         {banners.map((banner, idx) => (
           <Banner
             key={idx}

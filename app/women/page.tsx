@@ -1,8 +1,8 @@
 import CategoryNav from "@/components/category-nav";
 import ItemWithReview from "@/components/item-review-hero";
 import { womenCategories } from "@/lib/constants";
-import BannerWrapper from "@/components/banner/BannerWrapper";
-import FullPageBlock from "@/components/FullPageBlock";
+import BannerWrapper from "@/components/banner/banner-wrapper";
+import FullPageBlock from "@/components/full-page-block";
 
 export default function WomenPage() {
   return (

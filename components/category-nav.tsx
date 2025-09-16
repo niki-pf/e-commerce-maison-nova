@@ -1,22 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { womenCategories, menCategories } from "@/lib/constants";
 
-// Lista med kategorier för Women och Men
-export const womenCategories = [
-  "womens-bags",
-  "womens-dresses",
-  "womens-jewellery",
-  "womens-shoes",
-  "womens-watches",
-  "tops",
-];
-
-export const menCategories = [
-  "mens-shirts",
-  "mens-shoes",
-  "mens-watches",
-  "sunglasses",
-];
 
 export default async function CategoryNav({ gender }: { gender: string }) {
   const categories = gender === "women" ? womenCategories : menCategories;

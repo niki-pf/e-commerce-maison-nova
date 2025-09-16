@@ -1,8 +1,8 @@
 import CategoryFilter from "@/components/category-filter";
-import { menCategories, womenCategories } from "@/components/category-nav";
-import FilterBy from "@/components/filter-by";
-import ProductList from "@/components/product-list";
-import SortOption from "@/components/sort-option";
+import { menCategories, womenCategories } from "@/lib/constants";
+import FilterBy from "@/components/products/filter-by";
+import ProductList from "@/components/products/product-list";
+import SortOption from "@/components/products/sort-option";
 import { productsSortBy } from "@/lib/constants";
 
 import {
@@ -46,7 +46,9 @@ export default async function ProductsPage({
   if (query !== "" && category === "" && subcategory === "") {
     const result = await fetchSearchProduct(query);
 
+    /* TODO: filter by capproved category */
     if (result) {
+      console.log(result[0]);
       productList = result;
     }
   } else {
@@ -74,7 +76,7 @@ export default async function ProductsPage({
         );
         productList = result.flat();
       }
-    }
+    } /* elseif  */
   }
 
   /* Sort */

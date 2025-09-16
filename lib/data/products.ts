@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { ProductFull } from "../interfaces";
-import { Erica_One } from "next/font/google";
 
 export async function fetchProduct(id: string) {
   try {

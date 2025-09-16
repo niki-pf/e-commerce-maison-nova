@@ -27,7 +27,7 @@ export default function Searchbar({
   });
 
   return (
-    <div className="grid [grid-template-columns:1fr] focus:lg:w-70 focus:w-40 lg:w-70 w-40 ">
+    <div className="grid [grid-template-columns:1fr] focus:lg:w-70 focus:w-40 lg:w-70 w-40 z-1">
       <div className="grid row-start-1 col-start-1 [grid-template-columns:1fr]">
         <label htmlFor="query" className="sr-only"></label>
 

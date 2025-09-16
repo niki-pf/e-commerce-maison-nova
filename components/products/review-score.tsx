@@ -1,6 +1,5 @@
 import React from "react";
-import { Star } from "lucide-react";
-import Stars from "./stars";
+import Stars from "../stars";
 
 export default function ReviewScore({
   nrOfReviews,

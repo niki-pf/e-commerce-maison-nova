@@ -1,8 +1,8 @@
 import CategoryNav from "@/components/category-nav";
 import { menCategories } from "@/lib/constants";
 import ItemWithReview from "@/components/item-review-hero";
-import BannerWrapper from "@/components/banner/BannerWrapper";
-import FullPageBlock from "@/components/FullPageBlock";
+import BannerWrapper from "@/components/banner/banner-wrapper";
+import FullPageBlock from "@/components/full-page-block";
 
 export default function MenPage() {
   return (

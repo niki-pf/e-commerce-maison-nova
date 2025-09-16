@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import FavouriteCard from "./FavouriteCard";
+import FavouriteCard from "./favourite-card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface CardItem {

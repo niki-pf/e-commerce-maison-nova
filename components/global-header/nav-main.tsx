@@ -3,14 +3,14 @@
 import { Menu, ShoppingCart, User, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import NavItems from "./NavItems";
-import GlobalSearchbar from "../global-searchbar";
+import NavItems from "./nav-items";
+import GlobalSearchbar from "../globals/global-searchbar";
 
 const NavMain = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
   return (
-    <header className="relative h-[50] md:px-8 px-4 w-full flex justify-between items-center ">
+    <header className="relative h-[50] lg:px-0 md:px-8 px-4 w-full flex justify-between items-center ">
       {/*** Desktop navigation ***/}
       <nav className="hidden md:flex">
         <NavItems direction="row" />
@@ -29,8 +29,7 @@ const NavMain = () => {
       <div
         className={`fixed top-0 left-0 h-full w-[200px] bg-white shadow-md z-50 transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
+        }`}>
         <div className="flex justify-between items-center px-4 py-3 border-b">
           <button onClick={() => setIsOpen(false)}>
             <X />
@@ -50,7 +49,7 @@ const NavMain = () => {
           <GlobalSearchbar></GlobalSearchbar>
         </span>
         <span>
-          <User size={20} />
+          <User size={24} />
         </span>
         <button
           className="cursor-pointer"

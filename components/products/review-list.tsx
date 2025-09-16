@@ -1,6 +1,6 @@
 import { ProductFull } from "@/lib/interfaces";
 import React from "react";
-import Stars from "./stars";
+import Stars from "../stars";
 import {
   ascendingReviewRating,
   calcDaysSince,
@@ -20,7 +20,8 @@ export default function ReviewList({
   sort?: string;
 }) {
   let sortedReviews: ProductFull["reviews"];
-  if (sort && sort !== "default") {
+
+  if (sort) {
     sortedReviews =
       sort === "rating-asc"
         ? ascendingReviewRating(reviews)
@@ -31,8 +32,7 @@ export default function ReviewList({
 
   return (
     <div className="grid gap-8">
-      <div className="flex justify-between">
-        <p className="border-2 px-8  py-4 text-xl w-min font-bold">Filter</p>
+      <div className="flex justify-end">
         <SortBy linkList={reviewSortBy}></SortBy>
       </div>
       <div className="w-full overflow-auto">

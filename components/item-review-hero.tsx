@@ -1,9 +1,9 @@
 import Image from "next/image";
-import ReviewScore from "./review-score";
+import ReviewScore from "./products/review-score";
 import Link from "next/link";
 import Carousel from "./carousel";
 
-export default async function ItemWithReview({ categories }) {
+export default async function ItemWithReview({ categories }: {categories: string[]}) {
   const allProductsArrays = await Promise.all(
     categories.map(async (cat) => {
       const res = await fetch(

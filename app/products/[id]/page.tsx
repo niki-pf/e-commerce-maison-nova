@@ -5,13 +5,13 @@ import {
 import { notFound } from "next/navigation";
 import React from "react";
 import Image from "next/image";
-import ReviewScore from "@/components/review-score";
+import ReviewScore from "@/components/products/review-score";
 import { Box, Gift, Truck } from "lucide-react";
 import { allCategories } from "@/lib/constants";
-import ReviewList from "@/components/review-list";
+import ReviewList from "@/components/products/review-list";
 import Stars from "@/components/stars";
-import RatingBarChart from "@/components/rating-bar-chart";
-import AddToCartBtn from "@/components/AddToCartBtn";
+import RatingBarChart from "@/components/products/rating-bar-chart";
+import AddToCartBtn from "@/components/add-to-cart-btn";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -91,8 +91,7 @@ export default async function Page({ params, searchParams }: Props) {
                 alt={`${product.title} + ${index}`}
                 width={500}
                 height={500}
-                className=" bg-accent"
-              ></Image>
+                className=" bg-accent"></Image>
             ))}
           </figure>
           <section className="grid gap-8 h-min max-w-[60ch]">
@@ -102,8 +101,7 @@ export default async function Page({ params, searchParams }: Props) {
                 <h2 className="text-2xl">{product.title}</h2>
                 <ReviewScore
                   nrOfReviews={product.reviews.length}
-                  scoreOutOfFive={product.rating}
-                ></ReviewScore>
+                  scoreOutOfFive={product.rating}></ReviewScore>
               </div>
 
               {/* If discount is greater than MIN_DISCOUNT_TO_DISPLAY display the discounted price */}
@@ -177,8 +175,9 @@ export default async function Page({ params, searchParams }: Props) {
             <Stars scoreOutOfFive={product.rating} starCn="size-6"></Stars>
           </div>
           <RatingBarChart
-            numbers={product.reviews.map((review) => review.rating)}
-          ></RatingBarChart>
+            numbers={product.reviews.map(
+              (review) => review.rating
+            )}></RatingBarChart>
         </div>
         <ReviewList sort={sort} reviews={product.reviews}></ReviewList>
       </section>

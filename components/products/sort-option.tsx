@@ -22,10 +22,12 @@ export default function SortOption({ linkList }: { linkList: Props[] }) {
     params.set("sort", sortValue);
     return `${pathName}?${params.toString()}`;
   }
+  
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     replace(getLink(value));
   };
+
   return (
     <div className="p-8 border-2 grid py-4 text-xl">
       <label htmlFor="options">Sort By:</label>

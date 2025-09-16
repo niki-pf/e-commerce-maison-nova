@@ -72,3 +72,11 @@ export const productsSortBy = [
   { prompt: "Discount: low to high", value: "discount-asc" },
   { prompt: "Discount: high to low", value: "discount-desc" },
 ];
+
+export const listItemMenu = [
+  { label: "Women", href: "/women" },
+  { label: "Men", href: "/men" },
+  { label: "About", href: "/about" },
+  { label: "Contact Us", href: "/contact-us" },
+];
+

@@ -1,12 +1,11 @@
 "use client";
-import { ProductFull } from "@/lib/interfaces";
 import React from "react";
 import {
   Pagination,
   PaginationContent,
   PaginationItem,
   PaginationLink,
-} from "./ui/pagination";
+} from "../ui/pagination";
 import { usePathname, useSearchParams } from "next/navigation";
 
 export default function ProductPagination({ pages }: { pages: number }) {

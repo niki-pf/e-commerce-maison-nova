@@ -1,15 +1,9 @@
 "use client";
 
+import { listItemMenu } from "@/lib/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-
-const listItemMenu = [
-  { label: "Women", href: "/women" },
-  { label: "Men", href: "/men" },
-  { label: "About", href: "/about" },
-  { label: "Contact Us", href: "/contact-us" },
-];
 
 type NavItemsProps = {
   direction?: "row" | "col";
