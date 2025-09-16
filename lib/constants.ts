@@ -45,7 +45,6 @@ export const allCategories = [
   "sunglasses",
 ];
 
-
 export const womenCategories = [
   "womens-bags",
   "womens-dresses",
@@ -60,4 +59,16 @@ export const menCategories = [
   "mens-shoes",
   "mens-watches",
   "sunglasses",
+];
+
+export const productsSortBy = [
+  { prompt: "Recommended", value: "recommended" },
+  { prompt: "Name: A to Z", value: "name-asc" },
+  { prompt: "Name: Z to A", value: "name-desc" },
+  { prompt: "Price: low to high", value: "price-asc" },
+  { prompt: "Price: high to low", value: "price-desc" },
+  { prompt: "Rating: low to high", value: "rating-asc" },
+  { prompt: "Rating: high to low", value: "rating-desc" },
+  { prompt: "Discount: low to high", value: "discount-asc" },
+  { prompt: "Discount: high to low", value: "discount-desc" },
 ];

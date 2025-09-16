@@ -13,7 +13,6 @@ export async function fetchProduct(id: string) {
     const data: ProductFull = await response.json();
     return data;
   } catch (error) {
-    console.log("API network error");
   }
 }
 
@@ -29,7 +28,6 @@ export async function fetchProducts() {
     const products: ProductFull[] = data.products;
     return products;
   } catch (error) {
-    console.log("API network error");
   }
 }
 
@@ -47,7 +45,6 @@ export async function fetchSearchProduct(query: string) {
     const products: ProductFull[] = data.products;
     return products;
   } catch (error) {
-    console.log("API network error");
   }
 }
 
@@ -65,7 +62,6 @@ export async function fetchProductOfTypeCategory(category: string) {
     const products: ProductFull[] = data.products;
     return products;
   } catch (error) {
-    console.log(error);
   }
 }
 
@@ -87,6 +83,5 @@ export async function fetchAllProductsOfMultipleCategories(
     const productList = result.flat();
     return productList;
   } catch (error) {
-    console.log(error);
   }
 }

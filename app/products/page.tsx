@@ -1,12 +1,26 @@
+import CategoryFilter from "@/components/category-filter";
 import { menCategories, womenCategories } from "@/components/category-nav";
+import FilterBy from "@/components/filter-by";
 import ProductList from "@/components/product-list";
-import Searchbar from "@/components/searchbar";
+import SortOption from "@/components/sort-option";
+import { productsSortBy } from "@/lib/constants";
+
 import {
   fetchProductOfTypeCategory,
   fetchSearchProduct,
 } from "@/lib/data/products";
 import { ProductFull } from "@/lib/interfaces";
-import { validCategory } from "@/lib/utils";
+import {
+  ascendingDiscount,
+  ascendingName,
+  ascendingPrice,
+  ascendingRating,
+  descendingDiscount,
+  descendingName,
+  descendingPrice,
+  descendingRating,
+  validCategory,
+} from "@/lib/utils";
 import React from "react";
 
 export default async function ProductsPage({
@@ -14,7 +28,15 @@ export default async function ProductsPage({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { category = "", subcategory = "", query = "" } = await searchParams;
+  const {
+    category = "",
+    subcategory = "",
+    query = "",
+    sort = "",
+    min = "",
+    max = "",
+    stars = "",
+  } = await searchParams;
 
   let productList: ProductFull[] = [];
   /* TODO: make code more understandable*/
@@ -53,12 +75,67 @@ export default async function ProductsPage({
     }
   }
 
+  /* Sort */
+  switch (sort) {
+    case "name-asc":
+      productList = ascendingName(productList);
+      break;
+    case "name-desc":
+      productList = descendingName(productList);
+      break;
+
+    case "price-asc":
+      productList = ascendingPrice(productList);
+      break;
+
+    case "price-desc":
+      productList = descendingPrice(productList);
+      break;
+
+    case "rating-asc":
+      productList = ascendingRating(productList);
+      break;
+
+    case "rating-desc":
+      productList = descendingRating(productList);
+      break;
+
+    case "discount-asc":
+      productList = ascendingDiscount(productList);
+      break;
+    case "discount-desc":
+      productList = descendingDiscount(productList);
+      break;
+
+    default:
+      productList;
+  }
+
+  if (min !== "" && !isNaN(parseInt(min))) {
+    productList = productList.filter(
+      (product) => product.price > parseInt(min)
+    );
+  }
+  if (max !== "" && !isNaN(parseInt(max))) {
+    productList = productList.filter(
+      (product) => product.price < parseInt(max)
+    );
+  }
+  if (stars !== "" && !isNaN(parseInt(stars))) {
+    productList = productList.filter(
+      (product) => product.rating > parseInt(stars)
+    );
+  }
   return (
-    <section className="p-10">
-      <div>
-        <Searchbar></Searchbar>
+    <section className="p-10 flex gap-4">
+      <div className="">
+        <FilterBy category={category}></FilterBy>
+        <SortOption linkList={productsSortBy}></SortOption>
       </div>
-      <ProductList productList={productList}></ProductList>
+      <div className="grid gap-2">
+        <CategoryFilter category={category}></CategoryFilter>
+        <ProductList productList={productList}></ProductList>
+      </div>
     </section>
   );
 }

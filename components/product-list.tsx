@@ -1,6 +1,5 @@
 import React from "react";
 import ProductCard from "./product-card";
-import { fetchProducts } from "@/lib/data/products";
 import { ProductFull } from "@/lib/interfaces";
 
 export default async function ProductList({

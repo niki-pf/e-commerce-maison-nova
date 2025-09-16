@@ -1,14 +1,12 @@
 import {
   fetchAllProductsOfMultipleCategories,
   fetchProduct,
-  fetchProductOfTypeCategory,
 } from "@/lib/data/products";
 import { notFound } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import ReviewScore from "@/components/review-score";
 import { Box, Gift, Truck } from "lucide-react";
-import { Metadata } from "next";
 import { allCategories } from "@/lib/constants";
 import ReviewList from "@/components/review-list";
 import Stars from "@/components/stars";
@@ -17,6 +15,7 @@ import AddToCartBtn from "@/components/AddToCartBtn";
 
 interface Props {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
 /* Generate meta data for page */
@@ -27,7 +26,7 @@ export async function generateMetadata({ params }: Props) {
     const product = await fetchProduct(id);
     if (product) {
       return {
-        title: "Maison Nova - ",
+        title: `Maison Nova - ${product.title}`,
         description: "Detailed information about a product",
       };
     }
@@ -46,33 +45,28 @@ export async function generateStaticParams() {
     return allProducts.map((product) => ({
       slug: product.id,
     }));
-  } else {
-    console.log("There was a problem with static params generation");
   }
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function Page({ params, searchParams }: Props) {
   const MIN_DISCOUNT_TO_DISPLAY = 10;
 
   const { id } = await params;
+  const { sort } = await searchParams;
 
   if (!id) {
-    console.log("There is no ID in params");
     return notFound();
   }
 
   const product = await fetchProduct(id);
 
   if (!product) {
-    console.log("Tried fetching project full page, no return ");
     return notFound();
   }
+
   /* Display decmials if price is under 1000 */
   const showDecimals = product.price > 1000 ? 0 : 2;
+
   /* Display the images in two columns if the product have two or more images */
   const imageGrid = product.images.length < 2 ? "grid-cols-1" : "grid-cols-2";
 
@@ -186,7 +180,7 @@ export default async function Page({
             numbers={product.reviews.map((review) => review.rating)}
           ></RatingBarChart>
         </div>
-        <ReviewList reviews={product.reviews}></ReviewList>
+        <ReviewList sort={sort} reviews={product.reviews}></ReviewList>
       </section>
     </>
   );
