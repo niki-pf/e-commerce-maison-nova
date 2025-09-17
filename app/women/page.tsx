@@ -6,7 +6,7 @@ import FullPageBlock from "@/components/full-page-block";
 
 export default function WomenPage() {
   return (
-    <main>
+    <>
       <FullPageBlock
         imageSrc="https://images.unsplash.com/photo-1610288311735-39b7facbd095?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         altText="Closeup image of a female torso wearing a cozy mustard-colored knitted sweater and a rose-qwartz heartshaped necklace"
@@ -34,6 +34,6 @@ export default function WomenPage() {
         />
       </div>
       <ItemWithReview categories={womenCategories} />
-    </main>
+    </>
   );
 }

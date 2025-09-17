@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <main className="w-full overflow-x-hidden">
+    <div className="w-full overflow-x-hidden">
       <section>
         <div className="relative w-full h-[32rem] flex items-center justify-center">
           <Image
@@ -112,6 +112,6 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-amber-100/25 backdrop-brightness-90"></div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -1,17 +1,29 @@
-import { ProductFull } from "@/lib/interfaces";
+import { ProductFull, SortData } from "@/lib/interfaces";
 import React from "react";
 import Stars from "../stars";
 import {
-  ascendingReviewRating,
+  descendingSortByKey,
   calcDaysSince,
-  descendingReviewRating,
+  ascendingSortByKey,
 } from "@/lib/utils";
 import { CircleCheck } from "lucide-react";
-import SortBy from "./sort-option";
-export const reviewSortBy = [
-  { prompt: "Stars: high to low", value: "rating-desc" },
-  { prompt: "Stars: low to high", value: "rating-asc" },
+import SortOptions from "./sort-options";
+
+export const reviewSortBy: SortData[] = [
+  {
+    title: "Stars: high to low",
+    value: "rating-desc",
+    key: "stars",
+    type: "desc",
+  },
+  {
+    title: "Stars: low to high",
+    value: "rating-asc",
+    key: "stars",
+    type: "asc",
+  },
 ];
+
 export default function ReviewList({
   reviews,
   sort,
@@ -24,8 +36,8 @@ export default function ReviewList({
   if (sort) {
     sortedReviews =
       sort === "rating-asc"
-        ? ascendingReviewRating(reviews)
-        : descendingReviewRating(reviews);
+        ? ascendingSortByKey(reviews, "rating")
+        : descendingSortByKey(reviews, "rating");
   } else {
     sortedReviews = reviews;
   }
@@ -33,7 +45,7 @@ export default function ReviewList({
   return (
     <div className="grid gap-8">
       <div className="flex justify-end">
-        <SortBy linkList={reviewSortBy}></SortBy>
+        <SortOptions data={reviewSortBy}></SortOptions>
       </div>
       <div className="w-full overflow-auto">
         <div className="grid gap-8">

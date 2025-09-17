@@ -1,27 +1,22 @@
-import CategoryFilter from "@/components/category-filter";
-import { menCategories, womenCategories } from "@/lib/constants";
-import FilterBy from "@/components/products/filter-by";
+import CategoryFilter from "@/components/products/category-filter";
+import { allCategories, menCategories, womenCategories } from "@/lib/constants";
+import FilterBy from "@/components/products/product-filters";
 import ProductList from "@/components/products/product-list";
-import SortOption from "@/components/products/sort-option";
-import { productsSortBy } from "@/lib/constants";
+import { productSortList } from "@/lib/constants";
 
 import {
+  fetchAllProductsOfMultipleCategories,
   fetchProductOfTypeCategory,
   fetchSearchProduct,
 } from "@/lib/data/products";
 import { ProductFull } from "@/lib/interfaces";
 import {
-  ascendingDiscount,
-  ascendingName,
-  ascendingPrice,
-  ascendingRating,
-  descendingDiscount,
-  descendingName,
-  descendingPrice,
-  descendingRating,
+  ascendingSortByKey,
+  descendingSortByKey,
   validCategory,
 } from "@/lib/utils";
 import React from "react";
+import SortOptions from "@/components/products/sort-options";
 
 export default async function ProductsPage({
   searchParams,
@@ -39,95 +34,113 @@ export default async function ProductsPage({
     page = "1",
   } = await searchParams;
   const PAGE_OFFSET = 9;
-
   let productList: ProductFull[] = [];
-  /* TODO: make code more understandable*/
-  /* If there is a global search */
-  if (query !== "" && category === "" && subcategory === "") {
-    const result = await fetchSearchProduct(query);
+  let sortBy = "";
+  let order = "";
 
-    /* TODO: filter by capproved category */
-    if (result) {
-      console.log(result[0]);
-      productList = result;
-    }
-  } else {
-    if (validCategory(category)) {
-      const categories = category === "men" ? menCategories : womenCategories;
-      if (subcategory !== "") {
-        if (categories.includes(subcategory)) {
-          const result = await fetchProductOfTypeCategory(subcategory);
-
-          if (result) {
-            //filter by query
-            productList = result.filter((project) =>
-              project.title.toLowerCase().includes(query.toLowerCase())
-            );
-          }
-        }
-      } else {
-        /* TODO: prio on this part, needs a fetch that handles mutilple categories*/
-        /* If no subcat show all product for men/women */
-        const result = await Promise.all(
-          categories.map(async (category) => {
-            const res = await fetchProductOfTypeCategory(category);
-            return Array.isArray(res) ? res : [];
-          })
-        );
-        productList = result.flat();
+  if (sort) {
+    productSortList.forEach((sortMethod) => {
+      if (sortMethod.value === sort) {
+        sortBy = sortMethod.key;
+        order = sortMethod.type;
       }
-    } /* elseif  */
+    });
   }
 
-  /* Sort */
-  switch (sort) {
-    case "name-asc":
-      productList = ascendingName(productList);
-      break;
-    case "name-desc":
-      productList = descendingName(productList);
-      break;
+  /* If there is a global search fetch result */
+  if (query !== "" && category === "" && subcategory === "") {
+    const result = await fetchSearchProduct(query, sortBy, order);
 
-    case "price-asc":
-      productList = ascendingPrice(productList);
-      break;
-
-    case "price-desc":
-      productList = descendingPrice(productList);
-      break;
-
-    case "rating-asc":
-      productList = ascendingRating(productList);
-      break;
-
-    case "rating-desc":
-      productList = descendingRating(productList);
-      break;
-
-    case "discount-asc":
-      productList = ascendingDiscount(productList);
-      break;
-    case "discount-desc":
-      productList = descendingDiscount(productList);
-      break;
-
-    default:
-      productList;
+    if (result) {
+      productList = result.filter((product) =>
+        allCategories.includes(product.category)
+      );
+    }
   }
-  /* Handles the filtering */
+
+  /* all products if there no filter */
+  if (query === "" && category === "" && subcategory === "") {
+    const result = await fetchAllProductsOfMultipleCategories(allCategories);
+
+    if (result) {
+      productList = result;
+
+      if (sort) {
+        productSortList.map((sortBy) => {
+          if (sortBy.value === sort) {
+            productList =
+              sortBy.type === "ascending"
+                ? ascendingSortByKey(
+                    productList,
+                    sortBy.key as keyof ProductFull
+                  )
+                : descendingSortByKey(
+                    productList,
+                    sortBy.key as keyof ProductFull
+                  );
+          }
+        });
+      }
+    }
+  }
+
+  /* if only a subcategory */
+  if (query === "" && category === "" && subcategory !== "") {
+    if (allCategories.includes(subcategory)) {
+      const result = await fetchProductOfTypeCategory(
+        subcategory,
+        sortBy,
+        order
+      );
+
+      if (result) {
+        productList = result;
+      }
+    }
+  }
+
+  /* if is a valid category ie men | women,  */
+  if (validCategory(category)) {
+    let categories = category === "men" ? menCategories : womenCategories;
+    if (categories.includes(subcategory)) {
+      const result = await fetchProductOfTypeCategory(
+        subcategory,
+        sortBy,
+        order
+      );
+      if (result) {
+        productList = result;
+      }
+    } else {
+      const result = await fetchAllProductsOfMultipleCategories(categories);
+      if (result) {
+        productList = result;
+      }
+    }
+  }
+
+  /* Filters */
+  if (query !== "") {
+    productList = productList.filter((project) =>
+      project.title.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
   if (min !== "" && !isNaN(parseInt(min))) {
     productList = productList.filter(
       (product) => product.price > parseInt(min)
     );
   }
+
   if (max !== "" && !isNaN(parseInt(max))) {
     productList = productList.filter(
       (product) => product.price < parseInt(max)
     );
   }
+
   if (stars !== "" && !isNaN(parseInt(stars))) {
     productList = productList.filter(
-      (product) => product.rating > parseInt(stars)
+      (product) => product.rating > parseInt(stars[0])
     );
   }
 
@@ -140,12 +153,11 @@ export default async function ProductsPage({
 
   return (
     <section className="p-10 flex gap-4">
-      <div>
+      <div className="grid gap-2 content-start">
         <FilterBy category={category}></FilterBy>
-        <SortOption linkList={productsSortBy}></SortOption>
+        <SortOptions data={productSortList}></SortOptions>
       </div>
       <div className="grid gap-2">
-        <CategoryFilter category={category}></CategoryFilter>
         <ProductList productList={productList} pages={pages}></ProductList>
       </div>
     </section>

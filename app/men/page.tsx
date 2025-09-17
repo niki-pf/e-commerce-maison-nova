@@ -6,7 +6,7 @@ import FullPageBlock from "@/components/full-page-block";
 
 export default function MenPage() {
   return (
-    <main>
+    <>
       <FullPageBlock
         imageSrc="https://images.unsplash.com/photo-1644347506632-836497ef1692?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         altText="Man wearing a stylish winter coat walking through a city street"
@@ -34,6 +34,6 @@ export default function MenPage() {
         />
       </div>
       <ItemWithReview categories={menCategories} />
-    </main>
+    </>
   );
 }

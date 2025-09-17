@@ -2,8 +2,10 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { FormEvent } from "react";
 import Stars from "../stars";
+import Searchbar from "../globals/searchbar";
+import CategoryFilter from "./category-filter";
 
-export default function FilterBy({ category }: { category: string }) {
+export default function ProductFilter({ category }: { category: string }) {
   const starRating = [1, 2, 3, 4, 5];
   const priceOptions = [
     { prompt: "Max Price", value: "max" },
@@ -15,6 +17,12 @@ export default function FilterBy({ category }: { category: string }) {
   const params = new URLSearchParams(searchParams);
   const { replace } = useRouter();
 
+  const paramMin = params.get("min") !== "" ? params.get("min") : "";
+  const paramMax = params.get("max") !== "" ? params.get("max") : "";
+  const paramStars = params.getAll("stars");
+
+  console.log(paramStars);
+
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -22,10 +30,10 @@ export default function FilterBy({ category }: { category: string }) {
     const filters = [
       { filter: "min", value: formData.get("min")?.toString() },
       { filter: "max", value: formData.get("max")?.toString() },
-      { filter: "stars", value: formData.get("stars")?.toString() },
+      { filter: "stars", value: formData.getAll("stars")?.toString() },
     ];
 
-    const newLink = filters.map((filter) => {
+    filters.map((filter) => {
       if (filter.value === undefined || filter.value === "") {
         params.delete(filter.filter);
       } else {
@@ -36,15 +44,22 @@ export default function FilterBy({ category }: { category: string }) {
   }
 
   return (
-    <div className="p-8 border-2 grid py-4 text-xl">
-      {/* choose sub category */}
+    <div className="p-8 border-2 grid gap-2 py-4 text-xl">
+      <Searchbar globalSearch={false}></Searchbar>
+      <CategoryFilter category={category}></CategoryFilter>
+
       <form
         onSubmit={handleSubmit}
         className="flex flex-col justify-start gap-4">
         {priceOptions.map((option, index) => (
           <label key={index}>
             {option.prompt}
-            <input type="number" name={option.value} className="border-2" />
+            <input
+              type="number"
+              name={option.value}
+              defaultValue={option.value}
+              className="border-2"
+            />
           </label>
         ))}
 
@@ -55,6 +70,9 @@ export default function FilterBy({ category }: { category: string }) {
               name="stars"
               id={`star-${star}`}
               value={star}
+              defaultValue={
+                paramStars.map((item) => star === parseInt(item)) ? star : ""
+              }
             />
             <label htmlFor={`star-${star}`}>
               <Stars scoreOutOfFive={star}></Stars>
