@@ -4,11 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import React from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function Searchbar({
-  globalSearch,
-}: {
-  globalSearch?: boolean;
-}) {
+export default function Searchbar({ globalSearch }: { globalSearch: boolean }) {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 

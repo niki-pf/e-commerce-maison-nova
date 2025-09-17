@@ -2,9 +2,9 @@ import { ProductFull } from "@/lib/interfaces";
 import React from "react";
 import Stars from "../stars";
 import {
-  ascendingReviewRating,
+  descendingSortByKey,
   calcDaysSince,
-  descendingReviewRating,
+  ascendingSortByKey,
 } from "@/lib/utils";
 import { CircleCheck } from "lucide-react";
 import SortBy from "./sort-option";
@@ -24,8 +24,8 @@ export default function ReviewList({
   if (sort) {
     sortedReviews =
       sort === "rating-asc"
-        ? ascendingReviewRating(reviews)
-        : descendingReviewRating(reviews);
+        ? ascendingSortByKey(reviews, "rating")
+        : descendingSortByKey(reviews, "rating");
   } else {
     sortedReviews = reviews;
   }

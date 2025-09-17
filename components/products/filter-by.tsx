@@ -2,6 +2,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { FormEvent } from "react";
 import Stars from "../stars";
+import Searchbar from "../globals/searchbar";
 
 export default function FilterBy({ category }: { category: string }) {
   const starRating = [1, 2, 3, 4, 5];
@@ -36,7 +37,8 @@ export default function FilterBy({ category }: { category: string }) {
   }
 
   return (
-    <div className="p-8 border-2 grid py-4 text-xl">
+    <div className="p-8 border-2 grid gap-2 py-4 text-xl">
+      <Searchbar globalSearch={false}></Searchbar>
       {/* choose sub category */}
       <form
         onSubmit={handleSubmit}

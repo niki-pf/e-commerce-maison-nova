@@ -1,6 +1,4 @@
-import { notFound } from "next/navigation";
 import { ProductFull } from "../interfaces";
-import ProductList from "@/components/products/product-list";
 
 export async function fetchProduct(id: string) {
   try {
@@ -15,24 +13,14 @@ export async function fetchProduct(id: string) {
   } catch (error) {}
 }
 
-export async function fetchProducts() {
-  try {
-    const response = await fetch(`https://dummyjson.com/products/`);
-
-    if (!response.ok) {
-      throw new Error(`There was an error fetching all products`);
-    }
-
-    const data = await response.json();
-    const products: ProductFull[] = data.products;
-    return products;
-  } catch (error) {}
-}
-
-export async function fetchSearchProduct(query: string) {
+export async function fetchSearchProduct(
+  query: string,
+  sortBy: string,
+  order: string
+) {
   try {
     const response = await fetch(
-      `https://dummyjson.com/products/search?q=${query}`
+      `https://dummyjson.com/products/search?q=${query}&sortBy=${sortBy}&order=${order}`
     );
 
     if (!response.ok) {
@@ -45,10 +33,14 @@ export async function fetchSearchProduct(query: string) {
   } catch (error) {}
 }
 
-export async function fetchProductOfTypeCategory(category: string) {
+export async function fetchProductOfTypeCategory(
+  category: string,
+  sortBy: string,
+  order: string
+) {
   try {
     const response = await fetch(
-      `https://dummyjson.com/products/category/${category}`
+      `https://dummyjson.com/products/category/${category}?sortBy=${sortBy}&order=${order}`
     );
 
     if (!response.ok) {
@@ -69,7 +61,7 @@ export async function fetchAllProductsOfMultipleCategories(
     const result = await Promise.all(
       /* returns array of produlist */
       categories.map(async (category) => {
-        const result = await fetchProductOfTypeCategory(category);
+        const result = await fetchProductOfTypeCategory(category, "", "");
         /* returns empty array if result is undefined */
         return Array.isArray(result) ? result : [];
       })

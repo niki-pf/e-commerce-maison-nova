@@ -1,13 +1,9 @@
 "use client";
+import { productSort } from "@/lib/interfaces";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import React from "react";
 
-interface Props {
-  prompt: string;
-  value: string;
-}
-
-export default function SortOption({ linkList }: { linkList: Props[] }) {
+export default function SortOption({ linkList }: { linkList: productSort[] }) {
   const pathName = usePathname();
   const searchParams = useSearchParams();
   const sortParam = new URLSearchParams(searchParams);
@@ -22,7 +18,7 @@ export default function SortOption({ linkList }: { linkList: Props[] }) {
     params.set("sort", sortValue);
     return `${pathName}?${params.toString()}`;
   }
-  
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     replace(getLink(value));
@@ -34,7 +30,7 @@ export default function SortOption({ linkList }: { linkList: Props[] }) {
       <select id="options" onChange={handleChange} defaultValue={"default"}>
         {linkList.map((link, index) => (
           <option key={index} value={link.value}>
-            {link.prompt}
+            {link.name}
           </option>
         ))}
       </select>
