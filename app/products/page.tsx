@@ -1,6 +1,6 @@
 import CategoryFilter from "@/components/category-filter";
 import { allCategories, menCategories, womenCategories } from "@/lib/constants";
-import FilterBy from "@/components/products/filters";
+import FilterBy from "@/components/products/product-filters";
 import ProductList from "@/components/products/product-list";
 import { productSortList } from "@/lib/constants";
 
@@ -140,7 +140,7 @@ export default async function ProductsPage({
 
   if (stars !== "" && !isNaN(parseInt(stars))) {
     productList = productList.filter(
-      (product) => product.rating > parseInt(stars)
+      (product) => product.rating > parseInt(stars[0])
     );
   }
 
