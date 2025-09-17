@@ -29,9 +29,8 @@ const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
   };
   return (
     <button
-      className="w-full py-3 text-center bg-gray-900 text-background shadow tracking-wider uppercase cursor-pointer"
-      onClick={addToCart}
-    >
+      className="w-full py-3 text-center hover:ring-2 bg-button text-background shadow tracking-wider uppercase cursor-pointer"
+      onClick={addToCart}>
       Add to cart
     </button>
   );

@@ -64,12 +64,12 @@ export default async function Page({ params, searchParams }: URLProps) {
 
   return (
     <>
-      <section className="px-8 pt-16 pb-8 grid gap-4 ">
+      <section className="px-8 pt-16 pb-8 grid gap-4">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Images */}
           <figure className={`grid ${imageGrid} gap-2 relative`}>
             {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-              <p className="absolute md:font-medium text-sm md:text-lg bg-background top-0 mt-1 ml-1 p-1  text-destructive ">
+              <p className="absolute  bg-background top-0 mt-1 ml-1 p-1 text-discount ">
                 {`${Math.floor(product.discountPercentage)} % off`}
               </p>
             ) : (
@@ -82,27 +82,27 @@ export default async function Page({ params, searchParams }: URLProps) {
                 alt={`${product.title} + ${index}`}
                 width={500}
                 height={500}
-                className=" bg-accent"></Image>
+                className="bg-foreground"></Image>
             ))}
           </figure>
 
-          <section className="grid gap-8 h-min max-w-[60ch]">
+          <section className="grid gap-8 h-min">
             {/* Productinfo */}
             <div className=" flex justify-between border-b-1 pb-8">
               <div>
-                <h2 className="font-sans text-2xl">{product.title}</h2>
+                <h2>{product.title}</h2>
                 <ReviewScore
                   nrOfReviews={product.reviews.length}
                   scoreOutOfFive={product.rating}></ReviewScore>
               </div>
 
               {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-                <div className="flex gap-2 text-2xl">
-                  <p className="line-through text-2xl ">{`$${product.price.toFixed(
+                <div className="flex gap-2">
+                  <p className="line-through text-secondary ">{`$${product.price.toFixed(
                     showDecimals
                   )}`}</p>
 
-                  <p className="font-medium">
+                  <p>
                     {`$${Math.round(
                       product.price -
                         (product.discountPercentage / 100) * product.price
@@ -110,20 +110,18 @@ export default async function Page({ params, searchParams }: URLProps) {
                   </p>
                 </div>
               ) : (
-                <p className="font-bold ">
-                  {product.price.toFixed(showDecimals)}
-                </p>
+                <p>{product.price.toFixed(showDecimals)}</p>
               )}
             </div>
 
             {/* Decsription */}
             <section className="grid gap-4 border-b-1 pb-8">
-              <h3 className="">Description</h3>
+              <h3>Description</h3>
               <p>
                 {product.description} Lorem ipsum dolor sit amet consectetur
                 adipisicing elit. Labore esse quam ducimus vel facilis. Natus at
                 tempore tenetur pariatur, distinctio ab praesentium dignissimos
-                soluta optio deserunt nobis incidunt nemo atque.{" "}
+                soluta optio deserunt nobis incidunt nemo atque.
               </p>
             </section>
 
@@ -163,12 +161,12 @@ export default async function Page({ params, searchParams }: URLProps) {
         </div>
       </section>
 
-      <section className="pt-8 grid gap-8 px-32">
-        <h2 className="text-center font-bold text-2xl">Reviews</h2>
+      <section className="pt-8 grid gap-8">
+        <h2 className="text-center">Reviews</h2>
 
-        <div className="flex gap-16 bg-accent p-16 ">
-          <div className="grid content-start gap-4">
-            <p className="font-semibold">{`${product.rating.toFixed(
+        <div className="grid md:flex gap-16 justify-center md:block-flex bg-foreground p-16 ">
+          <div className="grid content-start justify-center gap-4">
+            <p className="font-semibold wrap-pretty">{`${product.rating.toFixed(
               1
             )} Overall Rating`}</p>
             <Stars scoreOutOfFive={product.rating} starCn="size-6"></Stars>

@@ -1,4 +1,4 @@
-import { ProductFull, SortData } from "@/lib/interfaces";
+import { ProductFull } from "@/lib/interfaces";
 import React from "react";
 import Stars from "../stars";
 import {
@@ -8,21 +8,7 @@ import {
 } from "@/lib/utils";
 import { CircleCheck } from "lucide-react";
 import SortOptions from "./sort-options";
-
-export const reviewSortBy: SortData[] = [
-  {
-    title: "Stars: high to low",
-    value: "rating-desc",
-    key: "stars",
-    type: "desc",
-  },
-  {
-    title: "Stars: low to high",
-    value: "rating-asc",
-    key: "stars",
-    type: "asc",
-  },
-];
+import { reviewSortList } from "@/lib/constants";
 
 export default function ReviewList({
   reviews,
@@ -39,13 +25,13 @@ export default function ReviewList({
         ? ascendingSortByKey(reviews, "rating")
         : descendingSortByKey(reviews, "rating");
   } else {
-    sortedReviews = reviews;
+    sortedReviews = descendingSortByKey(reviews, "rating");
   }
 
   return (
     <div className="grid gap-8">
       <div className="flex justify-end">
-        <SortOptions data={reviewSortBy}></SortOptions>
+        <SortOptions data={reviewSortList}></SortOptions>
       </div>
       <div className="w-full overflow-auto">
         <div className="grid gap-8">
