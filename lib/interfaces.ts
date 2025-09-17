@@ -19,3 +19,11 @@ export interface ProductFull {
   images: string[];
   thumbnail: string;
 }
+
+export interface CartProduct {
+  id:number;
+  title: string;
+  price: number;
+  discountPercentage: number;
+  image: string;
+}
