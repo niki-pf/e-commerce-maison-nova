@@ -21,7 +21,7 @@ export default function ProductFilter({ category }: { category: string }) {
   const paramMax = params.get("max") !== "" ? params.get("max") : "";
   const paramStars = params.getAll("stars");
 
-  console.log(paramStars);
+  console.log(paramStars.includes);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -42,7 +42,6 @@ export default function ProductFilter({ category }: { category: string }) {
     });
     replace(`${pathName}?${params}`);
   }
-
   return (
     <div className="p-8 border-2 grid gap-2 py-4 text-xl">
       <Searchbar globalSearch={false}></Searchbar>
@@ -70,9 +69,7 @@ export default function ProductFilter({ category }: { category: string }) {
               name="stars"
               id={`star-${star}`}
               value={star}
-              defaultValue={
-                paramStars.map((item) => star === parseInt(item)) ? star : ""
-              }
+              defaultChecked={paramStars.includes(star.toString())}
             />
             <label htmlFor={`star-${star}`}>
               <Stars scoreOutOfFive={star}></Stars>

@@ -90,7 +90,7 @@ export default async function Page({ params, searchParams }: URLProps) {
             {/* Productinfo */}
             <div className=" flex justify-between border-b-1 pb-8">
               <div>
-                <h2 className="text-2xl">{product.title}</h2>
+                <h2 className="font-sans text-2xl">{product.title}</h2>
                 <ReviewScore
                   nrOfReviews={product.reviews.length}
                   scoreOutOfFive={product.rating}></ReviewScore>
