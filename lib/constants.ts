@@ -118,3 +118,4 @@ export const listItemMenu = [
 ];
 
 export const MIN_DISCOUNT_TO_DISPLAY = 10;
+export const PAGE_OFFSET = 9;

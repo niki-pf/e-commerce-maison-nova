@@ -1,4 +1,4 @@
-import { allCategories, menCategories, womenCategories } from "@/lib/constants";
+import { allCategories, menCategories, PAGE_OFFSET, womenCategories } from "@/lib/constants";
 import FilterBy from "@/components/products/product-filters";
 import ProductList from "@/components/products/product-list";
 import { productSortList } from "@/lib/constants";
@@ -46,7 +46,6 @@ export default async function ProductsPage({
     stars = "",
     page = "1",
   } = await searchParams;
-  const PAGE_OFFSET = 9;
   let productList: ProductFull[] = [];
   let sortBy = "";
   let order = "";

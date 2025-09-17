@@ -52,7 +52,7 @@ export default async function Page({ params, searchParams }: URLProps) {
   }
 
   const product = await fetchProduct(id);
-  
+
   if (!product) {
     return notFound();
   }
@@ -85,6 +85,7 @@ export default async function Page({ params, searchParams }: URLProps) {
                 className=" bg-accent"></Image>
             ))}
           </figure>
+
           <section className="grid gap-8 h-min max-w-[60ch]">
             {/* Productinfo */}
             <div className=" flex justify-between border-b-1 pb-8">
@@ -161,8 +162,10 @@ export default async function Page({ params, searchParams }: URLProps) {
           </section>
         </div>
       </section>
+
       <section className="pt-8 grid gap-8 px-32">
         <h2 className="text-center font-bold text-2xl">Reviews</h2>
+
         <div className="flex gap-16 bg-accent p-16 ">
           <div className="grid content-start gap-4">
             <p className="font-semibold">{`${product.rating.toFixed(
@@ -170,11 +173,13 @@ export default async function Page({ params, searchParams }: URLProps) {
             )} Overall Rating`}</p>
             <Stars scoreOutOfFive={product.rating} starCn="size-6"></Stars>
           </div>
+
           <RatingBarChart
             numbers={product.reviews.map(
               (review) => review.rating
             )}></RatingBarChart>
         </div>
+
         <ReviewList sort={sort} reviews={product.reviews}></ReviewList>
       </section>
     </>
