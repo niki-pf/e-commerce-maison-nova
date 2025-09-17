@@ -1,3 +1,4 @@
+import { SortData } from "./interfaces";
 
 /* Mock-links fot the footer */
 export const NO_GO_LINKS = [
@@ -62,47 +63,47 @@ export const menCategories = [
   "sunglasses",
 ];
 
-export const productSortList = [
-  { name: "Recommended", value: "recommended", key: "", type: "" },
-  { name: "Name: A to Z", value: "name-asc", key: "title", type: "asc" },
+export const productSortList: SortData[] = [
+  { title: "Recommended", value: "recommended", key: "", type: "" },
+  { title: "Name: A to Z", value: "name-asc", key: "title", type: "asc" },
   {
-    name: "Name: Z to A",
+    title: "Name: Z to A",
     value: "name-desc",
     key: "title",
     type: "desc",
   },
   {
-    name: "Price: low to high",
+    title: "Price: low to high",
     value: "price-asc",
     key: "price",
     type: "asc",
   },
   {
-    name: "Price: high to low",
+    title: "Price: high to low",
     value: "price-desc",
     key: "price",
     type: "desc",
   },
   {
-    name: "Rating: low to high",
+    title: "Rating: low to high",
     value: "rating-asc",
     key: "rating",
     type: "asc",
   },
   {
-    name: "Rating: high to low",
+    title: "Rating: high to low",
     value: "rating-desc",
     key: "rating",
     type: "desc",
   },
   {
-    name: "Discount: low to high",
+    title: "Discount: low to high",
     value: "discount-asc",
     key: "discountPercentage",
     type: "asc",
   },
   {
-    name: "Discount: high to low",
+    title: "Discount: high to low",
     value: "discount-desc",
     key: "discountPercentage",
     type: "desc",

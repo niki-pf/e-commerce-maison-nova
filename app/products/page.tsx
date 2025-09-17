@@ -1,8 +1,7 @@
 import CategoryFilter from "@/components/category-filter";
 import { allCategories, menCategories, womenCategories } from "@/lib/constants";
-import FilterBy from "@/components/products/filter-by";
+import FilterBy from "@/components/products/filters";
 import ProductList from "@/components/products/product-list";
-import SortOption from "@/components/products/sort-option";
 import { productSortList } from "@/lib/constants";
 
 import {
@@ -17,6 +16,7 @@ import {
   validCategory,
 } from "@/lib/utils";
 import React from "react";
+import SortOptions from "@/components/products/sort-options";
 
 export default async function ProductsPage({
   searchParams,
@@ -137,7 +137,7 @@ export default async function ProductsPage({
       (product) => product.price < parseInt(max)
     );
   }
-  
+
   if (stars !== "" && !isNaN(parseInt(stars))) {
     productList = productList.filter(
       (product) => product.rating > parseInt(stars)
@@ -155,7 +155,7 @@ export default async function ProductsPage({
     <section className="p-10 flex gap-4">
       <div>
         <FilterBy category={category}></FilterBy>
-        <SortOption linkList={productSortList}></SortOption>
+        <SortOptions data={productSortList}></SortOptions>
       </div>
       <div className="grid gap-2">
         <CategoryFilter category={category}></CategoryFilter>

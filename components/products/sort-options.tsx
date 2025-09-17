@@ -1,9 +1,9 @@
 "use client";
-import { productSort } from "@/lib/interfaces";
+import { SortData } from "@/lib/interfaces";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import React from "react";
 
-export default function SortOption({ linkList }: { linkList: productSort[] }) {
+export default function SortOptions({ data }: { data: SortData[] }) {
   const pathName = usePathname();
   const searchParams = useSearchParams();
   const sortParam = new URLSearchParams(searchParams);
@@ -28,9 +28,9 @@ export default function SortOption({ linkList }: { linkList: productSort[] }) {
     <div className="p-8 border-2 grid py-4 text-xl">
       <label htmlFor="options">Sort By:</label>
       <select id="options" onChange={handleChange} defaultValue={"default"}>
-        {linkList.map((link, index) => (
-          <option key={index} value={link.value}>
-            {link.name}
+        {data.map((item, index) => (
+          <option key={index} value={item.value}>
+            {item.title}
           </option>
         ))}
       </select>

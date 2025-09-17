@@ -18,8 +18,8 @@ export interface ProductFull {
   thumbnail: string;
 }
 
-export interface ProductSort {
-  name: string;
+export interface SortData {
+  title: string;
   value: string;
   key: string;
   type: string;
