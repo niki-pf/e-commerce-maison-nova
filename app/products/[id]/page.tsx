@@ -7,19 +7,14 @@ import React from "react";
 import Image from "next/image";
 import ReviewScore from "@/components/products/review-score";
 import { Box, Gift, Truck } from "lucide-react";
-import { allCategories } from "@/lib/constants";
+import { allCategories, MIN_DISCOUNT_TO_DISPLAY } from "@/lib/constants";
 import ReviewList from "@/components/products/review-list";
 import Stars from "@/components/stars";
 import RatingBarChart from "@/components/products/rating-bar-chart";
 import AddToCartBtn from "@/components/add-to-cart-btn";
+import { URLProps } from "@/lib/interfaces";
 
-interface Props {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ [key: string]: string | undefined }>;
-}
-
-/* Generate meta data for page */
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: URLProps) {
   const { id } = await params;
 
   if (id && Number.isNaN(id)) {
@@ -27,30 +22,28 @@ export async function generateMetadata({ params }: Props) {
     if (product) {
       return {
         title: `Maison Nova - ${product.title}`,
-        description: "Detailed information about a product",
+        description: `Detailed product information about: ${product.title}`,
       };
     }
   }
   return {
-    title: "Maison Nova - 404",
+    title: "Maison Nova - Not Found",
     description: "The product don't exist",
   };
 }
-/* Static params */
-export async function generateStaticParams() {
-  const allProducts = await fetchAllProductsOfMultipleCategories(allCategories);
 
-  // is not undefined
-  if (allProducts) {
+export async function generateStaticParams() {
+  const result = await fetchAllProductsOfMultipleCategories(allCategories);
+
+  if (result) {
+    const allProducts = result;
     return allProducts.map((product) => ({
       slug: product.id,
     }));
   }
 }
 
-export default async function Page({ params, searchParams }: Props) {
-  const MIN_DISCOUNT_TO_DISPLAY = 10;
-
+export default async function Page({ params, searchParams }: URLProps) {
   const { id } = await params;
   const { sort } = await searchParams;
 
@@ -59,14 +52,13 @@ export default async function Page({ params, searchParams }: Props) {
   }
 
   const product = await fetchProduct(id);
-
+  
   if (!product) {
     return notFound();
   }
 
   /* Display decmials if price is under 1000 */
   const showDecimals = product.price > 1000 ? 0 : 2;
-
   /* Display the images in two columns if the product have two or more images */
   const imageGrid = product.images.length < 2 ? "grid-cols-1" : "grid-cols-2";
 
@@ -76,7 +68,6 @@ export default async function Page({ params, searchParams }: Props) {
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Images */}
           <figure className={`grid ${imageGrid} gap-2 relative`}>
-            {/* Display discount if over a specific value */}
             {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
               <p className="absolute md:font-medium text-sm md:text-lg bg-background top-0 mt-1 ml-1 p-1  text-destructive ">
                 {`${Math.floor(product.discountPercentage)} % off`}
@@ -104,7 +95,6 @@ export default async function Page({ params, searchParams }: Props) {
                   scoreOutOfFive={product.rating}></ReviewScore>
               </div>
 
-              {/* If discount is greater than MIN_DISCOUNT_TO_DISPLAY display the discounted price */}
               {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
                 <div className="flex gap-2 text-2xl">
                   <p className="line-through text-2xl ">{`$${product.price.toFixed(
@@ -124,6 +114,7 @@ export default async function Page({ params, searchParams }: Props) {
                 </p>
               )}
             </div>
+
             {/* Decsription */}
             <section className="grid gap-4 border-b-1 pb-8">
               <h3 className="font-bold font-xl">Description</h3>
@@ -134,10 +125,12 @@ export default async function Page({ params, searchParams }: Props) {
                 soluta optio deserunt nobis incidunt nemo atque.{" "}
               </p>
             </section>
+
             {/* Buy options */}
             <div className="border-b-1 pb-8 ">
               <AddToCartBtn product={product} />
             </div>
+
             {/* General order information */}
             <section className="grid justify-start gap-8 md:border-b-1 pb-8">
               <div className="flex gap-10">
@@ -147,6 +140,7 @@ export default async function Page({ params, searchParams }: Props) {
                   <p>On all orders over $100</p>
                 </div>
               </div>
+
               <div className="flex gap-10">
                 <Box size={50} strokeWidth={1}></Box>
                 <div>
@@ -154,8 +148,10 @@ export default async function Page({ params, searchParams }: Props) {
                   <p>Extenden through November 31</p>
                 </div>
               </div>
+
               <div className="flex gap-10">
                 <Gift size={50} strokeWidth={1}></Gift>
+
                 <div>
                   <p className="font-bold">Send It As A Gift</p>
                   <p>Add a free personalized note during checkout</p>

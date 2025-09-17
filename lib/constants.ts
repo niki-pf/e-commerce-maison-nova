@@ -116,3 +116,5 @@ export const listItemMenu = [
   { label: "About", href: "/about" },
   { label: "Contact Us", href: "/contact-us" },
 ];
+
+export const MIN_DISCOUNT_TO_DISPLAY = 10;
