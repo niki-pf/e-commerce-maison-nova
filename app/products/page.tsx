@@ -1,4 +1,4 @@
-import CategoryFilter from "@/components/category-filter";
+import CategoryFilter from "@/components/products/category-filter";
 import { allCategories, menCategories, womenCategories } from "@/lib/constants";
 import FilterBy from "@/components/products/product-filters";
 import ProductList from "@/components/products/product-list";
@@ -153,12 +153,11 @@ export default async function ProductsPage({
 
   return (
     <section className="p-10 flex gap-4">
-      <div>
+      <div className="grid gap-2 content-start">
         <FilterBy category={category}></FilterBy>
         <SortOptions data={productSortList}></SortOptions>
       </div>
       <div className="grid gap-2">
-        <CategoryFilter category={category}></CategoryFilter>
         <ProductList productList={productList} pages={pages}></ProductList>
       </div>
     </section>

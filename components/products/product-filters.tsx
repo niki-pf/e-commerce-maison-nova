@@ -3,7 +3,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { FormEvent } from "react";
 import Stars from "../stars";
 import Searchbar from "../globals/searchbar";
-import CategoryFilter from "../category-filter";
+import CategoryFilter from "./category-filter";
 
 export default function ProductFilter({ category }: { category: string }) {
   const starRating = [1, 2, 3, 4, 5];
@@ -48,7 +48,6 @@ export default function ProductFilter({ category }: { category: string }) {
       <Searchbar globalSearch={false}></Searchbar>
       <CategoryFilter category={category}></CategoryFilter>
 
-      {/* choose sub category */}
       <form
         onSubmit={handleSubmit}
         className="flex flex-col justify-start gap-4">
