@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ProductFull } from "../interfaces";
+import ProductList from "@/components/products/product-list";
 
 export async function fetchProduct(id: string) {
   try {
@@ -11,8 +12,7 @@ export async function fetchProduct(id: string) {
 
     const data: ProductFull = await response.json();
     return data;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 export async function fetchProducts() {
@@ -26,8 +26,7 @@ export async function fetchProducts() {
     const data = await response.json();
     const products: ProductFull[] = data.products;
     return products;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 export async function fetchSearchProduct(query: string) {
@@ -43,8 +42,7 @@ export async function fetchSearchProduct(query: string) {
     const data = await response.json();
     const products: ProductFull[] = data.products;
     return products;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 export async function fetchProductOfTypeCategory(category: string) {
@@ -60,16 +58,14 @@ export async function fetchProductOfTypeCategory(category: string) {
     const data = await response.json();
     const products: ProductFull[] = data.products;
     return products;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 export async function fetchAllProductsOfMultipleCategories(
   categories: string[]
 ) {
   try {
-    /* TODO: prio on this part make needs a fetch that handles mutilple categories*/
-    /* If no subcat show all product for men/women */
+    let productList: ProductFull[] = [];
     const result = await Promise.all(
       /* returns array of produlist */
       categories.map(async (category) => {
@@ -78,9 +74,14 @@ export async function fetchAllProductsOfMultipleCategories(
         return Array.isArray(result) ? result : [];
       })
     );
-    /* flattens the result from fetching categories */
-    const productList = result.flat();
+    if (result) {
+      /* flattens the result from fetching categories */
+      productList = result.flat();
+    } else {
+      throw new Error(
+        `There was a problem fetching all products of multiple categories`
+      );
+    }
     return productList;
-  } catch (error) {
-  }
+  } catch (error) {}
 }

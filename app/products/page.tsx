@@ -1,11 +1,12 @@
 import CategoryFilter from "@/components/category-filter";
-import { menCategories, womenCategories } from "@/lib/constants";
+import { allCategories, menCategories, womenCategories } from "@/lib/constants";
 import FilterBy from "@/components/products/filter-by";
 import ProductList from "@/components/products/product-list";
 import SortOption from "@/components/products/sort-option";
 import { productsSortBy } from "@/lib/constants";
 
 import {
+  fetchAllProductsOfMultipleCategories,
   fetchProductOfTypeCategory,
   fetchSearchProduct,
 } from "@/lib/data/products";
@@ -39,44 +40,60 @@ export default async function ProductsPage({
     page = "1",
   } = await searchParams;
   const PAGE_OFFSET = 9;
-
   let productList: ProductFull[] = [];
+
   /* TODO: make code more understandable*/
+
   /* If there is a global search */
   if (query !== "" && category === "" && subcategory === "") {
     const result = await fetchSearchProduct(query);
 
-    /* TODO: filter by capproved category */
+    /* filters the search result */
     if (result) {
-      console.log(result[0]);
+      productList = result.filter((product) =>
+        allCategories.includes(product.category)
+      );
+    }
+  }
+
+  /* if no filter params get all products */
+  if (query === "" && category === "" && subcategory === "") {
+    const result = await fetchAllProductsOfMultipleCategories(allCategories);
+
+    /* filters the seearch result */
+    if (result) {
       productList = result;
     }
-  } else {
-    if (validCategory(category)) {
-      const categories = category === "men" ? menCategories : womenCategories;
-      if (subcategory !== "") {
-        if (categories.includes(subcategory)) {
-          const result = await fetchProductOfTypeCategory(subcategory);
+  }
 
-          if (result) {
-            //filter by query
-            productList = result.filter((project) =>
-              project.title.toLowerCase().includes(query.toLowerCase())
-            );
-          }
-        }
-      } else {
-        /* TODO: prio on this part, needs a fetch that handles mutilple categories*/
-        /* If no subcat show all product for men/women */
-        const result = await Promise.all(
-          categories.map(async (category) => {
-            const res = await fetchProductOfTypeCategory(category);
-            return Array.isArray(res) ? res : [];
-          })
-        );
-        productList = result.flat();
+  if (query === "" && category === "" && subcategory !== "") {
+    /* TODO: prio on this part, needs a fetch that handles mutilple categories*/
+    /* If no subcat show all product for men/women */
+    if (allCategories.includes(subcategory)) {
+      const result = await fetchProductOfTypeCategory(subcategory);
+
+      if (result) {
+        productList = result;
       }
-    } /* elseif  */
+    }
+  }
+  
+  /* if either man or women */
+  if (validCategory(category)) {
+    //get list of subcategories for either men or women
+    const categories = category === "men" ? menCategories : womenCategories;
+    if (categories.includes(subcategory)) {
+      /* if valid subcategory*/
+      const result = await fetchProductOfTypeCategory(subcategory);
+
+      if (result) {
+        productList = result;
+      }
+    }
+    /* filter by search query */
+    productList = productList.filter((project) =>
+      project.title.toLowerCase().includes(query.toLowerCase())
+    );
   }
 
   /* Sort */
@@ -131,6 +148,17 @@ export default async function ProductsPage({
     );
   }
 
+  /*   const filterParams = [min, max, stars];
+
+  filterParams.map((filter) => {
+    if (filter !== "" && !isNaN(parseInt(filter))) {
+      console.log(filter);
+
+      productList = productList.filter(
+        (product) => product.price > parseInt(min)
+      );
+    }
+  }); */
   /* handles pagination */
   const pages = Math.ceil(productList.length) / PAGE_OFFSET;
   const pageNumber = parseInt(page);

@@ -56,8 +56,6 @@ export function ascendingName(products: ProductFull[]) {
   });
 }
 export function descendingName(products: ProductFull[]) {
-  console.log(`descending \n`);
-
   return products.sort((first, next) => {
     if (first.title < next.title) {
       return 1;
@@ -80,8 +78,6 @@ export function ascendingPrice(products: ProductFull[]) {
   });
 }
 export function descendingPrice(products: ProductFull[]) {
-  console.log(`descending \n`);
-
   return products.sort((first, next) => {
     if (first.price < next.price) {
       return 1;
@@ -104,8 +100,6 @@ export function ascendingRating(products: ProductFull[]) {
   });
 }
 export function descendingRating(products: ProductFull[]) {
-  console.log(`descending \n`);
-
   return products.sort((first, next) => {
     if (first.price < next.price) {
       return 1;
@@ -128,8 +122,6 @@ export function ascendingDiscount(products: ProductFull[]) {
   });
 }
 export function descendingDiscount(products: ProductFull[]) {
-  console.log(`descending \n`);
-
   return products.sort((first, next) => {
     if (first.discountPercentage < next.discountPercentage) {
       return 1;
@@ -140,3 +132,29 @@ export function descendingDiscount(products: ProductFull[]) {
     return 0;
   });
 }
+/* 
+export function sortAscending(products: ProductFull[], sortBy: string) {
+
+  return products.sort((first, next) => {
+    if (first[{sortBy}] < next.discountPercentage) {
+      return -1;
+    }
+    if (first.discountPercentage > next.discountPercentage) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
+export function sortDescending(products: ProductFull[]) {
+
+  return products.sort((first, next) => {
+    if (first.discountPercentage < next.discountPercentage) {
+      return 1;
+    }
+    if (first.discountPercentage > next.discountPercentage) {
+      return -1;
+    }
+    return 0;
+  });
+} */
