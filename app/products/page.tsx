@@ -1,5 +1,9 @@
-import { allCategories, menCategories, PAGE_OFFSET, womenCategories } from "@/lib/constants";
-import FilterBy from "@/components/products/product-filters";
+import {
+  allCategories,
+  menCategories,
+  PAGE_OFFSET,
+  womenCategories,
+} from "@/lib/constants";
 import ProductList from "@/components/products/product-list";
 import { productSortList } from "@/lib/constants";
 
@@ -16,6 +20,7 @@ import {
 } from "@/lib/utils";
 import React from "react";
 import SortOptions from "@/components/products/sort-options";
+import ProductFilters from "@/components/products/product-filters";
 
 export async function generateMetadata({ searchParams }: URLProps) {
   const { category = "", subcategory = "", query = "" } = await searchParams;
@@ -156,7 +161,7 @@ export default async function ProductsPage({
     );
   }
 
-  /* handles pagination */
+  /* Handle pagination */
   const pages = Math.ceil(productList.length) / PAGE_OFFSET;
   const pageNumber = parseInt(page);
   const start = (pageNumber - 1) * PAGE_OFFSET;
@@ -164,10 +169,10 @@ export default async function ProductsPage({
   productList = productList.slice(start, end);
 
   return (
-    <section className="p-10 flex gap-4">
+    <section className="flex gap-4">
       <div className="grid gap-2 content-start">
-        <FilterBy category={category}></FilterBy>
         <SortOptions data={productSortList}></SortOptions>
+        <ProductFilters category={category}></ProductFilters>
       </div>
       <div className="grid gap-2">
         <ProductList productList={productList} pages={pages}></ProductList>

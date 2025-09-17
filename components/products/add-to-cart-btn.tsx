@@ -29,7 +29,7 @@ const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
   };
   return (
     <button
-      className="w-full py-3 text-center hover:ring-2 bg-button text-background shadow tracking-wider uppercase cursor-pointer"
+      className="w-full py-3 text-center ring-ring hover:ring-2 focus-visible:ring-2 bg-button text-background shadow tracking-wider uppercase cursor-pointer"
       onClick={addToCart}>
       Add to cart
     </button>

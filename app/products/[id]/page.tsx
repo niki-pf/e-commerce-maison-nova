@@ -11,7 +11,7 @@ import { allCategories, MIN_DISCOUNT_TO_DISPLAY } from "@/lib/constants";
 import ReviewList from "@/components/products/review-list";
 import Stars from "@/components/stars";
 import RatingBarChart from "@/components/products/rating-bar-chart";
-import AddToCartBtn from "@/components/add-to-cart-btn";
+import AddToCartBtn from "@/components/products/add-to-cart-btn";
 import { URLProps } from "@/lib/interfaces";
 
 export async function generateMetadata({ params }: URLProps) {
