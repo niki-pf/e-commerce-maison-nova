@@ -1,4 +1,3 @@
-import CategoryFilter from "@/components/products/category-filter";
 import { allCategories, menCategories, womenCategories } from "@/lib/constants";
 import FilterBy from "@/components/products/product-filters";
 import ProductList from "@/components/products/product-list";
@@ -9,7 +8,7 @@ import {
   fetchProductOfTypeCategory,
   fetchSearchProduct,
 } from "@/lib/data/products";
-import { ProductFull } from "@/lib/interfaces";
+import { ProductFull, URLProps } from "@/lib/interfaces";
 import {
   ascendingSortByKey,
   descendingSortByKey,
@@ -17,6 +16,20 @@ import {
 } from "@/lib/utils";
 import React from "react";
 import SortOptions from "@/components/products/sort-options";
+
+export async function generateMetadata({ searchParams }: URLProps) {
+  const { category = "", subcategory = "", query = "" } = await searchParams;
+  return {
+    title: `Maison Nova - Products`,
+    description: `Product listing ${
+      category !== "" ? `for: ${category} ` : "for men / women "
+    } ${
+      subcategory !== ""
+        ? ` of product type ${subcategory} `
+        : "all product types "
+    } ${query !== "" ? ` and explicitly: ${category}` : "."}`,
+  };
+}
 
 export default async function ProductsPage({
   searchParams,
