@@ -79,6 +79,24 @@
   body {
     @apply bg-background text-foreground;
   }
+  h1,
+  h1,
+  h3,
+  h4 {
+    @apply font-sans font-bold;
+  }
+  h1 {
+    @apply font-bold text-2xl;
+  }
+  h2 {
+    @apply font-bold text-2xl;
+  }
+  h3 {
+    @apply font-sans font-bold text-xl;
+  }
+  p {
+    @apply font-mono text-primary;
+  }
 }
 
 /* needed to display subgrid on product cards */

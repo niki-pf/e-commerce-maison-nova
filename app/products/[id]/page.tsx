@@ -118,7 +118,7 @@ export default async function Page({ params, searchParams }: URLProps) {
 
             {/* Decsription */}
             <section className="grid gap-4 border-b-1 pb-8">
-              <h3 className="font-bold font-xl">Description</h3>
+              <h3 className="">Description</h3>
               <p>
                 {product.description} Lorem ipsum dolor sit amet consectetur
                 adipisicing elit. Labore esse quam ducimus vel facilis. Natus at
