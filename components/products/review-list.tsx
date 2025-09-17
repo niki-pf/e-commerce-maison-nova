@@ -29,7 +29,7 @@ export default function ReviewList({
   }
 
   return (
-    <div className="grid gap-8">
+    <div className="grid gap-8 px-8">
       <div className="flex justify-end">
         <SortOptions data={reviewSortList}></SortOptions>
       </div>

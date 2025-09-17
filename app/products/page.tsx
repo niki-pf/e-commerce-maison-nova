@@ -169,14 +169,12 @@ export default async function ProductsPage({
   productList = productList.slice(start, end);
 
   return (
-    <section className="flex gap-4">
+    <section className="flex gap-4 px-4 py-8">
       <div className="grid gap-2 content-start">
         <SortOptions data={productSortList}></SortOptions>
         <ProductFilters category={category}></ProductFilters>
       </div>
-      <div className="grid gap-2">
-        <ProductList productList={productList} pages={pages}></ProductList>
-      </div>
+      <ProductList productList={productList} pages={pages}></ProductList>
     </section>
   );
 }

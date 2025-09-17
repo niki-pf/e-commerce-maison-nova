@@ -28,6 +28,7 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-button: var(--button);
+  --button-focus: var(--button-focus);
   --color-destructive: var(--destructive);
   /* radius */
   --radius-sm: calc(var(--radius) - 4px);
@@ -50,10 +51,10 @@
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0); /* 
-  --ring: oklch(0.708 0 0); */
+  --input: oklch(0.922 0 0);
   --ring: oklch(37.9% 0.146 265.522);
   --button: oklch(21% 0.034 264.665);
+  --button-focus: oklch(30.537% 0.03895 263.754);
   --color-discount: oklch(0.577 0.245 27.325);
 }
 
@@ -74,6 +75,7 @@
   --ring: oklch(0.556 0 0);
   --color-discount: oklch(0.577 0.245 27.325);
   --button: oklch(0.97 0 0);
+  --button-focus: oklch(0.9 0 0);
 }
 @layer base {
   * {

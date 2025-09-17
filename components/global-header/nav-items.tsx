@@ -15,10 +15,9 @@ const NavItems = ({ direction = "row", onLinkClick }: NavItemsProps) => {
   const isRow = direction === "row";
   return (
     <ul
-      className={`flex items-center ${
+      className={`flex items-center  ${
         isRow ? "flex-row gap-7 h-[50px]" : "flex-col items-start gap-4 py-4"
-      }`}
-    >
+      }`}>
       {listItemMenu.map((listItem, idx) => {
         const isActive =
           pathname === listItem.href ||
@@ -32,8 +31,7 @@ const NavItems = ({ direction = "row", onLinkClick }: NavItemsProps) => {
             }
              ${
                isActive ? "after:w-full" : ""
-             } after:absolute after:left-0 after:bottom-0 after:h-1 after:bg-gray-900 after:w-0 after:transition-all hover:after:w-full`}
-          >
+             } after:absolute after:left-0 after:bottom-0 after:h-1 after:bg-gray-900 after:w-0 after:transition-all hover:after:w-full`}>
             <Link href={listItem.href} onClick={onLinkClick}>
               {listItem.label}
             </Link>

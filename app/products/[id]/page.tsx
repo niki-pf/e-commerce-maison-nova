@@ -67,7 +67,8 @@ export default async function Page({ params, searchParams }: URLProps) {
       <section className="px-8 pt-16 pb-8 grid gap-4">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Images */}
-          <figure className={`grid ${imageGrid} gap-2 relative`}>
+          <figure
+            className={`grid ${imageGrid} lg:grid-cols-1 lg:h-[1000px] overflow-auto gap-2 relative lg:mx-auto`}>
             {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
               <p className="absolute  bg-background top-0 mt-1 ml-1 p-1 text-discount ">
                 {`${Math.floor(product.discountPercentage)} % off`}

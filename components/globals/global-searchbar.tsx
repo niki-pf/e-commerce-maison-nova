@@ -12,7 +12,7 @@ export default function GlobalSearchbar() {
         <Search
           size={22}
           onClick={() => setShowSearch((prev) => !prev)}
-          className="m-0.5"></Search>
+          className="m-0.5 rounded-full cursor-pointer hover:ring-2 focus-visible:ring-2"></Search>
       ) : (
         <div className="m-0.5 flex gap-0.5 justify-center items-center">
           <CircleX

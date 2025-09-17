@@ -3,7 +3,11 @@ import ReviewScore from "./products/review-score";
 import Link from "next/link";
 import Carousel from "./carousel";
 
-export default async function ItemWithReview({ categories }: {categories: string[]}) {
+export default async function ItemWithReview({
+  categories,
+}: {
+  categories: string[];
+}) {
   const allProductsArrays = await Promise.all(
     categories.map(async (cat) => {
       const res = await fetch(
@@ -35,16 +39,16 @@ export default async function ItemWithReview({ categories }: {categories: string
     return (
       <article
         key={prod.id}
-        className="flex flex-col md:flex-row items-center justify-between w-3/4 mx-auto  p-6 rounded-lg mb-12 ">
+        className="flex flex-col md:flex-row gap-4 items-center justify-between w-3/4 mx-auto  p-6 rounded-lg mb-12 ">
         <section className="flex flex-col gap-4 text-center md:text-left">
           <ReviewScore scoreOutOfFive={prod.rating} nrOfReviews={prod.stock} />
-          <p className="text-3xl text-gray-700 italic">
+          <p className="text-3xl text-secondary italic">
             "{bestReview.comment}"
           </p>
-          <p className="font-semibold text-gray-900">
+          <p className="font-semibold text-primary">
             - {bestReview.reviewerName}
           </p>
-          <p className="font-light underline decoration-gray-400">
+          <p className="font-light underline decoration-secondary">
             {prod.title}
           </p>
         </section>
@@ -55,7 +59,7 @@ export default async function ItemWithReview({ categories }: {categories: string
               alt={prod.title}
               width={600}
               height={600}
-              className="rounded-lg object-cover w-full md:w-[600px] h-auto bg-gray-100"
+              className="rounded-lg object-cover w-full md:w-[600px] h-auto bg-foreground"
             />
           </Link>
         </section>
