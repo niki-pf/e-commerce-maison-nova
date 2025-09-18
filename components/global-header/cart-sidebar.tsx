@@ -3,6 +3,7 @@ import { Minus, Plus, Trash2, X } from "lucide-react";
 import { userCartStore } from "@/lib/stores/cartStore";
 import Image from "next/image";
 import { log } from "console";
+import { div, p } from "framer-motion/client";
 
 const EXPIRATION_TIME = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
 
@@ -32,50 +33,58 @@ const CartSidebar = ({ cartIsOpen, setCartIsOpen }: CartSidebarProps) => {
       </div>
       {/*** List of products in cart ***/}
       <div>
-        <ul className="flex flex-col gap-2">
-          {cartList.map((cartItem, idx) => (
-            <li key={idx} className="flex justify-between gap-2 bg-[#f5f5f5]">
-              <div className="relative w-30 aspect-square">
-                <Image
-                  src={cartItem.image}
-                  alt={`Image of ${cartItem.title}`}
-                  fill
-                  className="object-fit"
-                />
-              </div>
-              <div className="flex flex-col justify-between">
-                <p className="font-semibold">{cartItem.title}</p>
-                <div className="">
-                  <p>${cartItem.price}</p>
-                  <p className="line-through">{cartItem.discountPercentage}</p>
+        {cartList.length === 0 ? (
+          <div>
+            <p className="mx-auto">Din kundvagn är tom!</p>
+          </div>
+        ) : (
+          <ul className="flex flex-col gap-2">
+            {cartList.map((cartItem, idx) => (
+              <li key={idx} className="flex justify-between gap-2 bg-[#f5f5f5]">
+                <div className="relative w-30 aspect-square">
+                  <Image
+                    src={cartItem.image}
+                    alt={`Image of ${cartItem.title}`}
+                    fill
+                    className="object-fit"
+                  />
                 </div>
-              </div>
-              <div className="flex flex-col justify-between items-end">
-                <span
-                  className="m-1 cursor-pointer"
-                  onClick={() => removeFromCart(cartItem.id)}
-                >
-                  <Trash2 size={22} />
-                </span>
-                <div className="p-2 flex gap-4 border-2 border-black">
-                  <button className="cursor-pointer">
-                    <Minus
-                      size={20}
-                      onClick={() => decrementCartItem(cartItem.id)}
-                    />
-                  </button>
-                  <span className="font-semibold">{cartItem.quantity}</span>
-                  <button className="cursor-pointer">
-                    <Plus
-                      size={20}
-                      onClick={() => incrementCartItem(cartItem.id)}
-                    />
-                  </button>
+                <div className="flex flex-col justify-between">
+                  <p className="font-semibold">{cartItem.title}</p>
+                  <div className="">
+                    <p>${cartItem.price}</p>
+                    <p className="line-through">
+                      {cartItem.discountPercentage}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+                <div className="flex flex-col justify-between items-end">
+                  <span
+                    className="m-1 cursor-pointer"
+                    onClick={() => removeFromCart(cartItem.id)}
+                  >
+                    <Trash2 size={22} />
+                  </span>
+                  <div className="p-2 flex gap-4 border-2 border-black">
+                    <button className="cursor-pointer">
+                      <Minus
+                        size={20}
+                        onClick={() => decrementCartItem(cartItem.id)}
+                      />
+                    </button>
+                    <span className="font-semibold">{cartItem.quantity}</span>
+                    <button className="cursor-pointer">
+                      <Plus
+                        size={20}
+                        onClick={() => incrementCartItem(cartItem.id)}
+                      />
+                    </button>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
