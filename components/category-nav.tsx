@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { womenCategories, menCategories } from "@/lib/constants";
-
+import AllProductsLink from "./products/all-products-link";
 
 export default async function CategoryNav({ gender }: { gender: string }) {
   const categories = gender === "women" ? womenCategories : menCategories;
@@ -35,13 +35,14 @@ export default async function CategoryNav({ gender }: { gender: string }) {
               alt={cat.name}
               width={250}
               height={250}
-              className="object-cover rounded-lg  bg-gray-100   w-[160px] md:w-[200px] lg:w-[220px]"
+              className="object-cover rounded-lg  bg-foreground w-[160px] md:w-[200px] lg:w-[220px]"
             />
-            <span className="mt-2 font-light capitalize text-center underline decoration-gray-400">
+            <span className="mt-2 font-light capitalize text-center underline decoration-foreground decoration-4">
               {cat.name.replace("-", " ")}
             </span>
           </Link>
         ))}
+        <AllProductsLink></AllProductsLink>
       </div>
     </section>
   );

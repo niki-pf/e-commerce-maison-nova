@@ -1,4 +1,3 @@
-import { log } from "console";
 import { Star } from "lucide-react";
 import React from "react";
 
@@ -23,9 +22,9 @@ function RatingBarRow({
 
   return (
     <div className="relative w-60">
-      <div className="absolute top-1.5 left-0 bg-white w-full rounded p-1.5"></div>
+      <div className="absolute top-1.5 left-0 bg-background w-full rounded p-1.5"></div>
       <div
-        className={`absolute top-1.5 left-0 bg-black rounded py-1.5 `}
+        className={`absolute top-1.5 left-0 bg-primary rounded py-1.5 `}
         style={{ width: `${dynamicWidth}` }}></div>
     </div>
   );

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <main className="w-full overflow-x-hidden">
+    <div className="w-full overflow-x-hidden">
       <section>
         <div className="relative w-full h-[32rem] flex items-center justify-center">
           <Image
@@ -13,11 +13,11 @@ export default function AboutPage() {
             priority
           />
 
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-background text-center p-4">
             <h1 className="text-4xl md:text-6xl font-bold max-w-[15ch] leading-none">
               We believe we can all make a difference.
             </h1>
-            <p className="mt-4 max-w-[36ch] text-lg md:text-sm tracking-wide font-bold">
+            <p className="mt-4 max-w-[36ch] text-lg md:text-sm tracking-wide text-background font-bold p-4 bg-primary/40 rounded">
               Our way: Exceptional quality. Ethical factories. Radical
               Transparency.
             </p>
@@ -25,7 +25,7 @@ export default function AboutPage() {
         </div>
 
         <div className="flex justify-center">
-          <h2 className="text-2xl sm:text-3xl md:text-3xl text-center font-medium max-w-[42ch] m-16">
+          <h2 className="text-2xl sm:text-3xl md:text-3xl text-center font-medium font-mono max-w-[42ch] m-16">
             At Everlane, we want the right choice to be as easy as putting on a
             great T-shirt. That’s why we partner with the best, ethical
             factories around the world. Source only the finest materials. And
@@ -112,6 +112,6 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-amber-100/25 backdrop-brightness-90"></div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

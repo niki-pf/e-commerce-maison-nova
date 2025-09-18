@@ -3,9 +3,9 @@ import Image from "next/image";
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-accent p-10 mg-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2  bg-white shadow-lg shadow-cyan-300/50 rounded-2xl overflow-hidden max-w w-full">
-        <section className="p-4">
+    <div className="flex items-center justify-center p-8 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 bg-background rounded-2xl gap-8">
+        <section className="p-4 hidden md:block">
           <Image
             src="/trend.jpg"
             alt="grid-img-1"
@@ -15,15 +15,11 @@ const ContactPage = () => {
           />
         </section>
 
-        <section className="p-8 flex flex-col justify-center">
-          <h2 className="text-2xl font-bold mb-6 text-gray-700">
-            Contact Form
-          </h2>
-          <form action="#" className="space-y-4">
+        <section className="flex flex-col ">
+          <h2 className="text-2xl mb-6 ">Contact Form</h2>
+          <form action="#" className="space-y-4 text-primary">
             <div>
-              <label
-                htmlFor="fname"
-                className="block text-sm font-medium text-gray-600">
+              <label htmlFor="fname" className="block ">
                 First Name
               </label>
               <input
@@ -31,14 +27,12 @@ const ContactPage = () => {
                 id="fname"
                 name="firstname"
                 placeholder="Your name..."
-                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus-visible:ring-2 focus:ring-ring focus:outline-none"
               />
             </div>
 
             <div>
-              <label
-                htmlFor="lname"
-                className="block text-sm font-medium text-gray-600">
+              <label htmlFor="lname" className="block font-medium ">
                 Last Name
               </label>
               <input
@@ -46,14 +40,12 @@ const ContactPage = () => {
                 id="lname"
                 name="lastname"
                 placeholder="Your last name..."
-                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-ring focus:outline-none"
               />
             </div>
 
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-600">
+              <label htmlFor="email" className="block font-medium">
                 Email
               </label>
               <input
@@ -61,20 +53,18 @@ const ContactPage = () => {
                 id="email"
                 name="email"
                 placeholder="Enter your email@.com"
-                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-ring focus:outline-none"
               />
             </div>
 
             <div>
-              <label
-                htmlFor="Continents"
-                className="block text-sm font-medium text-gray-600">
+              <label htmlFor="Continents" className="block font-medium">
                 Country
               </label>
               <select
                 name="Continents"
                 id="Continents"
-                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-ring focus:outline-none">
                 <option value="Europe">Europe</option>
                 <option value="Asia">Asia</option>
                 <option value="South America">South America</option>
@@ -85,21 +75,19 @@ const ContactPage = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="Message"
-                className="block text-sm font-medium text-gray-600">
+              <label htmlFor="Message" className="block font-medium">
                 Message
               </label>
               <textarea
                 name="message"
                 id="message"
                 placeholder="Write your message..."
-                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+                className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-ring focus:outline-none"></textarea>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-cyan-500 text-white py-2 rounded-lg  shadow-cyan-500/50 font-medium hover:bg-blue-600 transition-colors">
+              className="w-full bg-button text-background py-2 rounded cursor-pointer hover:ring-2 ring-ring font-medium focus-visible:bg-ring ">
               Submit
             </button>
           </form>

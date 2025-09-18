@@ -4,11 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import React from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function Searchbar({
-  globalSearch,
-}: {
-  globalSearch?: boolean;
-}) {
+export default function Searchbar({ globalSearch }: { globalSearch: boolean }) {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 
@@ -24,10 +20,10 @@ export default function Searchbar({
       params.set("query", queryString);
     }
     replace(`/products?${params.toString()}`);
-  });
+  }, 400);
 
   return (
-    <div className="grid [grid-template-columns:1fr] focus:lg:w-70 focus:w-40 lg:w-70 w-40 z-1">
+    <div className="grid [grid-template-columns:1fr] ">
       <div className="grid row-start-1 col-start-1 [grid-template-columns:1fr]">
         <label htmlFor="query" className="sr-only"></label>
 
@@ -40,12 +36,10 @@ export default function Searchbar({
             handleChange(e.target.value);
           }}
           defaultValue={searchParams.get("query")?.toString()}
-          className="shadow border-2 rounded-2xl pl-4 pr-8 col-start-1 row-start-1"
+          className="shadow border-2 font-mono rounded pl-4 pr-8 col-start-1 row-start-1"
         />
 
-        <button
-          type="submit"
-          className="col-start-1 row-start-1 self-center ml-auto mr-2">
+        <button className="col-start-1 row-start-1 self-center ml-auto mr-2">
           <Search size={20}></Search>
         </button>
       </div>

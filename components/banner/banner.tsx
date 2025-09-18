@@ -10,7 +10,7 @@ export type HeightVariant = "small" | "medium" | "large";
 interface BannerProps {
   imageSrc: string;
   altText: string;
-  h1?: string;
+  h2?: string;
   paragraph?: string;
   button?: string;
   pos?: PositionVariant;
@@ -32,7 +32,7 @@ const heightClasses: Record<HeightVariant, string> = {
 const Banner = ({
   imageSrc,
   altText,
-  h1,
+  h2,
   paragraph,
   button,
   pos = "positionCenter",
@@ -49,15 +49,17 @@ const Banner = ({
           priority
         />
 
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative w-[85%] h-[85%] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 inset-0 flex flex-col items-center text-white text-center p-4">
+        <div className="absolute inset-0 bg-primary/20"></div>
+        <div className="relative w-[85%] h-[85%] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 inset-0 flex flex-col items-center text-background text-center p-4">
           <div
             className={`absolute top-1/2 -translate-y-1/2 ${positionClasses[pos]} flex flex-col items-center gap-3`}>
-            <h1 className="text-4xl md:text-4xl font-bold max-w-[20ch] leading-none">
-              {h1}
-            </h1>
-            <p>{paragraph}</p>
-            <button className="w-fit px-8 py-2 bg-white text-gray-900">
+            <h2 className="text-4xl md:text-4xl font-bold max-w-[20ch] leading-none">
+              {h2}
+            </h2>
+            <p className="text-background p-4 bg-primary/30 rounded">
+              {paragraph}
+            </p>
+            <button className="w-fit px-8 py-2 bg-foreground text-primary">
               {button}
             </button>
           </div>
