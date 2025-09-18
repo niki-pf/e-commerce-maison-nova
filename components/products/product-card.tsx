@@ -4,6 +4,7 @@ import { ProductFull } from "@/lib/interfaces";
 import Link from "next/link";
 import ReviewScore from "./review-score";
 import ProductPrice from "./product-price";
+import DiscountTag from "./discount-tag";
 
 export default async function ProductCard({
   product,
@@ -28,13 +29,7 @@ export default async function ProductCard({
       </div>
 
       <figure className="grid row-start-1 relative">
-        {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-          <p className="absolute font-medium bg-background top-0 mt-4 ml-4 p-3 text-discount">
-            {`${Math.floor(product.discountPercentage)} % off`}
-          </p>
-        ) : (
-          ""
-        )}
+        <DiscountTag discount={product.discountPercentage}></DiscountTag>
         <Image
           src={product.thumbnail}
           alt={product.title}

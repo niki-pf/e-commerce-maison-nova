@@ -14,6 +14,7 @@ import RatingBarChart from "@/components/products/rating-bar-chart";
 import AddToCartBtn from "@/components/products/add-to-cart-btn";
 import { URLProps } from "@/lib/interfaces";
 import ProductPrice from "@/components/products/product-price";
+import DiscountTag from "@/components/products/discount-tag";
 
 export async function generateMetadata({ params }: URLProps) {
   const { id } = await params;
@@ -70,13 +71,7 @@ export default async function Page({ params, searchParams }: URLProps) {
           {/* Images */}
           <figure
             className={`grid ${imageGrid} lg:grid-cols-1 lg:h-[1000px] overflow-auto gap-2 relative lg:mx-auto`}>
-            {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-              <p className="absolute  bg-background top-0 mt-1 ml-1 p-1 text-discount ">
-                {`${Math.floor(product.discountPercentage)} % off`}
-              </p>
-            ) : (
-              ""
-            )}
+            <DiscountTag discount={product.discountPercentage}></DiscountTag>
             {product.images.map((image, index) => (
               <Image
                 key={index}
@@ -137,7 +132,6 @@ export default async function Page({ params, searchParams }: URLProps) {
 
               <div className="flex gap-10">
                 <Gift size={50} strokeWidth={1}></Gift>
-
                 <div>
                   <p className="font-bold">Send It As A Gift</p>
                   <p>Add a free personalized note during checkout</p>
