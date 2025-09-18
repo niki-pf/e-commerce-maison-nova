@@ -110,9 +110,27 @@ export const productSortList: SortData[] = [
   },
 ];
 
+export const reviewSortList: SortData[] = [
+  {
+    title: "Stars: high to low",
+    value: "rating-desc",
+    key: "stars",
+    type: "desc",
+  },
+  {
+    title: "Stars: low to high",
+    value: "rating-asc",
+    key: "stars",
+    type: "asc",
+  },
+];
+
 export const listItemMenu = [
   { label: "Women", href: "/women" },
   { label: "Men", href: "/men" },
   { label: "About", href: "/about" },
   { label: "Contact Us", href: "/contact-us" },
 ];
+
+export const MIN_DISCOUNT_TO_DISPLAY = 10;
+export const PAGE_OFFSET = 9;

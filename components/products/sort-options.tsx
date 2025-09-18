@@ -25,11 +25,13 @@ export default function SortOptions({ data }: { data: SortData[] }) {
   };
 
   return (
-    <div className="p-8 border-2 grid py-4 text-xl">
-      <label htmlFor="options">Sort By:</label>
+    <div className="p-4 border-2 grid rounded font-mono hover:ring-2 focus:ring-2">
+      <label htmlFor="options" className="sr-only">
+        Sort By:
+      </label>
       <select id="options" onChange={handleChange} defaultValue={"default"}>
         {data.map((item, index) => (
-          <option key={index} value={item.value}>
+          <option key={index} value={item.value} className="">
             {item.title}
           </option>
         ))}

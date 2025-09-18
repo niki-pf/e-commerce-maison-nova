@@ -4,7 +4,7 @@ import Banner, { HeightVariant, PositionVariant } from "./banner";
 interface BannerItem {
   imageSrc: string;
   altText: string;
-  h1?: string;
+  h2?: string;
   paragraph?: string;
   button?: string;
   pos?: PositionVariant;
@@ -26,7 +26,7 @@ const BannerWrapper = ({ banners }: BannerWrapperProps) => {
             key={idx}
             imageSrc={banner.imageSrc}
             altText={banner.altText}
-            h1={banner.h1}
+            h2={banner.h2}
             paragraph={banner.paragraph}
             button={banner.button}
             pos={banner.pos ?? "positionCenter"}

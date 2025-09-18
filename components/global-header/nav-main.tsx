@@ -10,7 +10,7 @@ const NavMain = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
   return (
-    <header className="relative h-[50] lg:px-0 md:px-8 px-4 w-full flex justify-between items-center ">
+    <header className="relative h-[50] lg:px-0 md:px-8 px-4 w-full flex justify-between items-center font-sans">
       {/*** Desktop navigation ***/}
       <nav className="hidden md:flex">
         <NavItems direction="row" />
@@ -40,9 +40,11 @@ const NavMain = () => {
         </nav>
       </div>
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <Link href="/" className="text-xl md:text-2xl font-bold uppercase">
-          Maison Nova
-        </Link>
+        <h1>
+          <Link href="/" className="text-xl md:text-2xl font-bold uppercase">
+            Maison Nova
+          </Link>
+        </h1>
       </div>
       <div className="flex gap-3">
         <span>
