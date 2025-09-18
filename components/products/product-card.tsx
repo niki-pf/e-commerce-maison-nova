@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ProductFull } from "@/lib/interfaces";
 import Link from "next/link";
 import ReviewScore from "./review-score";
+import ProductPrice from "./product-price";
 
 export default async function ProductCard({
   product,
@@ -21,21 +22,9 @@ export default async function ProductCard({
         <Link href={`/products/${product.id}`}>
           <h1 className="text-lg">{product.title}</h1>
         </Link>
-
-        {/* If discount is greater than MIN_DISCOUNT_TO_DISPLAY display the discounted price */}
-        {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-          <div className="flex gap-2 ">
-            <p className="line-through">{`$${product.price}`}</p>
-            <p>
-              {`$${Math.round(
-                product.price -
-                  (product.discountPercentage / 100) * product.price
-              ).toFixed(2)}`}
-            </p>
-          </div>
-        ) : (
-          <p>{`$${product.price}`}</p>
-        )}
+        <ProductPrice
+          discount={product.discountPercentage}
+          price={product.price}></ProductPrice>
       </div>
 
       <figure className="grid row-start-1 relative">

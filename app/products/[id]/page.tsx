@@ -13,6 +13,7 @@ import Stars from "@/components/stars";
 import RatingBarChart from "@/components/products/rating-bar-chart";
 import AddToCartBtn from "@/components/products/add-to-cart-btn";
 import { URLProps } from "@/lib/interfaces";
+import ProductPrice from "@/components/products/product-price";
 
 export async function generateMetadata({ params }: URLProps) {
   const { id } = await params;
@@ -96,25 +97,10 @@ export default async function Page({ params, searchParams }: URLProps) {
                   nrOfReviews={product.reviews.length}
                   scoreOutOfFive={product.rating}></ReviewScore>
               </div>
-
-              {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-                <div className="flex gap-2">
-                  <p className="line-through text-secondary ">{`$${product.price.toFixed(
-                    showDecimals
-                  )}`}</p>
-
-                  <p>
-                    {`$${Math.round(
-                      product.price -
-                        (product.discountPercentage / 100) * product.price
-                    ).toFixed(showDecimals)}`}
-                  </p>
-                </div>
-              ) : (
-                <p>{product.price.toFixed(showDecimals)}</p>
-              )}
+              <ProductPrice
+                discount={product.discountPercentage}
+                price={product.price}></ProductPrice>
             </div>
-
             {/* Decsription */}
             <section className="grid gap-4 border-b-1 pb-8">
               <h3>Description</h3>
