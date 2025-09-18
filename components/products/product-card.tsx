@@ -11,7 +11,6 @@ export default async function ProductCard({
 }: {
   product: ProductFull;
 }) {
-  const MIN_DISCOUNT_TO_DISPLAY = 10;
 
   if (!product) {
     return null;
