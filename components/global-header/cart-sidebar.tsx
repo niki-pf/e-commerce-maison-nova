@@ -13,6 +13,9 @@ interface CartSidebarProps {
 
 const CartSidebar = ({ cartIsOpen, setCartIsOpen }: CartSidebarProps) => {
   const cartList = userCartStore((state) => state.cart);
+  const removeFromCart = userCartStore((state) => state.removeFromCart);
+  const incrementCartItem = userCartStore((state) => state.incrementCartItem);
+  const decrementCartItem = userCartStore((state) => state.decrementCartItem);
   console.log("Cart: ", cartList);
 
   return (
@@ -29,10 +32,10 @@ const CartSidebar = ({ cartIsOpen, setCartIsOpen }: CartSidebarProps) => {
       </div>
       {/*** List of products in cart ***/}
       <div>
-        <ul className="flex flex-col">
+        <ul className="flex flex-col gap-2">
           {cartList.map((cartItem, idx) => (
-            <li key={idx} className="flex justify-between gap-2 bg-amber-400">
-              <div className="relative w-30 aspect-square bg-blue-500">
+            <li key={idx} className="flex justify-between gap-2 bg-[#f5f5f5]">
+              <div className="relative w-30 aspect-square">
                 <Image
                   src={cartItem.image}
                   alt={`Image of ${cartItem.title}`}
@@ -41,23 +44,32 @@ const CartSidebar = ({ cartIsOpen, setCartIsOpen }: CartSidebarProps) => {
                 />
               </div>
               <div className="flex flex-col justify-between">
-                <p>{cartItem.title}</p>
+                <p className="font-semibold">{cartItem.title}</p>
                 <div className="">
                   <p>${cartItem.price}</p>
                   <p className="line-through">{cartItem.discountPercentage}</p>
                 </div>
               </div>
               <div className="flex flex-col justify-between items-end">
-                <span className="mt-1">
-                  <Trash2 size={20} />
+                <span
+                  className="m-1 cursor-pointer"
+                  onClick={() => removeFromCart(cartItem.id)}
+                >
+                  <Trash2 size={22} />
                 </span>
                 <div className="p-2 flex gap-4 border-2 border-black">
                   <button className="cursor-pointer">
-                    <Minus size={20} />
+                    <Minus
+                      size={20}
+                      onClick={() => decrementCartItem(cartItem.id)}
+                    />
                   </button>
-                  <span>1</span>
+                  <span className="font-semibold">{cartItem.quantity}</span>
                   <button className="cursor-pointer">
-                    <Plus size={20} />
+                    <Plus
+                      size={20}
+                      onClick={() => incrementCartItem(cartItem.id)}
+                    />
                   </button>
                 </div>
               </div>

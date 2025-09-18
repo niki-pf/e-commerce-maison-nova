@@ -26,4 +26,5 @@ export interface CartProduct {
   price: number;
   discountPercentage: number;
   image: string;
+  quantity?: number;
 }

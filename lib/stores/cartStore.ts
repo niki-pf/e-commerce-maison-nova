@@ -4,25 +4,74 @@ import { persist } from "zustand/middleware";
 
 interface ICartState {
     cart: CartProduct[];
-    count: number;
     addToCart: (product: CartProduct) => void; 
-    // removeFromCart: (id: number) => void;
-    // clearCart: () => void;
+    removeFromCart: (id: number) => void;
+    incrementCartItem: (id: number) => void;
+    decrementCartItem: (id: number) => void;
 } 
 
-// const addItem = (cartItem: CartProduct[], product: ProductFull): CartProduct[] => {
-//     const item = cartItem.find((item) => item.id === product.id);
+export const userCartStore = create <ICartState>()(
+    persist(
+    (set) => ({
+        cart: [],
+        addToCart: (product) => 
+            set((state) => { 
+                const existingIndex = state.cart.findIndex(item => item.id === product.id);
 
-//     if (item) {
+                let newCart;
+                if (existingIndex !== -1) {
+                    newCart = [...state.cart];
+                    newCart[existingIndex] = {
+                        ...newCart[existingIndex],
+                        quantity: (newCart[existingIndex].quantity || 1) + 1
+                    };
+                } else {
+                    newCart = [...state.cart, { ...product, quantity: 1}];
+                }
 
-//     }
+                return { 
+                    cart: newCart,
+                }
+            }),
+        incrementCartItem: (id: number) => 
+            set((state) => {
+                const existingIndex = state.cart.findIndex(item => item.id === id);
 
-//     return [...cartItem, { ...product, count: 1}]
-// }
+                let newCart;
+            
+                newCart = [...state.cart];
+                newCart[existingIndex] = {
+                    ...newCart[existingIndex],
+                    quantity: (newCart[existingIndex].quantity || 1) + 1
+                };
 
-export const userCartStore = create <ICartState>((set) => ({
-    cart: [],
-    count: 0,
-    addToCart: (product) => set((state) => ({ cart: [...state.cart, product] })),
-    // removeFromCart: (id) => set
-}));
+                return {
+                    cart: newCart,
+                }
+
+            }),
+        decrementCartItem: (id: number) => 
+            set((state) => {
+                const existingIndex = state.cart.findIndex(item => item.id === id);
+
+                let newCart;
+            
+                newCart = [...state.cart];
+                newCart[existingIndex] = {
+                    ...newCart[existingIndex],
+                    quantity: (newCart[existingIndex].quantity || 1) - 1
+                };
+
+                return {
+                    cart: newCart,
+                }
+
+            }),
+        removeFromCart: (id: number) => 
+            set((state) => ({
+                cart: state.cart.filter((item) => item.id !== id),
+            })),
+    }),
+    {name: "cart-storage"}
+    )
+);
