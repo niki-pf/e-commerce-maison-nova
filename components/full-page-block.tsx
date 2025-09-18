@@ -63,7 +63,7 @@ const FullPageBlock = ({
             </h1>
             <p className="text-background">{paragraph}</p>
             <Link
-              className="w-fit px-8 py-1 bg-foreground text-primary uppercase"
+              className="w-fit px-8 py-2 bg-foreground text-primary uppercase hover:bg-foreground hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer"
               href={link}>
               {linkPrompt}
             </Link>

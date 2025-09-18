@@ -3,6 +3,13 @@ import ItemWithReview from "@/components/item-review-hero";
 import { womenCategories } from "@/lib/constants";
 import BannerWrapper from "@/components/banner/banner-wrapper";
 import FullPageBlock from "@/components/full-page-block";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `Maison Nova - Women`,
+  description: `Information and categories for the women section`,
+};
+
 
 export default function WomenPage() {
   return (

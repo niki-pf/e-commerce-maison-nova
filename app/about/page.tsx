@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: `Maison Nova - About`,
+  description: `Information and information about the company`,
+};
 
 export default function AboutPage() {
   return (

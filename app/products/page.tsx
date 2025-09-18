@@ -76,7 +76,7 @@ export default async function ProductsPage({
   }
 
   /* all products if there no filter */
-  if (query === "" && category === "" && subcategory === "") {
+  if (category === "" && subcategory === "") {
     const result = await fetchAllProductsOfMultipleCategories(allCategories);
 
     if (result) {
@@ -102,7 +102,7 @@ export default async function ProductsPage({
   }
 
   /* if only a subcategory */
-  if (query === "" && category === "" && subcategory !== "") {
+  if (category === "" && subcategory !== "") {
     if (allCategories.includes(subcategory)) {
       const result = await fetchProductOfTypeCategory(
         subcategory,

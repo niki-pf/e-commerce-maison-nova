@@ -1,5 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `Maison Nova - Men`,
+  description: `Information and categories for the men section`,
+};
 
 const ContactPage = () => {
   return (
