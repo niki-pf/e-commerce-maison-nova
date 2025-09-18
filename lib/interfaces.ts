@@ -18,6 +18,14 @@ export interface ProductFull {
   thumbnail: string;
 }
 
+export interface CartProduct {
+  id:number;
+  title: string;
+  price: number;
+  discountPercentage: number;
+  image: string;
+  quantity?: number;
+}
 export interface SortData {
   title: string;
   value: string;
