@@ -59,7 +59,7 @@ const Banner = ({
             <p className="text-background p-4 bg-primary/30 rounded">
               {paragraph}
             </p>
-            <button className="w-fit px-8 py-2 bg-foreground text-primary">
+            <button className="w-fit px-8 py-2 bg-foreground text-primary uppercase hover:bg-foreground hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer">
               {button}
             </button>
           </div>

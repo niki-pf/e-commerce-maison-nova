@@ -3,6 +3,12 @@ import { menCategories } from "@/lib/constants";
 import ItemWithReview from "@/components/item-review-hero";
 import BannerWrapper from "@/components/banner/banner-wrapper";
 import FullPageBlock from "@/components/full-page-block";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `Maison Nova - Men`,
+  description: `Information and categories for the men section`,
+};
 
 export default function MenPage() {
   return (

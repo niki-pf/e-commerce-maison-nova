@@ -53,7 +53,7 @@ const SplitHero = ({
         <div className="absolute inset-0 bg-black/20" />
         <Link href={rightHref}>
           <button
-            className="absolute w-48 left-1/2 -translate-x-1/2 px-6 py-2 bg-white text-gray-900 uppercase top-4 md:top-1/2 md:-translate-y-1/2 cursor-pointer hover:bg-gray-200 hover:shadow-lg hover:scale-105 transition-all duration-200"
+            className="absolute w-48 left-1/2 -translate-x-1/2 px-6 py-2 bg-background text-primary uppercase top-4 md:top-1/2 md:-translate-y-1/2 cursor-pointer hover:bg-foreground hover:shadow-lg hover:scale-105 transition-all duration-200"
             style={{ top: buttonY }}>
             {rightButtonText}
           </button>
