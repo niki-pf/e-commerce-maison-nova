@@ -11,6 +11,8 @@ import CartSidebar from "./cart-sidebar";
 const NavMain = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
+  // const cartList = userCartStore((state) => state.cart);
+  const totalProducts = userCartStore((state) => state.getTotalProductCount());
 
   // const count = userCartStore((state) => state.count);
   return (
@@ -59,9 +61,16 @@ const NavMain = () => {
           <User size={24} />
         </span>
         <button
-          className="cursor-pointer"
+          className="relative cursor-pointer"
           onClick={() => setCartIsOpen((prev) => !prev)}
         >
+          {totalProducts > 0 ? (
+            <span className="absolute left-1/2 bottom-1/2 w-5 h-5 flex justify-center items-center rounded-full text-xs font-bold bg-red-700 text-white">
+              {totalProducts}
+            </span>
+          ) : (
+            ""
+          )}
           <ShoppingCart />
         </button>
         {/***Cart div */}

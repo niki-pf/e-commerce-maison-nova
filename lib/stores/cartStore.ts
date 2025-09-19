@@ -8,11 +8,12 @@ interface ICartState {
     removeFromCart: (id: number) => void;
     incrementCartItem: (id: number) => void;
     decrementCartItem: (id: number) => void;
+    getTotalProductCount: () => number;
 } 
 
 export const userCartStore = create <ICartState>()(
     persist(
-    (set) => ({
+    (set, get) => ({
         cart: [],
         addToCart: (product) => 
             set((state) => { 
@@ -53,24 +54,32 @@ export const userCartStore = create <ICartState>()(
         decrementCartItem: (id: number) => 
             set((state) => {
                 const existingIndex = state.cart.findIndex(item => item.id === id);
-
-                let newCart;
+                if(existingIndex === -1 ) return { cart: state.cart };
             
-                newCart = [...state.cart];
-                newCart[existingIndex] = {
-                    ...newCart[existingIndex],
-                    quantity: (newCart[existingIndex].quantity || 1) - 1
-                };
+                const newCart = [...state.cart];
+                // if (newCart[existingIndex].quantity) {
+                    if (newCart[existingIndex].quantity === 1) {
+                        return { cart: state.cart.filter((item) => item.id !== id) }
+        
+                    }
+    
+                    newCart[existingIndex] = {
+                        ...newCart[existingIndex],
+                        quantity: (newCart[existingIndex].quantity || 1) - 1
+                    };
 
-                return {
-                    cart: newCart,
-                }
-
+                    return {
+                        cart: newCart,
+                    }
+                // }
             }),
         removeFromCart: (id: number) => 
             set((state) => ({
                 cart: state.cart.filter((item) => item.id !== id),
             })),
+        getTotalProductCount: () => {
+            return get().cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        }
     }),
     {name: "cart-storage"}
     )
