@@ -3,13 +3,13 @@ import Image from "next/image";
 import { ProductFull } from "@/lib/interfaces";
 import Link from "next/link";
 import ReviewScore from "./review-score";
+import { MIN_DISCOUNT_TO_DISPLAY } from "@/lib/constants";
 
 export default async function ProductCard({
   product,
 }: {
   product: ProductFull;
 }) {
-  const MIN_DISCOUNT_TO_DISPLAY = 10;
 
   if (!product) {
     return null;

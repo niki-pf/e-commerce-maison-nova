@@ -1,3 +1,9 @@
+import {
+  BannerPositionVariants,
+  HeightVariant,
+  PositionVariant,
+} from "./types";
+
 export interface ProductFull {
   id: number;
   title: string;
@@ -19,7 +25,7 @@ export interface ProductFull {
 }
 
 export interface CartProduct {
-  id:number;
+  id: number;
   title: string;
   price: number;
   discountPercentage: number;
@@ -36,4 +42,42 @@ export interface SortData {
 export interface URLProps {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ [key: string]: string | undefined }>;
+}
+
+export interface AddToCartBtnProps {
+  product: ProductFull;
+}
+
+export interface FullPageBlockProps {
+  imageSrc: string;
+  altText: string;
+  h2?: string;
+  paragraph?: string;
+  link: string;
+  linkPrompt: string;
+  pos?: PositionVariant;
+}
+
+export interface SplitHeroProps {
+  leftImageUrl: string;
+  rightImageUrl: string;
+  leftButtonText: string;
+  rightButtonText: string;
+  leftHref: string;
+  rightHref: string;
+  buttonY?: string;
+}
+
+export interface BannerProps {
+  imageSrc: string;
+  altText: string;
+  h2?: string;
+  paragraph?: string;
+  button?: string;
+  pos?: BannerPositionVariants;
+  height?: HeightVariant;
+}
+
+export interface BannerWrapperProps {
+  banners: BannerProps[];
 }

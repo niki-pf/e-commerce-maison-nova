@@ -1,23 +1,9 @@
+import { BannerProps } from "@/lib/interfaces";
+import { HeightVariant, BannerPositionVariants } from "@/lib/types";
 import Image from "next/image";
 import React from "react";
 
-export type PositionVariant =
-  | "positionLeft"
-  | "positionCenter"
-  | "positionRight";
-export type HeightVariant = "small" | "medium" | "large";
-
-interface BannerProps {
-  imageSrc: string;
-  altText: string;
-  h2?: string;
-  paragraph?: string;
-  button?: string;
-  pos?: PositionVariant;
-  height?: HeightVariant;
-}
-
-const positionClasses: Record<PositionVariant, string> = {
+const positionClasses: Record<BannerPositionVariants, string> = {
   positionLeft: "left-0",
   positionCenter: "left-1/2 transform -translate-x-1/2",
   positionRight: "right-0",

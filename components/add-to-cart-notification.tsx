@@ -1,6 +1,5 @@
 "use client";
 
-import { ProductFull } from "@/lib/interfaces";
 import Image from "next/image";
 import React from "react";
 
