@@ -14,20 +14,20 @@ const CartSidebar = ({ cartIsOpen, setCartIsOpen }: CartSidebarProps) => {
   const removeFromCart = userCartStore((state) => state.removeFromCart);
   const incrementCartItem = userCartStore((state) => state.incrementCartItem);
   const decrementCartItem = userCartStore((state) => state.decrementCartItem);
-  const totalProducts = userCartStore((state) => state.getTotalProductCount());
+  // const totalProducts = userCartStore((state) => state.getTotalProductCount());
   console.log("Cart: ", cartList);
   // const showDecimals = cartItem.price > 1000 ? 0 : 2;
 
-  // const getNumbersOfProducts = () => {
-  //   let sumOfProducts = 0;
-  //   cartList.map((cart, idx) => {
-  //     if (cart.quantity) {
-  //       sumOfProducts = cart.quantity + sumOfProducts;
-  //     }
-  //   });
+  const getNumbersOfProducts = () => {
+    let sumOfProducts = 0;
+    cartList.map((cart, idx) => {
+      if (cart.quantity) {
+        sumOfProducts = cart.quantity + sumOfProducts;
+      }
+    });
 
-  //   return sumOfProducts;
-  // };
+    return sumOfProducts;
+  };
 
   const getTotalPriceOfProducts = () => {
     let totalPriceOfProduct = 0;
@@ -125,7 +125,7 @@ const CartSidebar = ({ cartIsOpen, setCartIsOpen }: CartSidebarProps) => {
         )}
         <div className="flex flex-col items-end">
           <div className="w-full mt-6  px-5 py-3 flex justify-between font-semibold bg-[#e5e5e5]">
-            <p>{`Totalt: ${totalProducts} produkter`}</p>
+            <p>{`Totalt: ${getNumbersOfProducts()} produkter`}</p>
             <p>{`${getTotalPriceOfProducts()} SEK`}</p>
           </div>
           <button className="flex py-3 px-5 mt-4 bg-[#e5e5e5] font-semibold rounded-full cursor-pointer">
