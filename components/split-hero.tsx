@@ -1,17 +1,8 @@
 "use client";
 
+import { SplitHeroProps } from "@/lib/interfaces";
 import Image from "next/image";
 import Link from "next/link";
-
-interface SplitHeroProps {
-  leftImageUrl: string;
-  rightImageUrl: string;
-  leftButtonText: string;
-  rightButtonText: string;
-  leftHref: string;
-  rightHref: string;
-  buttonY?: string;
-}
 
 const SplitHero = ({
   leftImageUrl,

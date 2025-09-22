@@ -1,27 +1,8 @@
+import { FullPageBlockProps } from "@/lib/interfaces";
+import { PositionVariant } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
-type PositionVariant =
-  | "topLeft"
-  | "topCenter"
-  | "topRight"
-  | "midLeft"
-  | "midCenter"
-  | "midRight"
-  | "bottomLeft"
-  | "bottomCenter"
-  | "bottomRight";
-
-interface FullPageBlockProps {
-  imageSrc: string;
-  altText: string;
-  h2?: string;
-  paragraph?: string;
-  link: string;
-  linkPrompt: string;
-  pos?: PositionVariant;
-}
 
 const positionClasses: Record<PositionVariant, string> = {
   topLeft: "left-0 top-0",

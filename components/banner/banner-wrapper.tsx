@@ -1,19 +1,6 @@
 import React from "react";
-import Banner, { HeightVariant, PositionVariant } from "./banner";
-
-interface BannerItem {
-  imageSrc: string;
-  altText: string;
-  h2?: string;
-  paragraph?: string;
-  button?: string;
-  pos?: PositionVariant;
-  height?: HeightVariant;
-}
-
-interface BannerWrapperProps {
-  banners: BannerItem[];
-}
+import Banner from "./banner";
+import { BannerWrapperProps } from "@/lib/interfaces";
 
 const BannerWrapper = ({ banners }: BannerWrapperProps) => {
   return (
