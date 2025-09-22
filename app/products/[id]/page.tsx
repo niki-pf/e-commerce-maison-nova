@@ -66,7 +66,7 @@ export default async function Page({ params, searchParams }: URLProps) {
 
   return (
     <>
-      <section className="px-8 pt-16 pb-8 grid gap-4">
+      <section className="relative px-8 pt-16 pb-8 grid gap-4">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Images */}
           <figure

@@ -5,6 +5,8 @@ import Link from "next/link";
 import ReviewScore from "./review-score";
 import ProductPrice from "./product-price";
 import DiscountTag from "./discount-tag";
+import { MIN_DISCOUNT_TO_DISPLAY } from "@/lib/constants";
+
 
 export default async function ProductCard({
   product,
