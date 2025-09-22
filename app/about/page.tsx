@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  console.log(process.env.DB_DOMAIN);
   return (
     <div className="w-full overflow-x-hidden">
       <section>
