@@ -24,7 +24,7 @@ const AddToCartNotification = ({
       </div>
       <div className="flex flex-col">
         <p>{title}</p>
-        <p className="font-semibold">Tillagd i kundvagn</p>
+        <p className="font-semibold">Tillagd i kundvagnen</p>
       </div>
     </div>
   );
