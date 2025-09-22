@@ -3,7 +3,10 @@ import Image from "next/image";
 import { ProductFull } from "@/lib/interfaces";
 import Link from "next/link";
 import ReviewScore from "./review-score";
+import ProductPrice from "./product-price";
+import DiscountTag from "./discount-tag";
 import { MIN_DISCOUNT_TO_DISPLAY } from "@/lib/constants";
+
 
 export default async function ProductCard({
   product,
@@ -21,31 +24,13 @@ export default async function ProductCard({
         <Link href={`/products/${product.id}`}>
           <h1 className="text-lg">{product.title}</h1>
         </Link>
-
-        {/* If discount is greater than MIN_DISCOUNT_TO_DISPLAY display the discounted price */}
-        {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-          <div className="flex gap-2 ">
-            <p className="line-through">{`$${product.price}`}</p>
-            <p>
-              {`$${Math.round(
-                product.price -
-                  (product.discountPercentage / 100) * product.price
-              ).toFixed(2)}`}
-            </p>
-          </div>
-        ) : (
-          <p>{`$${product.price}`}</p>
-        )}
+        <ProductPrice
+          discount={product.discountPercentage}
+          price={product.price}></ProductPrice>
       </div>
 
       <figure className="grid row-start-1 relative">
-        {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-          <p className="absolute font-medium bg-background top-0 mt-4 ml-4 p-3 text-discount">
-            {`${Math.floor(product.discountPercentage)} % off`}
-          </p>
-        ) : (
-          ""
-        )}
+        <DiscountTag discount={product.discountPercentage}></DiscountTag>
         <Image
           src={product.thumbnail}
           alt={product.title}

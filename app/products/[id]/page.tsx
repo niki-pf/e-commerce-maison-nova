@@ -13,6 +13,8 @@ import Stars from "@/components/stars";
 import RatingBarChart from "@/components/products/rating-bar-chart";
 import AddToCartBtn from "@/components/products/add-to-cart-btn";
 import { URLProps } from "@/lib/interfaces";
+import ProductPrice from "@/components/products/product-price";
+import DiscountTag from "@/components/products/discount-tag";
 
 export async function generateMetadata({ params }: URLProps) {
   const { id } = await params;
@@ -69,13 +71,7 @@ export default async function Page({ params, searchParams }: URLProps) {
           {/* Images */}
           <figure
             className={`grid ${imageGrid} lg:grid-cols-1 lg:h-[1000px] overflow-auto gap-2 relative lg:mx-auto`}>
-            {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-              <p className="absolute  bg-background top-0 mt-1 ml-1 p-1 text-discount ">
-                {`${Math.floor(product.discountPercentage)} % off`}
-              </p>
-            ) : (
-              ""
-            )}
+            <DiscountTag discount={product.discountPercentage}></DiscountTag>
             {product.images.map((image, index) => (
               <Image
                 key={index}
@@ -96,25 +92,10 @@ export default async function Page({ params, searchParams }: URLProps) {
                   nrOfReviews={product.reviews.length}
                   scoreOutOfFive={product.rating}></ReviewScore>
               </div>
-
-              {product.discountPercentage > MIN_DISCOUNT_TO_DISPLAY ? (
-                <div className="flex gap-2">
-                  <p className="line-through text-secondary ">{`$${product.price.toFixed(
-                    showDecimals
-                  )}`}</p>
-
-                  <p>
-                    {`$${Math.round(
-                      product.price -
-                        (product.discountPercentage / 100) * product.price
-                    ).toFixed(showDecimals)}`}
-                  </p>
-                </div>
-              ) : (
-                <p>{product.price.toFixed(showDecimals)}</p>
-              )}
+              <ProductPrice
+                discount={product.discountPercentage}
+                price={product.price}></ProductPrice>
             </div>
-
             {/* Decsription */}
             <section className="grid gap-4 border-b-1 pb-8">
               <h3>Description</h3>
@@ -151,7 +132,6 @@ export default async function Page({ params, searchParams }: URLProps) {
 
               <div className="flex gap-10">
                 <Gift size={50} strokeWidth={1}></Gift>
-
                 <div>
                   <p className="font-bold">Send It As A Gift</p>
                   <p>Add a free personalized note during checkout</p>
