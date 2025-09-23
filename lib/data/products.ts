@@ -1,5 +1,4 @@
 import { ProductFull } from "../interfaces";
-
 export async function fetchProduct(id: string) {
   try {
     const response = await fetch(`https://dummyjson.com/products/${id}`);
