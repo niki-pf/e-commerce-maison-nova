@@ -103,3 +103,12 @@ export interface BannerProps {
 export interface BannerWrapperProps {
   banners: BannerProps[];
 }
+
+export interface User {
+  user_id: number;
+  name: String;
+  email: String;
+  roles: String[] 
+  createdAt: Date
+  updatedAt: Date
+}
