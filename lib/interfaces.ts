@@ -112,3 +112,12 @@ export interface User {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface UserSuperBase {
+  user: {
+    id: string;
+    fullName: string;
+    userName: string;
+    website: string;
+  }
+}

@@ -57,20 +57,13 @@ const NavMain = () => {
         <span>
           <GlobalSearchbar></GlobalSearchbar>
         </span>
-        <span>
+        <Link href="/login">
           <User size={24} />
-        </span>
+        </Link>
         <button
           className="relative cursor-pointer"
           onClick={() => setCartIsOpen((prev) => !prev)}
         >
-          {/* {totalProducts > 0 ? (
-            <span className="absolute left-1/2 bottom-1/2 w-5 h-5 flex justify-center items-center rounded-full text-xs font-bold bg-red-700 text-white">
-              {totalProducts}
-            </span>
-          ) : (
-            ""
-          )} */}
           <ShoppingCart />
         </button>
         {/***Cart div */}
@@ -80,20 +73,6 @@ const NavMain = () => {
             onClick={() => setCartIsOpen(false)}
           />
         )}
-        {/* <div
-          className={`fixed top-0 right-0 h-full w-[300px] p-3 bg-white shadow-md z-50 transform transition-transform duration-300 ${
-            cartIsOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="w-full flex items-center justify-end">
-            <button
-              className="cursor-pointer"
-              onClick={() => setCartIsOpen(false)}
-            >
-              <X />
-            </button>
-          </div>
-        </div> */}
         <CartSidebar cartIsOpen={cartIsOpen} setCartIsOpen={setCartIsOpen} />
       </div>
     </header>
