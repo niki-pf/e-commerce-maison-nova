@@ -11,14 +11,15 @@ datasource db {
 
 model Product {
   id                 Int      @id @default(autoincrement())
+  slug               String   @unique
   title              String
   description        String
   gender             String
-  category           String?  @map("category")
+  category           String
   tags               String[]
-  price              Decimal
-  discountPercentage Decimal? @map("discount_percentage")
-  rating             Decimal
+  price              Float
+  discountPercentage Float?   @map("discount_percentage") @db.Real
+  rating             Float
   images             String[]
   thumbnail          String?
   review             Review[]
@@ -32,7 +33,7 @@ model Review {
   date          DateTime? @default(now())
   reviewerName  String?   @map("reviewer_name")
   reviewerEmail String?   @map("reviewer_email")
-  product       Product?  @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  product       Product   @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model User {
