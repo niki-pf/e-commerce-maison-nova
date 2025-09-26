@@ -10,18 +10,15 @@ datasource db {
 }
 
 model Product {
-  id                 Int      @id
+  id                 Int      @id @default(autoincrement())
   title              String
   description        String
-  category           String
-  subCategory        String?  @map("sub_category")
+  gender             String
+  category           String?  @map("category")
   tags               String[]
   price              Decimal
   discountPercentage Decimal? @map("discount_percentage")
   rating             Decimal
-  stock              Int?
-  brand              String?
-  sku                String?  @unique
   images             String[]
   thumbnail          String?
   review             Review[]
