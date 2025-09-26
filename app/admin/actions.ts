@@ -1,4 +1,5 @@
 "use server";
+import { createProduct } from "@/lib/data/product";
 import { generateSlug } from "@/lib/utils";
 import { z } from "zod";
 
@@ -26,12 +27,11 @@ const NewProductSchema = z.object({
 type NewProduct = z.infer<typeof NewProductSchema>;
 export async function NewProduct(formData: FormData) {
   const fields = {
-    slug: generateSlug(formData.get("title") as string),
     title: formData.get("title") as string,
     description: formData.get("description") as string,
     gender: formData.get("gender") as string,
     category: formData.get("category") as string,
-    tags: formData.get("tags"),
+    tags: formData.get("tags") as string,
     price: formData.get("price") as string,
     images: formData.get("images") as string,
     thumbnail: formData.get("thumbnail") as string,
@@ -41,4 +41,5 @@ export async function NewProduct(formData: FormData) {
     console.error(result.error);
     return;
   }
+  await createProduct(result.data);
 }

@@ -1,19 +1,17 @@
 import { fetchAllProductsOfMultipleCategories } from "../lib/data/products";
 import { allCategories, menCategories } from "../lib/constants";
-import { Prisma, PrismaClient } from "../lib/generated/prisma/client";
+import { PrismaClient } from "../lib/generated/prisma/client";
 import { generateSlug } from "../lib/utils";
 
 const prisma = new PrismaClient();
 
-const products: Prisma.ProductCreateManyInput[] = [];
-const reviews: Prisma.ReviewCreateManyInput[] = [];
 async function allProducts() {
   try {
     const allProducts =
       await fetchAllProductsOfMultipleCategories(allCategories);
 
     if (!allProducts) {
-      throw new Error("error with fetch");
+      return;
     }
     let productIdCounter = 1;
     for (const product of allProducts) {
@@ -32,7 +30,6 @@ async function allProducts() {
           thumbnail: product.thumbnail,
         },
       });
-      console.log(product.title);
 
       if (product.reviews && product.reviews.length > 0) {
         for (const review of product.reviews) {
@@ -49,13 +46,10 @@ async function allProducts() {
       }
       productIdCounter++;
     }
-  } catch (e) {
-    console.error("feel vid ", e);
-  }
+  } catch (e) {}
 }
 
 async function main() {
-  console.log("start seeding...");
   await allProducts();
 }
 

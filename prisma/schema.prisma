@@ -19,7 +19,7 @@ model Product {
   tags               String[]
   price              Float
   discountPercentage Float?   @map("discount_percentage") @db.Real
-  rating             Float
+  rating             Float?
   images             String[]
   thumbnail          String?
   review             Review[]

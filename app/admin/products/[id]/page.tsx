@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "next/form";
 import Link from "next/link";
-import { NewProduct } from "../actions";
+import { NewProduct } from "../../actions";
 export default function Page() {
   return (
     <div className="grid">
