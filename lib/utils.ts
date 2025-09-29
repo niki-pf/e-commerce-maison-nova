@@ -43,3 +43,8 @@ export function descendingSortByKey<T>(data: T[], key: keyof T): T[] {
     return 0;
   });
 }
+
+export const convertCurrency = (usd: number) :  number => {
+  const exchangeRate = 10.5;
+  return Math.round(usd * exchangeRate);
+}
