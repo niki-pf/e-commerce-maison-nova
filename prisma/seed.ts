@@ -7,8 +7,9 @@ const prisma = new PrismaClient();
 
 async function allProducts() {
   try {
-    const allProducts =
-      await fetchAllProductsOfMultipleCategories(allCategories);
+    const allProducts = await fetchAllProductsOfMultipleCategories(
+      allCategories
+    );
 
     if (!allProducts) {
       return;
