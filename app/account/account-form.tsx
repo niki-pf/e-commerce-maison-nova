@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { type User } from "@supabase/supabase-js";
@@ -35,7 +34,7 @@ const AccountForm = ({ user }: { user: User | null }) => {
         setAvartarUrl(data.avatar_url);
       }
     } catch (error) {
-      console.error(`"Error loading user data!", ${error}`);
+      alert(`"Error loading user data!", ${error}`);
     } finally {
       setLoading(false);
     }
