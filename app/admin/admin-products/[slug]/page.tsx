@@ -1,0 +1,30 @@
+import React from "react";
+
+import ProductForm from "@/components/product-form";
+import { fetchProductBySlug } from "@/lib/data/products";
+import { redirect } from "next/navigation";
+import { URLProps } from "@/lib/interfaces";
+
+export interface Props {
+  params: { slug: string };
+}
+
+export default async function Page({ params }: Props) {
+  const slug = params.slug;
+  console.log(slug);
+
+  if (!slug) {
+    redirect("/admin/admin-products");
+  }
+  if (slug === "new") {
+    return <ProductForm></ProductForm>;
+  } else {
+    const product = await fetchProductBySlug(slug);
+    if (!product) {
+      return <p className="text-destructive">Product not found</p>;
+    }
+    if (product) {
+      return <ProductForm product={product}></ProductForm>;
+    }
+  }
+}

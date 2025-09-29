@@ -57,8 +57,3 @@ export function generateSlug(toSlug: string) {
     .slice(0, 50);
   return slug;
 }
-
-export const convertCurrency = (usd: number) :  number => {
-  const exchangeRate = 10.5;
-  return Math.round(usd * exchangeRate);
-}

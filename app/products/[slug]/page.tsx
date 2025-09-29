@@ -1,6 +1,7 @@
 import {
   fetchAllProductsOfMultipleCategories,
   fetchProduct,
+  fetchProductBySlug,
 } from "@/lib/data/products";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -17,10 +18,10 @@ import ProductPrice from "@/components/products/product-price";
 import DiscountTag from "@/components/products/discount-tag";
 
 export async function generateMetadata({ params }: URLProps) {
-  const { id } = await params;
+  const { slug } = await params;
 
-  if (id && Number.isNaN(id)) {
-    const product = await fetchProduct(id);
+  if (slug) {
+    const product = await fetchProductBySlug(slug);
     if (product) {
       return {
         title: `Maison Nova - ${product.title}`,
@@ -46,14 +47,14 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params, searchParams }: URLProps) {
-  const { id } = await params;
+  const { slug } = await params;
   const { sort } = await searchParams;
 
-  if (!id) {
+  if (!slug) {
     return notFound();
   }
 
-  const product = await fetchProduct(id);
+  const product = await fetchProduct(slug);
 
   if (!product) {
     return notFound();

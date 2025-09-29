@@ -22,9 +22,6 @@ export default function ProductForm({ product }: { product?: Product }) {
       images: "",
       thumbnail: "",
     };
-  if (product) {
-    console.log(product);
-  }
 
   return (
     <div className="grid">
@@ -61,7 +58,6 @@ export default function ProductForm({ product }: { product?: Product }) {
         <ValidationError
           errors={state?.validationErrors}
           field="category"></ValidationError>
-
         <select
           name="category"
           id="category"
@@ -118,12 +114,18 @@ export default function ProductForm({ product }: { product?: Product }) {
               name="gender"
               id="men"
               value="men"
-              defaultChecked
+              defaultChecked={data.gender === "men"}
             />
             <label htmlFor="men">Men</label>
           </div>
           <div className="flex gap-4">
-            <input type="radio" name="gender" id="women" value="women" />
+            <input
+              type="radio"
+              name="gender"
+              id="women"
+              value="women"
+              defaultChecked={data.gender === "women"}
+            />
             <label htmlFor="women">Women</label>
           </div>
         </fieldset>
@@ -132,7 +134,6 @@ export default function ProductForm({ product }: { product?: Product }) {
         <ValidationError
           errors={state?.validationErrors}
           field="images"></ValidationError>
-
         <details>
           <summary>Multiple image URL</summary>
           <p>
@@ -161,7 +162,8 @@ export default function ProductForm({ product }: { product?: Product }) {
           defaultValue={data.thumbnail}
           required
         />
-        <DatabaseError state={state?.dbError}></DatabaseError>
+
+        <DatabaseError errors={state?.dbError}></DatabaseError>
         <div className="flex gap-4 justify-end">
           <Link
             href={"/admin/products"}

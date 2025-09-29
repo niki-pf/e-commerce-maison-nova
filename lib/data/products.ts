@@ -90,6 +90,19 @@ export async function fetchAllProductsOfMultipleCategories(
   }
 }
 
+export async function fetchProductBySlug(slug: string) {
+  if (!slug) return null;
+  const product = await prisma.product.findUnique({
+    where: { slug: slug },
+  });
+  console.log(product?.title);
+
+  if (product) {
+    console.log(product.title);
+    return product;
+  }
+}
+
 // export async function fetchProduct(id: string) {
 //   try {
 //     const response = await fetch(`https://dummyjson.com/products/${id}`);
