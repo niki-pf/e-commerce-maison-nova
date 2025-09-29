@@ -1,31 +1,9 @@
 "use server";
 import { createProduct } from "@/lib/data/product";
+import { Product, productSchema } from "@/lib/zod-schemas";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z, ZodError } from "zod";
-
-const productSchema = z.object({
-  title: z.string().max(32),
-  description: z.string().max(255),
-  gender: z.string(),
-  category: z.string(),
-  tags: z
-    .string()
-    .transform((value) =>
-      value
-        .split(",")
-        .map((v) => v.trim())
-        .filter((v) => v.length > 0)
-    )
-    .pipe(z.array(z.string())),
-  price: z.coerce.number().gt(0),
-  images: z
-    .string()
-    .transform((value) => value.split(",").map((v) => v.trim()))
-    .pipe(z.array(z.url())),
-  thumbnail: z.url(),
-});
-type Product = z.infer<typeof productSchema>;
+import {z} from "zod"
 
 export async function crateNewProduct(
   prevState: unknown,
@@ -59,4 +37,8 @@ export async function crateNewProduct(
   await createProduct(result.data);
   revalidatePath("/");
   redirect("/admin/products");
+}
+
+export async function updateProduct (){
+
 }

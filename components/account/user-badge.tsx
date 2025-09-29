@@ -2,7 +2,7 @@
 
 import React, { useCallback, useState } from "react";
 import { type User } from "@supabase/supabase-js";
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 
 const UserBadge = ({ user }: { user: User | null }) => {
   // const supabase = createClient();

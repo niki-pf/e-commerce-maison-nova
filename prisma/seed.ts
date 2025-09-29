@@ -33,6 +33,7 @@ async function allProducts() {
 
       if (product.reviews && product.reviews.length > 0) {
         for (const review of product.reviews) {
+
           await prisma.review.create({
             data: {
               productId: productIdCounter,
@@ -46,7 +47,10 @@ async function allProducts() {
       }
       productIdCounter++;
     }
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+    
+  }
 }
 
 async function main() {

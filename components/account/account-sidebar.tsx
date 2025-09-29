@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { LayoutDashboard, MessageCircleHeart, UserCog } from "lucide-react";
 import React from "react";
 
@@ -21,8 +21,7 @@ const AccountSidebar = () => {
           {accountList.map((listItem, idx) => (
             <li
               key={idx}
-              className="px-6 py-3 flex gap-2 bg-amber-800 rounded-full"
-            >
+              className="px-6 py-3 flex gap-2 bg-amber-800 rounded-full">
               <span>{listItem.icon}</span>
               <p>{listItem.label}</p>
             </li>
@@ -32,8 +31,7 @@ const AccountSidebar = () => {
           <form action="/auth/signout" method="post">
             <button
               className="button block px-8 py-2 mt-6 bg-cyan-500 rounded-full font-semibold cursor-pointer"
-              type="submit"
-            >
+              type="submit">
               Sign out
             </button>
           </form>
