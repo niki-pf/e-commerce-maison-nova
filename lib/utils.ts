@@ -1,3 +1,7 @@
+export const convertCurrency = (usd: number): number => {
+  const exchangeRate = 10.5;
+  return Math.round(usd * exchangeRate);
+};
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

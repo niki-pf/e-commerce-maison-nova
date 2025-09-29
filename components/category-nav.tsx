@@ -29,7 +29,8 @@ export default async function CategoryNav({ gender }: { gender: string }) {
           <Link
             key={cat.slug}
             href={`/products?category=${gender}&subcategory=${cat.slug}`}
-            className="flex flex-col items-center">
+            className="flex flex-col items-center"
+          >
             <Image
               src={cat.imageUrl}
               alt={cat.name}

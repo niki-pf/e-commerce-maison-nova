@@ -2,13 +2,13 @@ generator client {
   provider = "prisma-client-js"
   output   = "../lib/generated/prisma"
 }
-
+ 
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
-
+ 
 model Product {
   id                 Int      @id @default(autoincrement())
   slug               String   @unique
@@ -24,7 +24,7 @@ model Product {
   thumbnail          String?
   review             Review[]
 }
-
+ 
 model Review {
   id            BigInt    @id @default(autoincrement())
   productId     Int       @map("product_id")
@@ -35,7 +35,7 @@ model Review {
   reviewerEmail String?   @map("reviewer_email")
   product       Product   @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
-
+ 
 model User {
   userId    Int    @id
   firstName String @map("first_name")
