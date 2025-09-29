@@ -1,78 +1,169 @@
 import { ProductFull } from "../interfaces";
-export async function fetchProduct(id: string) {
+import prisma from "../prisma";
+
+function mapProduct(product: any): ProductFull {
+  return {
+    ...product,
+    reviews: product.review.map((r: any) => ({
+      id: r.id.toString(),
+      productId: r.productId,
+      rating: r.rating,
+      comment: r.comment,
+      date: r.date?.toISOString() || "",
+      reviewerName: r.reviewerName || "",
+      reviewerEmail: r.reviewerEmail || "",
+    })),
+  };
+}
+
+export async function fetchProduct(id: string): Promise<ProductFull | null> {
   try {
-    const response = await fetch(`https://dummyjson.com/products/${id}`);
+    const product = await prisma.product.findUnique({
+      where: { id: Number(id) },
+      include: { review: true },
+    });
 
-    if (!response.ok) {
-      throw new Error(`There was an error fetching a product with id: ${id}`);
-    }
+    if (!product) return null;
 
-    const data: ProductFull = await response.json();
-    return data;
-  } catch (error) {}
+    return mapProduct(product);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
 export async function fetchSearchProduct(
   query: string,
   sortBy: string,
   order: string
-) {
+): Promise<ProductFull[]> {
   try {
-    const response = await fetch(
-      `https://dummyjson.com/products/search?q=${query}&sortBy=${sortBy}&order=${order}`
-    );
+    const products = await prisma.product.findMany({
+      where: { title: { contains: query, mode: "insensitive" } },
+      orderBy: sortBy
+        ? { [sortBy]: order === "desc" ? "desc" : "asc" }
+        : undefined,
+      include: { review: true },
+    });
 
-    if (!response.ok) {
-      throw new Error(`There was an error searching for products`);
-    }
-
-    const data = await response.json();
-    const products: ProductFull[] = data.products;
-    return products;
-  } catch (error) {}
+    return products.map(mapProduct);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export async function fetchProductOfTypeCategory(
   category: string,
   sortBy: string,
   order: string
-) {
+): Promise<ProductFull[]> {
   try {
-    const response = await fetch(
-      `https://dummyjson.com/products/category/${category}?sortBy=${sortBy}&order=${order}`
-    );
+    const products = await prisma.product.findMany({
+      where: { category },
+      orderBy: sortBy
+        ? { [sortBy]: order === "desc" ? "desc" : "asc" }
+        : undefined,
+      include: { review: true },
+    });
 
-    if (!response.ok) {
-      throw new Error(`There was an error fetching all products by category`);
-    }
-
-    const data = await response.json();
-    const products: ProductFull[] = data.products;
-    return products;
-  } catch (error) {}
+    return products.map(mapProduct);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export async function fetchAllProductsOfMultipleCategories(
   categories: string[]
-) {
+): Promise<ProductFull[]> {
   try {
-    let productList: ProductFull[] = [];
-    const result = await Promise.all(
-      /* returns array of produlist */
-      categories.map(async (category) => {
-        const result = await fetchProductOfTypeCategory(category, "", "");
-        /* returns empty array if result is undefined */
-        return Array.isArray(result) ? result : [];
-      })
-    );
-    if (result) {
-      /* flattens the result from fetching categories */
-      productList = result.flat();
-    } else {
-      throw new Error(
-        `There was a problem fetching all products of multiple categories`
-      );
-    }
-    return productList;
-  } catch (error) {}
+    const products = await prisma.product.findMany({
+      where: { category: { in: categories } },
+      include: { review: true },
+    });
+
+    return products.map(mapProduct);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
+
+// export async function fetchProduct(id: string) {
+//   try {
+//     const response = await fetch(`https://dummyjson.com/products/${id}`);
+
+//     if (!response.ok) {
+//       throw new Error(`There was an error fetching a product with id: ${id}`);
+//     }
+
+//     const data: ProductFull = await response.json();
+//     return data;
+//   } catch (error) {}
+// }
+
+// export async function fetchSearchProduct(
+//   query: string,
+//   sortBy: string,
+//   order: string
+// ) {
+//   try {
+//     const response = await fetch(
+//       `https://dummyjson.com/products/search?q=${query}&sortBy=${sortBy}&order=${order}`
+//     );
+
+//     if (!response.ok) {
+//       throw new Error(`There was an error searching for products`);
+//     }
+
+//     const data = await response.json();
+//     const products: ProductFull[] = data.products;
+//     return products;
+//   } catch (error) {}
+// }
+
+// export async function fetchProductOfTypeCategory(
+//   category: string,
+//   sortBy: string,
+//   order: string
+// ) {
+//   try {
+//     const response = await fetch(
+//       `https://dummyjson.com/products/category/${category}?sortBy=${sortBy}&order=${order}`
+//     );
+
+//     if (!response.ok) {
+//       throw new Error(`There was an error fetching all products by category`);
+//     }
+
+//     const data = await response.json();
+//     const products: ProductFull[] = data.products;
+//     return products;
+//   } catch (error) {}
+// }
+
+// export async function fetchAllProductsOfMultipleCategories(
+//   categories: string[]
+// ) {
+//   try {
+//     let productList: ProductFull[] = [];
+//     const result = await Promise.all(
+//       /* returns array of produlist */
+//       categories.map(async (category) => {
+//         const result = await fetchProductOfTypeCategory(category, "", "");
+//         /* returns empty array if result is undefined */
+//         return Array.isArray(result) ? result : [];
+//       })
+//     );
+//     if (result) {
+//       /* flattens the result from fetching categories */
+//       productList = result.flat();
+//     } else {
+//       throw new Error(
+//         `There was a problem fetching all products of multiple categories`
+//       );
+//     }
+//     return productList;
+//   } catch (error) {}
+// }

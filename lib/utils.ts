@@ -43,3 +43,13 @@ export function descendingSortByKey<T>(data: T[], key: keyof T): T[] {
     return 0;
   });
 }
+
+export function generateSlug(toSlug: string) {
+  const slug = toSlug
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .slice(0, 50);
+  return slug;
+}
