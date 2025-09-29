@@ -2,7 +2,7 @@ import React from "react";
 import { Minus, Plus, Trash2, X } from "lucide-react";
 import { userCartStore } from "@/lib/stores/cartStore";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 
 interface CartSidebarProps {
   cartIsOpen: boolean;
@@ -14,9 +14,15 @@ const CartSidebar = ({ cartIsOpen, setCartIsOpen }: CartSidebarProps) => {
   const removeFromCart = userCartStore((state) => state.removeFromCart);
   const incrementCartItem = userCartStore((state) => state.incrementCartItem);
   const decrementCartItem = userCartStore((state) => state.decrementCartItem);
+  const router = useRouter();
   // const totalProducts = userCartStore((state) => state.getTotalProductCount());
   console.log("Cart: ", cartList);
   // const showDecimals = cartItem.price > 1000 ? 0 : 2;
+
+  const handleCheckout = () => {
+    setCartIsOpen(false);
+    router.push("/Cart");
+  }
 
   const getNumbersOfProducts = () => {
     let sumOfProducts = 0;
@@ -128,7 +134,9 @@ const CartSidebar = ({ cartIsOpen, setCartIsOpen }: CartSidebarProps) => {
             <p>{`Totalt: ${getNumbersOfProducts()} produkter`}</p>
             <p>{`${getTotalPriceOfProducts()} SEK`}</p>
           </div>
-          <button className="flex py-3 px-5 mt-4 bg-[#e5e5e5] font-semibold rounded-full cursor-pointer">
+          <button 
+          onClick={handleCheckout}
+          className="flex py-3 px-5 mt-4 bg-[#e5e5e5] font-semibold rounded-full cursor-pointer">
             Till kassan
           </button>
         </div>
