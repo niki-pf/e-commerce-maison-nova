@@ -15,6 +15,7 @@ import AddToCartBtn from "@/components/products/add-to-cart-btn";
 import { URLProps } from "@/lib/interfaces";
 import ProductPrice from "@/components/products/product-price";
 import DiscountTag from "@/components/products/discount-tag";
+import DeleteForm from "@/components/products/Deleteform";
 
 export async function generateMetadata({ params }: URLProps) {
   const { id } = await params;
@@ -161,6 +162,7 @@ export default async function Page({ params, searchParams }: URLProps) {
 
         <ReviewList sort={sort} reviews={product.reviews}></ReviewList>
       </section>
+      <DeleteForm productId={product.id}/>
     </>
   );
 }
