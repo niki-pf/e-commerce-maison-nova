@@ -1,17 +1,16 @@
 import React from "react";
 
-import ProductForm from "@/components/product-form";
+import ProductForm from "@/app/admin/admin-products/_components/product-form";
 import { fetchProductBySlug } from "@/lib/data/products";
 import { redirect } from "next/navigation";
-import { URLProps } from "@/lib/interfaces";
+import Link from "next/link";
 
 export interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function Page({ params }: Props) {
-  const slug = params.slug;
-  console.log(slug);
+  const {slug} = await params;
 
   if (!slug) {
     redirect("/admin/admin-products");
@@ -21,10 +20,13 @@ export default async function Page({ params }: Props) {
   } else {
     const product = await fetchProductBySlug(slug);
     if (!product) {
-      return <p className="text-destructive">Product not found</p>;
+      return (
+        <>
+          <p className="text-destructive">Product not found</p>
+          <Link href={"/admin/admin-products"}>Return</Link>
+        </>
+      );
     }
-    if (product) {
-      return <ProductForm product={product}></ProductForm>;
-    }
+    return <ProductForm product={product}></ProductForm>;
   }
 }

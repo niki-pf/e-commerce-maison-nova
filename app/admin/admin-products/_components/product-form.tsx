@@ -1,21 +1,25 @@
 "use client";
 
-import { crateNewProduct } from "@/app/admin/actions";
+import { createNewProduct, updateOldProduct } from "@/app/admin/actions";
 import { Product } from "@/lib/zod-schemas";
 import Form from "next/form";
 import { useActionState } from "react";
-import ValidationError from "./error/validation-error";
-import DatabaseError from "./error/database-error";
+import ValidationError from "../../../../components/error/validation-error";
+import DatabaseError from "../../../../components/error/database-error";
 import Link from "next/link";
+import { allCategories } from "@/lib/constants";
 
 export default function ProductForm({ product }: { product?: Product }) {
-  const [state, formAction, isPending] = useActionState(crateNewProduct, null);
+  const action = product ? updateOldProduct : createNewProduct;
+  const [state, formAction, isPending] = useActionState(action, null);
 
   const data = state?.data ??
     product ?? {
+      id: "",
+      slug: "",
       title: "",
       description: "",
-      gender: "men",
+      gender: "",
       category: "",
       tags: "",
       price: "",
@@ -24,11 +28,20 @@ export default function ProductForm({ product }: { product?: Product }) {
     };
 
   return (
-    <div className="grid">
+    <div className="grid w-full">
       <Form
         action={formAction}
-        className="grid max-w-lg font-mono gap-4 mx-auto min-w-sm"
+        className="grid md:w-[50%] w-full mx-auto font-mono gap-4 px-8 py-4"
         key={JSON.stringify(state?.data)}>
+        {product && (
+          <input
+            type="number"
+            name="id"
+            id="id"
+            className="hidden"
+            defaultValue={product?.id}
+          />
+        )}
         <label htmlFor="title">Title:</label>
         <ValidationError
           errors={state?.validationErrors}
@@ -59,18 +72,22 @@ export default function ProductForm({ product }: { product?: Product }) {
           errors={state?.validationErrors}
           field="category"></ValidationError>
         <select
+          className="cursor-pointer"
           name="category"
           id="category"
-          className="border"
           defaultValue={data.category}>
-          <option value="a">a</option>
+          {allCategories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
 
         <label htmlFor="images">Tags</label>
         <ValidationError
           errors={state?.validationErrors}
           field="tags"></ValidationError>
-        <details>
+        <details className="text-sm cursor-pointer text-secondary">
           <summary>Multiple Tags</summary>
           <p>
             For multiple tags keep them comma-separeted,
@@ -134,7 +151,7 @@ export default function ProductForm({ product }: { product?: Product }) {
         <ValidationError
           errors={state?.validationErrors}
           field="images"></ValidationError>
-        <details>
+        <details className="text-sm cursor-pointer text-secondary">
           <summary>Multiple image URL</summary>
           <p>
             For multiple images keep the links comma-separeted, example,{" "}
@@ -162,11 +179,10 @@ export default function ProductForm({ product }: { product?: Product }) {
           defaultValue={data.thumbnail}
           required
         />
-
         <DatabaseError errors={state?.dbError}></DatabaseError>
         <div className="flex gap-4 justify-end">
           <Link
-            href={"/admin/products"}
+            href={"/admin/admin-products"}
             className="p-4 border bg-button text-background">
             Cancel
           </Link>

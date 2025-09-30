@@ -1,5 +1,5 @@
-import { fetchAllProductsOfMultipleCategories } from "../lib/data/products";
-import { allCategories, menCategories } from "../lib/constants";
+import { fetchAllProductsOfMultipleCategories } from "./seedUtil/products";
+import { allCategories, menCategories } from "./seedUtil/constants";
 import { PrismaClient } from "../lib/generated/prisma/client";
 import { generateSlug } from "../lib/utils";
 
@@ -21,7 +21,7 @@ async function allProducts() {
           slug: generateSlug(product.title),
           title: product.title,
           description: product.description,
-          gender: menCategories.includes(product.category) ? "men" : "female",
+          gender: menCategories.includes(product.category) ? "men" : "women",
           category: product.category,
           tags: product.tags,
           price: product.price,

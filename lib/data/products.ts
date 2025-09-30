@@ -1,5 +1,6 @@
 import { ProductFull } from "../interfaces";
 import prisma from "../prisma";
+import { Product } from "../zod-schemas";
 
 function mapProduct(product: any): ProductFull {
   return {
@@ -90,15 +91,22 @@ export async function fetchAllProductsOfMultipleCategories(
   }
 }
 
+export async function fetchAllProducts() {
+  const products = await prisma.product.findMany();
+
+  if (!products) {
+    return null;
+  }
+  return products;
+}
+
 export async function fetchProductBySlug(slug: string) {
   if (!slug) return null;
   const product = await prisma.product.findUnique({
     where: { slug: slug },
   });
-  console.log(product?.title);
 
   if (product) {
-    console.log(product.title);
     return product;
   }
 }

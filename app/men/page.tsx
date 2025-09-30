@@ -19,7 +19,7 @@ export default function MenPage() {
         h2="Your Cold-Weather Edge"
         paragraph="Stay warm, stay sharp with our new winter collection"
         linkPrompt="Shop now"
-        link="/products?category=men&subcategory=mens-shoes"
+        link="/products?gender=men&category=mens-shoes"
         pos="midRight"
       />
       <CategoryNav gender="men" />;

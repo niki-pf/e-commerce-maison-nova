@@ -28,9 +28,8 @@ export default async function CategoryNav({ gender }: { gender: string }) {
         {previews.map((cat) => (
           <Link
             key={cat.slug}
-            href={`/products?category=${gender}&subcategory=${cat.slug}`}
-            className="flex flex-col items-center"
-          >
+            href={`/products?gender=${gender}&category=${cat.slug}`}
+            className="flex flex-col items-center">
             <Image
               src={cat.imageUrl}
               alt={cat.name}
