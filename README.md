@@ -38,7 +38,7 @@ Plattformen erbjuder bland annat:
 - **Startsida** med hero-sektion och möjlighet att välja huvudkategori: *Man* eller *Kvinna*.  
 - **Sub-navigation** på respektive kategori-sida som gör det möjligt att filtrera produkter ytterligare (t.ex. Kvinna → Accessoarer, Klänningar osv.).  
 - **Sökfunktion** för att hitta produkter snabbt.  
-- **Dynamiska produktsidor** med titel, bild, beskrivning, pris samt **produktbetyg** – visar hur många recensioner produkten har, ett totalt betyg visualiserat med stjärnor, samt **rabattinformation** med procentuell rabatt och det nya priset (det gamla priset visas överstruket).
+- **Dynamiska produktsidor** med titel, bild, beskrivning, pris samt **produktbetyg** – visar hur många som betygsatt produkten och ett totalt betyg visualiserat med stjärnor, samt **rabattinformation** med procentuell rabatt och det nya priset (det gamla priset visas överstruket).
 - **Knapp för att lägga till i kassan** (visuell feedback vid klick).  
 - **Kontaktformulär** på kontaktsidan med fält för e-post, meddelande och valfri ämneskategori.  
 - **Om oss-sida** med information om företaget eller projektgruppen.
