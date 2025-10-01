@@ -12,7 +12,7 @@ import {
   fetchProductOfTypeCategory,
   fetchSearchProduct,
 } from "@/lib/data/products";
-import { ProductFull, URLProps } from "@/lib/interfaces";
+import { URLProps } from "@/lib/interfaces";
 import {
   ascendingSortByKey,
   descendingSortByKey,
@@ -21,6 +21,7 @@ import {
 import React from "react";
 import SortOptions from "@/components/products/sort-options";
 import ProductFilters from "@/components/products/product-filters";
+import { Product } from "@/lib/zod-schemas";
 
 export async function generateMetadata({ searchParams }: URLProps) {
   const { gender = "", category = "", query = "" } = await searchParams;
@@ -39,6 +40,7 @@ export default async function ProductsPage({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
+  /* save searchParams or set default value */
   const {
     gender = "",
     category = "",
@@ -49,7 +51,7 @@ export default async function ProductsPage({
     stars = "",
     page = "1",
   } = await searchParams;
-  let productList: ProductFull[] = [];
+  let productList: Product[] = [];
   let sortBy = "";
   let order = "";
 
@@ -84,15 +86,9 @@ export default async function ProductsPage({
         productSortList.map((sortBy) => {
           if (sortBy.value === sort) {
             productList =
-              sortBy.type === "ascending"
-                ? ascendingSortByKey(
-                    productList,
-                    sortBy.key as keyof ProductFull
-                  )
-                : descendingSortByKey(
-                    productList,
-                    sortBy.key as keyof ProductFull
-                  );
+              sortBy.type === "asc"
+                ? ascendingSortByKey(productList, sortBy.key as keyof Product)
+                : descendingSortByKey(productList, sortBy.key as keyof Product);
           }
         });
       }
@@ -101,12 +97,10 @@ export default async function ProductsPage({
 
   /* if only a category */
   if (gender === "" && category !== "") {
-    if (allCategories.includes(category)) {
-      const result = await fetchProductOfTypeCategory(category, sortBy, order);
+    const result = await fetchProductOfTypeCategory(category, sortBy, order);
 
-      if (result) {
-        productList = result;
-      }
+    if (result) {
+      productList = result;
     }
   }
 

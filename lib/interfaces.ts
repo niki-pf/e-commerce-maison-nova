@@ -25,7 +25,7 @@ export interface Meta {
   qrCode: string;
 }
 
-export interface ProductFull {
+ export interface ProductFull {
   id: number;
   title: string;
   description: string;
@@ -38,7 +38,7 @@ export interface ProductFull {
   reviews: Review[];
   images: string[];
   thumbnail: string;
-}
+} 
 
 export interface CartProduct {
   id: number;
