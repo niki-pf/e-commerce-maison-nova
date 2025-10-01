@@ -35,15 +35,15 @@ Plattformen använder moderna Next.js-funktioner som **Server Components**, **Cl
 
 ## ✨ Funktioner
 Plattformen erbjuder bland annat:  
-- **Startsida** med hero-sektion och möjlighet att välja huvudkategori: *Man* eller *Kvinna*.  
-- **Sub-navigation** på respektive kategori-sida som gör det möjligt att filtrera produkter ytterligare (t.ex. Kvinna → Accessoarer, Klänningar osv.).  
-- **Sökfunktion** för att hitta produkter snabbt.  
-- **Dynamiska produktsidor** med titel, bild, beskrivning, pris samt **produktbetyg** – visar hur många som betygsatt produkten och ett totalt betyg visualiserat med stjärnor, samt **rabattinformation** med procentuell rabatt och det nya priset (det gamla priset visas överstruket).
-- **Knapp för att lägga till i kassan** (visuell feedback vid klick).  
-- **Kontaktformulär** på kontaktsidan med fält för e-post, meddelande och valfri ämneskategori.  
-- **Om oss-sida** med information om företaget eller projektgruppen.
-- **Admin-sida (för produkter)** – Administrera produkter direkt via `/admin/admin-products`.  
-  *Observera:* Admin-sidan är inte kopplad till användarroll ännu, man når den genom att skriva in sökvägen manuellt.
+✅ **Startsida med produköversikt** – visar ett urval av produkter med hero-sektion och CTA.  
+✅ **Val av huvudkategori** – Man eller Kvinna med sub-navigation för ytterligare filtrering (t.ex. Kvinna → Accessoarer, Klänningar).  
+✅ **Sökfunktion** – hitta produkter snabbt.  
+✅ **Dynamiska produktsidor** – visar titel, bild, beskrivning, pris, antal som betygsatt, totalt betyg visualiserat med stjärnor och rabattinformation (procentuell rabatt, nytt pris med gammalt överstruket).  
+✅ **Lägg till i kassan** – visuell feedback vid klick.  
+✅ **Kontaktformulär** – e-post, meddelande och ämneskategori.  
+✅ **Om oss-sida** – information om projektgruppen/företaget.  
+✅ **Admin-sida** – administrera produkter via `/admin/admin-products` (nåbar via manuell sökväg).  
+
 
 ---
 
@@ -75,11 +75,14 @@ npm run dev
 ---
 
 ## 🚀 Användning
-* Startsida -> visar produkter + hero
-* Om oss -> statisk sida med text och bild
-* osv
-* osv
-* osv
+- **Startsida** → visar produkter + hero, välj huvudkategori (Man/Kvinna).  
+- **Kvinna/Man-sidor** → filtrera produkter med sub-navigation efter underkategori.  
+- **Sök** → skriv produktnamn i sökfältet för att hitta produkter.  
+- **Produktdetaljer** → klicka på produkt för att se titel, bild, beskrivning, pris, betyg och rabattinformation.  
+- **Lägg till i kassan** → klicka på knappen “Lägg till i kassan” för visuell feedback.  
+- **Kontakt** → fyll i formulär med e-post, meddelande och ämneskategori, klicka på skicka.  
+- **Om oss** → statisk sida med text och bild om projektgruppen/företaget.  
+- **Admin-sida** → gå till `/admin/admin-products` för att administrera produkter (endast nåbar via manuell sökväg för tillfället).
 
 ---
 
