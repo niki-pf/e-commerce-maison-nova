@@ -44,6 +44,7 @@ Plattformen erbjuder bland annat:
 ✅ **Feature-komponent på subkategori-sidor** – En karusell som visar de 4 bäst betygsatta produkterna för varje huvudkategori (Man/ Kvinna), med rating och en kort review-kommentar. Går att bläddra åt höger och vänster.
 
 ✅ **Kontaktformulär** – fält för för- och efternamn, e-post, dropdown-meny för land samt meddelandefält.
+
 ✅ **Om oss-sida** – information om projektgruppen/företaget.  
 ✅ **Admin-sida** – administrera produkter via `/admin/admin-products` (nåbar via manuell sökväg).  
 
