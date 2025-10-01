@@ -43,9 +43,9 @@ Plattformen erbjuder bland annat:
 ✅ **Sökfunktion** – hitta produkter snabbt.  
 ✅ **Dynamiska produktsidor** – visar titel, bild, beskrivning, pris, antal som betygsatt, totalt betyg visualiserat med stjärnor och rabattinformation (procentuell rabatt, nytt pris med gammalt överstruket).  
 ✅ **Lägg till i kassan** – visuell feedback vid klick.  
-✅ **Feature-komponent på subkategori-sidor** – En karusell som visar de 4 bäst betygsatta produkterna för varje huvudkategori (Man/Kvinna), med rating och en kort review-kommentar. Går att bläddra åt höger och vänster.  
-✅ **Kontaktformulär** – fält för för- och efternamn, e-post, dropdown-meny för land samt meddelandefält.  
-✅ **Om oss-sida** – information om projektgruppen/företaget.  
+✅ **Feature-komponent på subkategori-sidor** – En karusellkomponent som visar de 4 bäst betygsatta produkterna för varje huvudkategori (Man/Kvinna), med rating och en review-kommentar. Går att bläddra åt höger och vänster.  
+✅ **Kontaktformulär** – fält med för- och efternamn, e-post, dropdown-meny för land samt meddelandefält.  
+✅ **Om oss-sida** – information om företaget.  
 ✅ **Admin-sida** – administrera produkter via `/admin/admin-products` (nåbar via manuell sökväg).
 
 
@@ -55,7 +55,7 @@ Plattformen erbjuder bland annat:
 - [Next.js 15 (App Router)](https://nextjs.org/) – Ramverk för React, används för både server- och klientkomponenter.  
 - [TypeScript](https://www.typescriptlang.org/) – Starkt typat språk för JavaScript som används i hela projektet.  
 - [Supabase](https://supabase.com/) – Backend som hanterar databasen och autentisering.  
-- [Prisma](https://www.prisma.io/) – ORM för att hantera databasfrågor mot Supabase.  
+- [Prisma](https://www.prisma.io/) – ORM som används för att hämta, uppdatera och hantera data i Supabase.
 - [Tailwind CSS](https://tailwindcss.com/) – CSS-ramverk för snabb och responsiv styling.  
 - [WAVE](https://wave.webaim.org/) – Verktyg för att testa tillgänglighet.  
 
@@ -85,9 +85,9 @@ npm run dev
 - **Sök** → skriv produktnamn i sökfältet för att hitta produkter.  
 - **Produktdetaljer** → klicka på produkt för att se titel, bild, beskrivning, pris, betyg och rabattinformation.  
 - **Lägg till i kassan** → klicka på knappen “Lägg till i kassan” för visuell feedback.  
-- **Feature-karusell på subkategori-sidor** → Bläddra mellan de 4 bäst betygsatta produkterna för varje huvudkategori och se rating samt korta kommentarer från recensioner.
-- **Kontakt** → fyll i formulär med e-post, meddelande och ämneskategori, klicka på skicka.  
-- **Om oss** → statisk sida med text och bild om projektgruppen/företaget.  
+- **Feature-karusell på subkategori-sidor** → Bläddra mellan de 4 bäst betygsatta produkterna för varje huvudkategori och se rating samt kommentarer från recensioner.
+- **Kontakt** → fyll i formulär med namn, e-post, land, meddelande , klicka på skicka.  
+- **Om oss** → statisk sida med text och bild om företaget.  
 - **Admin-sida** → gå till `/admin/admin-products` för att administrera produkter (endast nåbar via manuell sökväg för tillfället).
 
 ---
@@ -108,7 +108,7 @@ npm run dev
 
 ## 📈 Arbetsflöde
 
-👥 **Planering och sprintar (SCRUM)** – Kommande veckors arbete bröts ned i kort på GitHub Projects, och varje teammedlem valde själv vilka kort de ville arbeta med.  
+👥 **Planering och sprintar (SCRUM)** – Kommande veckors arbete bröts ned i kort/issues på GitHub Projects, och varje teammedlem valde själv vilka kort de ville arbeta med.  
 
 📅 **Daily standup & kontinuerlig kontakt** – Vi hade korta dagliga möten och höll kontinuerlig kontakt via chat för att följa upp och lösa problem snabbt.  
 
@@ -137,7 +137,7 @@ npm run dev
 
 ### Vecka 3 – Backend & Databasintegration
 - Flyttade all produktdata över till **Supabase** och började arbeta med **Prisma**.  
-- Började implementera CRUD-funktionalitet, särskilt “Read”-delen för produktsidor.  
+- Började implementera CRUD-funktionalitet.  
 - Säkerställde att databaskopplingar fungerade korrekt och att data hämtades asynkront.  
 - Fortsatte utveckla komponenter och integrera dem med backend-data.  
 
