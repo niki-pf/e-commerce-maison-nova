@@ -37,6 +37,7 @@ Plattformen använder moderna Next.js-funktioner som **Server Components**, **Cl
 Plattformen erbjuder bland annat:  
 ✅ **Startsida med produköversikt** – visar ett urval av produkter med hero-sektion och CTA.  
 ✅ **Val av huvudkategori** – Man eller Kvinna med sub-navigation för ytterligare filtrering (t.ex. Kvinna → Accessoarer, Klänningar).  
+✅ **Subkategori-navigation på Man/Kvinna-sidor** – En visuell nav under hero-sektionen med bilder för olika underkategorier. 
 ✅ **Sökfunktion** – hitta produkter snabbt.  
 ✅ **Dynamiska produktsidor** – visar titel, bild, beskrivning, pris, antal som betygsatt, totalt betyg visualiserat med stjärnor och rabattinformation (procentuell rabatt, nytt pris med gammalt överstruket).  
 ✅ **Lägg till i kassan** – visuell feedback vid klick.  
@@ -77,7 +78,8 @@ npm run dev
 
 ## 🚀 Användning
 - **Startsida** → visar produkter + hero, välj huvudkategori (Man/Kvinna).  
-- **Kvinna/Man-sidor** → filtrera produkter med sub-navigation efter underkategori.  
+- **Kvinna/Man-sidor** → filtrera produkter med sub-navigation efter underkategori.
+- **Subkategori-navigation på Man/Kvinna-sidor** → Klicka på en kategori-bild för att filtrera produkter inom den underkategorin, eller välj "See All" för att visa alla produkter i huvudkategorin (Man/Kvinna).
 - **Sök** → skriv produktnamn i sökfältet för att hitta produkter.  
 - **Produktdetaljer** → klicka på produkt för att se titel, bild, beskrivning, pris, betyg och rabattinformation.  
 - **Lägg till i kassan** → klicka på knappen “Lägg till i kassan” för visuell feedback.  
