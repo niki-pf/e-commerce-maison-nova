@@ -1,6 +1,6 @@
-import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/supabase";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { supabaseAnonKey, supabaseUrl } from "./client";
 
 export const updateSession = async (request: NextRequest) => {
     let supabaseResponse = NextResponse.next({

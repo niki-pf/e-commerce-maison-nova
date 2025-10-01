@@ -20,7 +20,7 @@ export default function WomenPage() {
         h2="Your Cozy Era"
         paragraph="Get peak comfy chic with new winter essentials"
         linkPrompt="Shop now"
-        link="/products?category=women&subcategory=tops"
+        link="/products?gender=women&category=tops"
         pos="midRight"
       />
       <CategoryNav gender="women" />

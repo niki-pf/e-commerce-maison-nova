@@ -1,6 +1,6 @@
 import React from "react";
 import AccountForm from "./account-form";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import AccountSidebar from "@/components/account/account-sidebar";
 
 const Account = async () => {

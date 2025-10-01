@@ -1,4 +1,8 @@
-import { BannerPositionVariants, HeightVariant, PositionVariant } from "./types";
+import {
+  BannerPositionVariants,
+  HeightVariant,
+  PositionVariant,
+} from "./types";
 
 export interface Dimensions {
   width: number;
@@ -25,23 +29,13 @@ export interface ProductFull {
   id: number;
   title: string;
   description: string;
+  gender: string;
   category: string;
   price: number;
   discountPercentage: number;
   rating: number;
-  stock: number;
   tags: string[];
-  brand: string;
-  sku: string;
-  weight: number;
-  dimensions: Dimensions;
-  warrantyInformation: string;
-  shippingInformation: string;
-  availabilityStatus: string;
   reviews: Review[];
-  returnPolicy: string;
-  minimumOrderQuantity: number;
-  meta: Meta;
   images: string[];
   thumbnail: string;
 }
@@ -62,7 +56,7 @@ export interface SortData {
 }
 
 export interface URLProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
@@ -108,9 +102,9 @@ export interface User {
   user_id: number;
   name: String;
   email: String;
-  roles: String[] 
-  createdAt: Date
-  updatedAt: Date
+  roles: String[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface UserSuperBase {
@@ -119,5 +113,5 @@ export interface UserSuperBase {
     fullName: string;
     userName: string;
     website: string;
-  }
+  };
 }

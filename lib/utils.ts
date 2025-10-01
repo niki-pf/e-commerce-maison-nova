@@ -57,3 +57,7 @@ export function generateSlug(toSlug: string) {
     .slice(0, 50);
   return slug;
 }
+
+export function parseCommaSeparareted(string : string ){
+  return string.split(",").map((value) => value.trim()).filter((value) => value.length > 0)
+}

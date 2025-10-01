@@ -23,16 +23,14 @@ import SortOptions from "@/components/products/sort-options";
 import ProductFilters from "@/components/products/product-filters";
 
 export async function generateMetadata({ searchParams }: URLProps) {
-  const { category = "", subcategory = "", query = "" } = await searchParams;
+  const { gender = "", category = "", query = "" } = await searchParams;
   return {
     title: `Maison Nova - Products`,
     description: `Product listing ${
-      category !== "" ? `for: ${category} ` : "for men / women "
+      gender !== "" ? `for: ${gender} ` : "for men / women "
     } ${
-      subcategory !== ""
-        ? ` of product type ${subcategory} `
-        : "all product types "
-    } ${query !== "" ? ` and explicitly: ${category}` : "."}`,
+      category !== "" ? ` of product type ${category} ` : "all product types "
+    } ${query !== "" ? ` and explicitly: ${gender}` : "."}`,
   };
 }
 
@@ -42,8 +40,8 @@ export default async function ProductsPage({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const {
+    gender = "",
     category = "",
-    subcategory = "",
     query = "",
     sort = "",
     min = "",
@@ -65,7 +63,7 @@ export default async function ProductsPage({
   }
 
   /* If there is a global search fetch result */
-  if (query !== "" && category === "" && subcategory === "") {
+  if (query !== "" && gender === "" && category === "") {
     const result = await fetchSearchProduct(query, sortBy, order);
 
     if (result) {
@@ -76,7 +74,7 @@ export default async function ProductsPage({
   }
 
   /* all products if there no filter */
-  if (category === "" && subcategory === "") {
+  if (gender === "" && category === "") {
     const result = await fetchAllProductsOfMultipleCategories(allCategories);
 
     if (result) {
@@ -101,14 +99,10 @@ export default async function ProductsPage({
     }
   }
 
-  /* if only a subcategory */
-  if (category === "" && subcategory !== "") {
-    if (allCategories.includes(subcategory)) {
-      const result = await fetchProductOfTypeCategory(
-        subcategory,
-        sortBy,
-        order
-      );
+  /* if only a category */
+  if (gender === "" && category !== "") {
+    if (allCategories.includes(category)) {
+      const result = await fetchProductOfTypeCategory(category, sortBy, order);
 
       if (result) {
         productList = result;
@@ -118,13 +112,9 @@ export default async function ProductsPage({
 
   /* if is a valid category ie men | women,  */
   if (validCategory(category)) {
-    let categories = category === "men" ? menCategories : womenCategories;
-    if (categories.includes(subcategory)) {
-      const result = await fetchProductOfTypeCategory(
-        subcategory,
-        sortBy,
-        order
-      );
+    let categories = gender === "men" ? menCategories : womenCategories;
+    if (categories.includes(category)) {
+      const result = await fetchProductOfTypeCategory(category, sortBy, order);
       if (result) {
         productList = result;
       }
