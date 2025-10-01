@@ -149,10 +149,10 @@ npm run dev
 
 **Vill du bidra?**
 
-**1.** Forka projektet
-**2.** Skapa en feature-branch (`git checkout ......`)
-**3.** Commit & push
-**4.** Skicka en Pull Request
+1. **Forka** projektet
+2. Skapa en **feature-branch** (`git checkout ......`)
+3. **Commit & push**
+4. Skicka en **Pull Request**
 
 ---
 
