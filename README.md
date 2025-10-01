@@ -164,3 +164,7 @@ Detta projekt är utvecklat i utbildningssyfte och är inte avsett för produkti
 ## ✍️ Kontakt
 
 Ev. kontaktuppgifter
+* Ali Z - mail
+* Chris W - mail
+* Naseem Q - mail
+* Nicole p - mailad
