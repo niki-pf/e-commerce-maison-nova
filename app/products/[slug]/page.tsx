@@ -50,7 +50,6 @@ export default async function Page({ params, searchParams }: URLProps) {
   }
 
   const product = await fetchProduct(slug);
-  console.log(product);
 
   if (!product) {
     return notFound();
