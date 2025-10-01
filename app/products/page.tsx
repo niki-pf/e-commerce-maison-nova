@@ -1,7 +1,6 @@
 import { PAGE_OFFSET } from "@/lib/constants";
 import ProductList from "@/components/products/product-list";
 import { productSortList } from "@/lib/constants";
-
 import { fetchProducts } from "@/lib/data/products";
 import { URLProps } from "@/lib/interfaces";
 import React from "react";
@@ -56,13 +55,19 @@ export default async function ProductsPage({
     const { sortBy, order, ...filters } = result.data;
     const sort = { sortBy: sortBy, order: order };
 
-    const productList = await fetchProducts(filters, sort);
+    let productList = await fetchProducts(filters, sort);
+
     const pages = Math.ceil(productList.length) / PAGE_OFFSET;
+    const pageNumber = parseInt(page);
+    const start = (pageNumber - 1) * PAGE_OFFSET;
+    const end = start + PAGE_OFFSET;
+    productList = productList.slice(start, end);
+
     return (
       <section className="flex gap-4 px-4 py-8">
         <div className="grid gap-2 content-start">
           <SortOptions data={productSortList}></SortOptions>
-          <ProductFilters category={category}></ProductFilters>
+          <ProductFilters gender={gender}></ProductFilters>
         </div>
         <ProductList productList={productList} pages={pages}></ProductList>
       </section>

@@ -1,19 +1,20 @@
 import Form from "next/form";
 import { deleteProduct } from "../../lib/data/product";
+import { revalidatePath } from "next/cache";
 
-export default function DeleteForm({ productId }: { productId: number }) {
+export default function DeleteButton({ productId }: { productId: number }) {
   return (
     <Form
       action={async () => {
         "use server";
         await deleteProduct(productId);
+        revalidatePath("/");
       }}>
       <button
         type="submit"
-        className="bg-destructive text-white px-4 py-2 rounded">
-        Delete Product!
+        className="border rounded px-2 h-min bg-destructive text-background font-bold">
+        Delete
       </button>
-      "
     </Form>
   );
 }

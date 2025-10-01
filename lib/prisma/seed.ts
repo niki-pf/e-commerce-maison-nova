@@ -1,9 +1,7 @@
 import { fetchAllProductsOfMultipleCategories } from "./seedUtil/products";
 import { allCategories, menCategories } from "./seedUtil/constants";
-import { PrismaClient } from "../lib/generated/prisma/client";
-import { generateSlug } from "../lib/utils";
-
-const prisma = new PrismaClient();
+import { generateSlug } from "../utils";
+import prisma from "@/lib/prisma/prisma";
 
 async function allProducts() {
   try {
@@ -18,7 +16,7 @@ async function allProducts() {
     for (const product of allProducts) {
       await prisma.product.create({
         data: {
-          slug: generateSlug(product.title+productIdCounter),
+          slug: generateSlug(product.title + productIdCounter),
           title: product.title,
           description: product.description,
           gender: menCategories.includes(product.category) ? "men" : "women",
@@ -34,7 +32,6 @@ async function allProducts() {
 
       if (product.reviews && product.reviews.length > 0) {
         for (const review of product.reviews) {
-
           await prisma.review.create({
             data: {
               productId: productIdCounter,
@@ -50,7 +47,6 @@ async function allProducts() {
     }
   } catch (e) {
     console.log(e);
-    
   }
 }
 

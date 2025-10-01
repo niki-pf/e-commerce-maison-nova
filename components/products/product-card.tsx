@@ -6,13 +6,7 @@ import ProductPrice from "./product-price";
 import DiscountTag from "./discount-tag";
 import { Product } from "@/lib/zod-schemas";
 
-
-export default async function ProductCard({
-  product,
-}: {
-  product: Product;
-}) {
-
+export default async function ProductCard({ product }: { product: Product }) {
   if (!product) {
     return null;
   }
@@ -20,7 +14,7 @@ export default async function ProductCard({
   return (
     <article className="grid max-w-[500px] productCard grid-rows-subgrid justify-start gap-2">
       <div className="flex justify-between gap-2 mb-auto row-start-3">
-        <Link href={`/products/${product.id}`}>
+        <Link href={`/products/${product.slug}`}>
           <h1 className="text-lg">{product.title}</h1>
         </Link>
         <ProductPrice

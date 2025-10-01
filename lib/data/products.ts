@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "@/lib/prisma/prisma";
 import { Product, ProductSort, TProductFilters } from "../zod-schemas";
 
 function mapProduct(product: any): Product {

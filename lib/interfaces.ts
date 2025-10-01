@@ -3,6 +3,7 @@ import {
   HeightVariant,
   PositionVariant,
 } from "./types";
+import { Product } from "./zod-schemas";
 
 export interface Dimensions {
   width: number;
@@ -25,7 +26,7 @@ export interface Meta {
   qrCode: string;
 }
 
- export interface ProductFull {
+export interface ProductFull {
   id: number;
   title: string;
   description: string;
@@ -38,7 +39,7 @@ export interface Meta {
   reviews: Review[];
   images: string[];
   thumbnail: string;
-} 
+}
 
 export interface CartProduct {
   id: number;
@@ -61,7 +62,7 @@ export interface URLProps {
 }
 
 export interface AddToCartBtnProps {
-  product: ProductFull;
+  product: Product;
 }
 
 export interface FullPageBlockProps {
