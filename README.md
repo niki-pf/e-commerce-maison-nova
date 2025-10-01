@@ -167,7 +167,7 @@ Detta projekt är utvecklat i utbildningssyfte och är inte avsett för produkti
 ## ✍️ Kontakt
 
 
-* Ali Z - mail
-* Chris W - mail
-* Naseem Q - mail
-* Nicole p - mailad
+- **Ali Z – Produkt- & Databasninja** – ali@example.com  
+- **Chris W – Admin-suverän & User-reglerare** – chris@example.com  
+- **Naseem Q – Checkout-mästare & Kontaktguru** – naseem@example.com  
+- **Nicole P – UI/UX-implementerare & CRUD-magiker** – nicole@example.com
