@@ -1,11 +1,5 @@
-import { Pagination } from "@/components/ui/pagination";
 import prisma from "../prisma";
-import {
-  Product,
-  ProductFilters,
-  ProductSort,
-  QueryParams,
-} from "../zod-schemas";
+import { Product, ProductSort, TProductFilters } from "../zod-schemas";
 
 function mapProduct(product: any): Product {
   return {
@@ -120,30 +114,30 @@ export async function fetchProductBySlug(
 }
 
 export async function fetchProducts(
-  filters: ProductFilters = {},
+  filters: TProductFilters = {},
   sort: ProductSort = {}
-) {
+): Promise<Product[]> {
   try {
     const where: any = {};
 
     if (filters.query) {
-      where.title = { conatins: filters.query, mode: "insensitive" };
+      where.title = { contains: filters.query, mode: "insensitive" };
     }
     if (filters.category) {
       where.category = filters.category;
     }
-    if (filters.gender) {
+    if (filters.gender !== "all") {
       where.gender = filters.gender;
     }
 
-    if (filters.priceMin || filters.priceMax) {
+    if (filters.min || filters.max) {
       where.price = {};
-      if (filters.priceMin) where.price.gte = filters.priceMin;
-      if (filters.priceMax) where.price.lte = filters.priceMax;
+      if (filters.min) where.price.gte = parseInt(filters.min);
+      if (filters.max) where.price.lte = parseInt(filters.max);
     }
 
     if (filters.ratingMin) {
-      where.rating = { gte: filters.ratingMin };
+      where.rating = { gte: parseInt(filters.ratingMin) };
     }
 
     const orderBy = sort.sortBy
@@ -157,6 +151,6 @@ export async function fetchProducts(
     return products;
   } catch (error) {
     console.error("Error fetching products", error);
-    return error;
+    return [];
   }
 }

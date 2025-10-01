@@ -28,20 +28,20 @@ const SortByEnum = z.enum(["price", "rating", "title"]);
 
 export const QueryParamsSchema = z.object({
   query: z.string().optional(),
-  gender: z.enum(["men", "women"]).optional(),
+  gender: z.enum(["men", "women", "all"]).optional(),
   category: z.string().optional(),
-  priceMin: z.string().optional(),
-  priceMax: z.string().optional(),
+  min: z.string().optional(),
+  max: z.string().optional(),
   ratingMin: z.string().optional(),
-  sortBy: SortByEnum.optional(),
-  order: z.enum(["asc", "desc"]).optional(),
+  sortBy: SortByEnum.nullable().optional(),
+  order: z.enum(["asc", "desc"]).nullable().optional(),
 });
 
 export type Product = z.infer<typeof productSchema>;
 export type Review = z.infer<typeof reviewSchema>;
 export type QueryParams = z.infer<typeof QueryParamsSchema>;
-export type ProductFilters = Omit<QueryParams, "sortBy" | "order">;
+export type TProductFilters = Omit<QueryParams, "sortBy" | "order">;
 export type ProductSort = {
-  sortBy?: z.infer<typeof SortByEnum>;
-  order?: "asc" | "desc";
+  sortBy?: z.infer<typeof SortByEnum> | null;
+  order?: "asc" | "desc" | null;
 };
