@@ -40,6 +40,7 @@ Plattformen erbjuder bland annat:
 ✅ **Sökfunktion** – hitta produkter snabbt.  
 ✅ **Dynamiska produktsidor** – visar titel, bild, beskrivning, pris, antal som betygsatt, totalt betyg visualiserat med stjärnor och rabattinformation (procentuell rabatt, nytt pris med gammalt överstruket).  
 ✅ **Lägg till i kassan** – visuell feedback vid klick.  
+✅ **Feature-komponent på subkategori-sidor** – En karusell som visar de 4 bäst betygsatta produkterna för varje huvudkategori (Man/ Kvinna), med rating och en kort review-kommentar. Går att bläddra åt höger och vänster.
 ✅ **Kontaktformulär** – fält för för- och efternamn, e-post, dropdown-meny för land samt meddelandefält.
 ✅ **Om oss-sida** – information om projektgruppen/företaget.  
 ✅ **Admin-sida** – administrera produkter via `/admin/admin-products` (nåbar via manuell sökväg).  
@@ -80,6 +81,7 @@ npm run dev
 - **Sök** → skriv produktnamn i sökfältet för att hitta produkter.  
 - **Produktdetaljer** → klicka på produkt för att se titel, bild, beskrivning, pris, betyg och rabattinformation.  
 - **Lägg till i kassan** → klicka på knappen “Lägg till i kassan” för visuell feedback.  
+- **Feature-karusell på subkategori-sidor** → Bläddra mellan de 4 bäst betygsatta produkterna för varje huvudkategori och se rating samt korta kommentarer från recensioner.
 - **Kontakt** → fyll i formulär med e-post, meddelande och ämneskategori, klicka på skicka.  
 - **Om oss** → statisk sida med text och bild om projektgruppen/företaget.  
 - **Admin-sida** → gå till `/admin/admin-products` för att administrera produkter (endast nåbar via manuell sökväg för tillfället).
