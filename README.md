@@ -1,6 +1,6 @@
 # 🛍️ E-handelsplattform i Next.js
 
-## Byggd med **Next.js** och **TypeScript**, där produkter hanteras via **Supabase** och **Prisma**. Plattformen erbjuder sök- och filterfunktioner samt interaktiva inslag som kontaktformulär och dynamiska produktsidor.
+ Byggd med **Next.js** och **TypeScript**, där produkter hanteras via **Supabase** och **Prisma**. Plattformen erbjuder sök- och filterfunktioner samt interaktiva inslag som kontaktformulär och dynamiska produktsidor.
 
 
 ---
