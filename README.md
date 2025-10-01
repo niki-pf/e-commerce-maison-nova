@@ -39,8 +39,10 @@ Plattformen erbjuder bland annat:
 ✅ **Val av huvudkategori** – Man eller Kvinna med sub-navigation för ytterligare filtrering (t.ex. Kvinna → Accessoarer, Klänningar).  
 ✅ **Sökfunktion** – hitta produkter snabbt.  
 ✅ **Dynamiska produktsidor** – visar titel, bild, beskrivning, pris, antal som betygsatt, totalt betyg visualiserat med stjärnor och rabattinformation (procentuell rabatt, nytt pris med gammalt överstruket).  
-✅ **Lägg till i kassan** – visuell feedback vid klick.  
+✅ **Lägg till i kassan** – visuell feedback vid klick.
+
 ✅ **Feature-komponent på subkategori-sidor** – En karusell som visar de 4 bäst betygsatta produkterna för varje huvudkategori (Man/ Kvinna), med rating och en kort review-kommentar. Går att bläddra åt höger och vänster.
+
 ✅ **Kontaktformulär** – fält för för- och efternamn, e-post, dropdown-meny för land samt meddelandefält.
 ✅ **Om oss-sida** – information om projektgruppen/företaget.  
 ✅ **Admin-sida** – administrera produkter via `/admin/admin-products` (nåbar via manuell sökväg).  
