@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma/prisma";
+import prisma from "@/lib/prisma";
 import { Product, ProductSort, TProductFilters } from "../zod-schemas";
 
 function mapProduct(product: any): Product {
@@ -16,10 +16,10 @@ function mapProduct(product: any): Product {
   };
 }
 
-export async function fetchProduct(id: string): Promise<Product | null> {
+export async function fetchProduct(slug: string): Promise<Product | null> {
   try {
     const product = await prisma.product.findUnique({
-      where: { id: Number(id) },
+      where: { slug: slug },
       include: { review: true },
     });
 
@@ -29,48 +29,6 @@ export async function fetchProduct(id: string): Promise<Product | null> {
   } catch (error) {
     console.error(error);
     return null;
-  }
-}
-
-export async function fetchSearchProduct(
-  query: string,
-  sortBy: string,
-  order: string
-): Promise<Product[]> {
-  try {
-    const products = await prisma.product.findMany({
-      where: { title: { contains: query, mode: "insensitive" } },
-      orderBy: sortBy
-        ? { [sortBy]: order === "desc" ? "desc" : "asc" }
-        : undefined,
-      include: { review: true },
-    });
-
-    return products.map(mapProduct);
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
-export async function fetchProductOfTypeCategory(
-  category: string,
-  sortBy: string,
-  order: string
-): Promise<Product[]> {
-  try {
-    const products = await prisma.product.findMany({
-      where: { category },
-      orderBy: sortBy
-        ? { [sortBy]: order === "desc" ? "desc" : "asc" }
-        : undefined,
-      include: { review: true },
-    });
-
-    return products.map(mapProduct);
-  } catch (error) {
-    console.error(error);
-    return [];
   }
 }
 

@@ -10,7 +10,7 @@ export interface Props {
 }
 
 export default async function Page({ params }: Props) {
-  const {slug} = await params;
+  const { slug } = await params;
 
   if (!slug) {
     redirect("/admin/admin-products");

@@ -1,7 +1,7 @@
 import { fetchAllProductsOfMultipleCategories } from "./seedUtil/products";
 import { allCategories, menCategories } from "./seedUtil/constants";
-import { generateSlug } from "../utils";
-import prisma from "@/lib/prisma/prisma";
+import prisma from "@/lib/prisma";
+import { generateSlug } from "@/lib/utils";
 
 async function allProducts() {
   try {
@@ -54,12 +54,7 @@ async function main() {
   await allProducts();
 }
 
-main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+main().catch(async (e) => {
+  console.error(e);
+  process.exit(1);
+});

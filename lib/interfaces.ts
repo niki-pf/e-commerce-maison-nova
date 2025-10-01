@@ -49,13 +49,13 @@ export interface CartProduct {
   image: string;
   quantity?: number;
 }
+
 export interface SortData {
   title: string;
-  value: string;
+  sortBy: string;
   key: string;
-  type: string;
+  order: string;
 }
-
 export interface URLProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | undefined }>;

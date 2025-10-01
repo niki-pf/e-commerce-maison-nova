@@ -1,13 +1,9 @@
-import {
-  fetchAllProductsOfMultipleCategories,
-  fetchProductBySlug,
-} from "@/lib/data/products";
+import { fetchProduct, fetchProducts } from "@/lib/data/products";
 import { notFound } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import ReviewScore from "@/components/products/review-score";
 import { Box, Gift, Truck } from "lucide-react";
-import { allCategories } from "@/lib/constants";
 import ReviewList from "@/components/products/review-list";
 import Stars from "@/components/stars";
 import RatingBarChart from "@/components/products/rating-bar-chart";
@@ -20,7 +16,7 @@ export async function generateMetadata({ params }: URLProps) {
   const { slug } = await params;
 
   if (slug) {
-    const product = await fetchProductBySlug(slug);
+    const product = await fetchProduct(slug);
     if (product) {
       return {
         title: `Maison Nova - ${product.title}`,
@@ -35,7 +31,7 @@ export async function generateMetadata({ params }: URLProps) {
 }
 
 export async function generateStaticParams() {
-  const result = await fetchAllProductsOfMultipleCategories(allCategories);
+  const result = await fetchProducts();
 
   if (result) {
     const allProducts = result;
@@ -53,7 +49,8 @@ export default async function Page({ params, searchParams }: URLProps) {
     return notFound();
   }
 
-  const product = await fetchProductBySlug(slug);
+  const product = await fetchProduct(slug);
+  console.log(product);
 
   if (!product) {
     return notFound();

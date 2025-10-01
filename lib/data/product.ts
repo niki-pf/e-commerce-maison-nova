@@ -1,6 +1,6 @@
 "use server";
 
-import prisma from "../prisma/prisma";
+import prisma from "@/lib/prisma";
 import { generateSlug } from "../utils";
 import { Product } from "../zod-schemas";
 
@@ -38,7 +38,6 @@ export async function updateProduct(data: Product) {
 
     return { succes: true, product: result.title };
   } catch (e) {
-    await prisma.$disconnect();
     return { succes: false, error: e };
   }
 }

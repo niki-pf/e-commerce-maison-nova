@@ -50,7 +50,6 @@ export default async function ProductsPage({
   };
 
   const result = QueryParamsSchema.safeParse(toZodParse);
-  console.log(result.error);
   if (result.success) {
     const { sortBy, order, ...filters } = result.data;
     const sort = { sortBy: sortBy, order: order };
