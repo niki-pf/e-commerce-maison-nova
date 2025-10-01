@@ -46,7 +46,6 @@ async function allProducts() {
       productIdCounter++;
     }
   } catch (e) {
-    console.log(e);
   }
 }
 

@@ -36,7 +36,7 @@ export async function generateStaticParams() {
   if (result) {
     const allProducts = result;
     return allProducts.map((product) => ({
-      slug: product.id,
+      slug: product.slug,
     }));
   }
 }

@@ -105,8 +105,10 @@ export async function fetchProducts(
     const products = await prisma.product.findMany({
       where,
       orderBy,
+      include: { review: true },
     });
-    return products;
+
+    return products.map((product) => mapProduct(product));
   } catch (error) {
     console.error("Error fetching products", error);
     return [];

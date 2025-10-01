@@ -31,7 +31,6 @@ export default async function ProductCard({ product }: { product: Product }) {
           height={500}
           className="bg-foreground p-2"></Image>
       </figure>
-
       <div className="row-start-2">
         <ReviewScore
           nrOfReviews={product.reviews?.length ?? 0}
