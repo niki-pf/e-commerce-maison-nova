@@ -141,11 +141,11 @@ Vill du bidra?
 
 ## 📚 Lärdomar
 
-* Skillnaden mellan Server & Client Components i Next.js
-* Agila metoder
-* API
-* Responsivitet
-
+- **Skillnaden mellan Server & Client Components i Next.js** – Vi lärde oss när och varför man ska använda server- respektive klientkomponenter för att optimera prestanda och användarupplevelse.  
+- **Agila metoder** – Vi fick praktisk erfarenhet av sprintplanering, backloghantering och samarbete i grupp enligt agila principer.  
+- **API-användning** – Ursprungligen användes externa API:er, men vi fick även erfarenhet av att hämta och hantera data från **Supabase** via **Prisma**.  
+- **Responsivitet** – Vi lärde oss att skapa gränssnitt som fungerar på olika skärmstorlekar med hjälp av Tailwind CSS och flexibla komponenter.  
+- **Databashantering med Prisma & Supabase** – Vi fick förståelse för hur man definierar datamodeller, gör CRUD-operationer och integrerar en databas i ett Next.js-projekt.
 ---
 
 ## 📜 Licens
