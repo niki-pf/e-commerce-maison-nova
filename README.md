@@ -102,10 +102,13 @@ npm run dev
 
 ## 📈 Arbetsflöde
 
-* 👥 Grupparbete i agila sprintar (SCRUM)
-* 🌱 Feature branches
-* 🔍 PR + kodgranskning
+👥 **Planering och sprintar (SCRUM)** – Kommande veckors arbete bröts ned i kort på GitHub Projects, och varje teammedlem valde själv vilka kort de ville arbeta med.  
 
+📅 **Daily standup & kontinuerlig kontakt** – Vi hade korta dagliga möten och höll kontinuerlig kontakt via chat för att följa upp och lösa problem snabbt.  
+
+🌱 **Feature branches kopplade till GitHub Projects** – Varje ny branch skapades direkt från ett kort på GitHub Projects, vilket gjorde det enkelt att hålla koppling mellan planering och kod samt få en tydlig överblick över vilka funktioner som utvecklades.
+
+🔍 **PR + kodgranskning** – Pull requests användes för att granska kod innan den mergades, vilket ökade kodkvaliteten.
 
 ---
 
@@ -163,7 +166,7 @@ Detta projekt är utvecklat i utbildningssyfte och är inte avsett för produkti
 
 ## ✍️ Kontakt
 
-Ev. kontaktuppgifter
+
 * Ali Z - mail
 * Chris W - mail
 * Naseem Q - mail
