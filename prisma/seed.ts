@@ -18,7 +18,7 @@ async function allProducts() {
     for (const product of allProducts) {
       await prisma.product.create({
         data: {
-          slug: generateSlug(product.title),
+          slug: generateSlug(product.title+productIdCounter),
           title: product.title,
           description: product.description,
           gender: menCategories.includes(product.category) ? "men" : "women",
