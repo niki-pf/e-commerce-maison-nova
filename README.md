@@ -115,26 +115,32 @@ npm run dev
 
 ## 🗓 Sprintplan
 
-### Sprint 1 - Grundläggande struktur
+### Vecka 1 – Projektuppstart & Designplanering
+- Valde en färdig Figma-design för att spara tid och få en tydlig visuell riktning.  
+- Satt upp Next.js-projektet med TypeScript och App Router.  
+- Bestämde mappstruktur och komponentstruktur för projektet.  
+- Bröt ned designen i återanvändbara komponenter.  
+- Skapade kort för varje funktion i GitHub Projects för att underlätta planering och spårbarhet.
 
-* Satte upp Next.js-projektet
-* Skapade menyer & statiska sidor
+### Vecka 2 – Kvalitetssäkring & Kodstandard
+- Gick igenom koden tillsammans i gruppen och förklarade sina delar.  
+- Identifierade områden där koden kunde förbättras.  
+- Kom överens om **naming conventions** för filer, funktioner och kommentarer.  
+- Testade tillgängligheten på sajten och varje sida med WAVE.  
+- Optimerade grundläggande SEO för sidorna.  
 
-### Sprint 2 - Grundläggande struktur
+### Vecka 3 – Backend & Databasintegration
+- Flyttade all produktdata över till **Supabase** och började arbeta med **Prisma**.  
+- Började implementera CRUD-funktionalitet, särskilt “Read”-delen för produktsidor.  
+- Säkerställde att databaskopplingar fungerade korrekt och att data hämtades asynkront.  
+- Fortsatte utveckla komponenter och integrera dem med backend-data.  
 
-* Satte upp Next.js-projektet
-* Skapade menyer & statiska sidor
-
-### Sprint 3 - Grundläggande struktur
-
-* Satte upp Next.js-projektet
-* Skapade menyer & statiska sidor
-
-### Sprint 4 - Finputs
-
-* Satte upp Next.js-projektet
-* Skapade menyer & statiska sidor
-
+### Vecka 4 – Avslut & Finputs
+- Avslutade pågående funktioner och testade hela flödet på sajten.  
+- Finjusterade styling och UI enligt Figma-designen.  
+- Säkerställde att alla sidor fungerade responsivt på olika skärmstorlekar.  
+- Testade interaktiva element, som sök, filter, lägg till i kassan och kontaktformulär.  
+- Förberedde projektet för redovisning och dokumentation i README.
 ---
 
 ## 🤝 Bidra
