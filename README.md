@@ -21,7 +21,7 @@
 - 🤝 [Bidra](#-bidra)
 - 📚 [Lärdomar](#-lärdomar)
 - 📜 [Licens](#-licens)
-- ✍️ [Mitt bidrag till projektet](#-mitt-bidrag-till-projektet)
+- v [Mitt bidrag till projektet](#-mitt-bidrag-till-projektet)
 
 
 ---
@@ -176,7 +176,7 @@ Detta projekt är utvecklat i utbildningssyfte och är inte avsett för produkti
 
 ---
 
-## 🧑‍💻 Mitt bidrag till projektet
+## ✍️ Mitt bidrag till projektet
 
 Mitt primära bidrag var att bygga flera av de centrala komponenterna som används på Man- och Kvinna-sidorna, samt att implementera databaslösningen med Prisma istället för att fortsätta hämta data från API:t. Jag skapade även några egna dataset och TypeScript-interface för att strukturera och typ-säkra dataflödet i projektet.
 
