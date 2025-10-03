@@ -21,7 +21,7 @@
 - 🤝 [Bidra](#-bidra)
 - 📚 [Lärdomar](#-lärdomar)
 - 📜 [Licens](#-licens)
-- ✍️ [Mitt bidrag till projektet](#-mitt-bidrag-till-projektet)
+- ✍️ [Mitt bidrag till projektet](#mitt-bidrag-till-projektet)
 - 🚀 [Utvecklingsmöjligheter](#-utvecklingsmöjligheter)
 
 ---
