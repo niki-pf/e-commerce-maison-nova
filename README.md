@@ -196,7 +196,5 @@ Jag byggde även About-sidan (statisk info + bilder) samt hjälpte till med land
 Om jag skulle fortsätta utveckla projektet skulle jag vilja:
 
 - Utöka carousel-komponenten så att den fungerar bättre på mobil, exempelvis genom swipe-navigation.
-- Införa global state-hantering (t.ex. med Zustand eller Redux) för varukorg och filtrering, så att användaren kan spara val över flera sidor.
-- Förbättra databasmodellen och lägga till relationer för exempelvis riktiga användarrecensioner, istället för statiska dummy-data.
 - Göra CategoryNav ännu mer dynamisk genom att hämta kategorier direkt från databasen istället för hårdkodade konstanter. Detta är ett pågående arbete: idén är implementerad, men för närvarande uppstår problem med Postgres och Prisma, specifikt fel kring "prepared statement already exists". Arbetet fortsätter för att hitta en stabil lösning som fungerar smidigt i produktion.
-- Skapa och underhålla egna dataset och TypeScript-interface för att strukturera data och säkerställa ty
+
