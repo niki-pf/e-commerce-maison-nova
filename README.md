@@ -21,7 +21,7 @@
 - 🤝 [Bidra](#-bidra)
 - 📚 [Lärdomar](#-lärdomar)
 - 📜 [Licens](#-licens)
-- ✍️ [Kontakt](#-kontakt)
+- ✍️ [Mitt bidrag till projektet](#-mitt-bidrag-till-projektet)
 
 
 ---
@@ -176,10 +176,27 @@ Detta projekt är utvecklat i utbildningssyfte och är inte avsett för produkti
 
 ---
 
-## ✍️ Kontakt
+## 🧑‍💻 Mitt bidrag till projektet
 
+Mitt primära bidrag var att bygga flera av de centrala komponenterna som används på Man- och Kvinna-sidorna, samt att implementera databaslösningen med Prisma istället för att fortsätta hämta data från API:t. Jag skapade även några egna dataset och TypeScript-interface för att strukturera och typ-säkra dataflödet i projektet.
 
-- **Ali Z – Produkt- & Databasninja** – ali@example.com  
-- **Chris W – Admin-suverän & User-reglerare** – chris@example.com  
-- **Naseem Q – Checkout-mästare & Kontaktguru** – naseem@example.com  
-- **Nicole P – UI/UX-implementerare & CRUD-magiker** – nicole@example.com
+### CategoryNav
+Jag utvecklade en komponent som dynamiskt renderar kategorier baserat på en prop (`gender`). Den hämtar en förhandsvisning av produkterna (bild + namn) från rätt dataset och visar dem som klickbara länkar/knappar. På så sätt kan användaren enkelt navigera till filtrerade produktlistor. Här använde jag Server Components tillsammans med `fetch` (senare ersatt av Prisma).
+
+### ItemWithReviewHero + Carousel
+Jag skapade en funktion som plockar ut de fyra bäst betygsatta produkterna inom en kategori. Dessa visas i en carousel som jag byggde som en egen Client Component med `useState`. För varje produkt renderas ett kort med bild, titel, rating (via en separat ReviewScore-komponent) och den bästa recensionen. Detta gav sidan en interaktiv och attraktiv sektion.
+
+### Prisma-integration
+Jag ansvarade för att implementera Prisma ORM kopplat till vår Supabase-databas. Det innebar att ersätta alla `fetch`-anrop från dummy-API:t med databasanrop via Prisma. Jag skrev read-funktionerna för att hämta produkter, kategorier och recensioner på serversidan, vilket både förbättrade kontrollen över datan och anpassade lösningen till projektets långsiktiga mål.
+
+### Övrigt
+Jag byggde även About-sidan (statisk info + bilder) samt hjälpte till med landningssidan (SplitHero) där man via två CTA-knappar routas vidare till antingen Man- eller Kvinna-sidan.
+
+### 🚀 Utvecklingsmöjligheter
+Om jag skulle fortsätta utveckla projektet skulle jag vilja:
+
+- Utöka carousel-komponenten så att den fungerar bättre på mobil, exempelvis genom swipe-navigation.
+- Införa global state-hantering (t.ex. med Zustand eller Redux) för varukorg och filtrering, så att användaren kan spara val över flera sidor.
+- Förbättra databasmodellen och lägga till relationer för exempelvis riktiga användarrecensioner, istället för statiska dummy-data.
+- Göra CategoryNav ännu mer dynamisk genom att hämta kategorier direkt från databasen istället för hårdkodade konstanter. Detta är ett pågående arbete: idén är implementerad, men för närvarande uppstår problem med Postgres och Prisma, specifikt fel kring "prepared statement already exists". Arbetet fortsätter för att hitta en stabil lösning som fungerar smidigt i produktion.
+- Skapa och underhålla egna dataset och TypeScript-interface för att strukturera data och säkerställa ty
