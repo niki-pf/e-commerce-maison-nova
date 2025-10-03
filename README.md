@@ -192,6 +192,8 @@ Jag ansvarade för att implementera Prisma ORM kopplat till vår Supabase-databa
 ### Övrigt
 Jag byggde även About-sidan (statisk info + bilder) samt hjälpte till med landningssidan (SplitHero) där man via två CTA-knappar routas vidare till antingen Man- eller Kvinna-sidan.
 
+---
+
 ### 🚀 Utvecklingsmöjligheter
 Om jag skulle fortsätta utveckla projektet skulle jag vilja:
 
