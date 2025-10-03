@@ -215,8 +215,18 @@ Jag byggde även About-sidan (statisk info + bilder) samt hjälpte till med land
 ---
 
 ## 🚀 Utvecklingsmöjligheter
+
 Om jag skulle fortsätta utveckla projektet skulle jag vilja:
 
-- Utöka carousel-komponenten så att den fungerar bättre på mobil, exempelvis genom swipe-navigation.
-- Göra CategoryNav ännu mer dynamisk genom att hämta kategorier direkt från databasen istället för hårdkodade konstanter. Detta är ett pågående arbete: idén är implementerad, men för närvarande uppstår problem med Postgres och Prisma, specifikt fel kring "prepared statement already exists". Arbetet fortsätter för att hitta en stabil lösning som fungerar smidigt i produktion.
+- **Carousel-komponenten**  
+  Förbättra mobilanpassning, exempelvis genom swipe-navigation.
 
+- **CategoryNav**  
+  Göra navigeringen dynamisk genom att hämta kategorier direkt från databasen. Detta är ett pågående arbete; just nu uppstår problem med Postgres/Prisma kring *"prepared statement already exists"*.
+
+- **Admin-panelen**  
+  Integrera färdigt så att nya produkter kan läggas upp, samt eventuellt införa roller och behörigheter.
+
+- **Förbättrad användarupplevelse (UX)**  
+  Implementera lazy loading eller infinite scroll för produktlistor.  
+  Öka tillgängligheten, till exempel stöd för skärmläsare och tangentbordsnavigering.
