@@ -98,9 +98,29 @@ npm run dev
 |-- app/
 |  |-- page.tsx            # Startsida
 |  |-- about/page.tsx      # Om oss
-|-- components/            # Återanvändbara komponenter                
-|
-|
+|  |-- men/page.tsx        # Man-sida
+|  |-- women/page.tsx      # Kvinna-sida
+|  |-- admin/              # Admin-panel
+|  |-- auth/               # Autentisering (login/signup)
+|  |-- contact-us/         # Kontaktformulär
+|  |-- Cart/               # Kundvagn
+|  |-- confirmation/       # Orderbekräftelse
+|-- components/            # Återanvändbara komponenter
+|  |-- products/           # Komponenter specifika för produktvisning, t.ex. ProductCard, Carousel
+|  |-- globals/            # Globala UI-komponenter som knappar, headers, footers
+|  |-- error/              # Komponenter för felmeddelanden och fallback-visningar
+|-- lib/
+|  |-- data/               # Statisk data eller seed-data
+|  |-- generated/          # Genererad kod från Prisma
+|  |-- stores/             # Zustand eller annan state management
+|  |-- supabase/           # Supabase-integration
+|  |-- constants.ts        # Globala konstanter
+|  |-- interfaces.ts       # TypeScript-interface
+|  |-- prisma.ts           # Prisma-klient och databasfunktioner
+|  |-- types.ts            # Extra typer
+|  |-- utils.ts            # Hjälpfunktioner
+|  |-- zod-schemas.ts      # Valideringsschema med Zod
+|-- prisma/                # Prisma-migreringar och schema
 ```
 
 ---
