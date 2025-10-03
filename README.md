@@ -214,7 +214,7 @@ Jag byggde även About-sidan (statisk info + bilder) samt hjälpte till med land
 
 ---
 
-### 🚀 Utvecklingsmöjligheter
+## 🚀 Utvecklingsmöjligheter
 Om jag skulle fortsätta utveckla projektet skulle jag vilja:
 
 - Utöka carousel-komponenten så att den fungerar bättre på mobil, exempelvis genom swipe-navigation.
